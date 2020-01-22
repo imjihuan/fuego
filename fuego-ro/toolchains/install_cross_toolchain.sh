@@ -1,25 +1,23 @@
 #!/bin/bash
 # $1: architecture (e.g.: arm64 armel armhf mips mipsel powerpc ppc64el)
 
-if [ -z ${1+x} ]; then
-    ARCH=armhf
-else
-    ARCH=$1
-fi
+ARCH=$1
 
 case $ARCH in
 	arm64 | armel | armhf | mips | mipsel | powerpc | ppc64el)
 		;;
 	*)
-		echo "Unsupported toolchain architecture: $ARCH"
+		echo "Usage: install_cross_toolchain.sh <arch>"
+		echo "Unsupported toolchain architecture: '$ARCH'"
 		echo "Please use one of: arm64 armel armhf mips mipsel powerpc ppc64el"
+        echo "If in doubt for arm, use 'armhf'"
 		exit 1
 		;;
 esac
 
 # use working directory as a lock
 if [ -d /tmp/toolchain_install ] ; then
-    echo "Cannout use /tmp/toolchain_install as it's already present"
+    echo "Cannot use /tmp/toolchain_install as it's already present"
     echo "Try again after other operation completes, or you remove it manually"
     exit
 fi
