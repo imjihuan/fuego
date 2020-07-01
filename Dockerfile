@@ -187,6 +187,12 @@ RUN service jenkins start && \
     sleep 10 && \
     service jenkins stop
 
+# Explicitly install script-security v1.68, otherwise
+# v1.74 will automatically be installed as a dependency of
+# the junit plugin. Make sure to install before junit plugin.
+RUN /usr/local/bin/install-plugins.sh \
+    script-security:1.68
+
 # install other plugins from Jenkins update center
 # NOTE: not sure all of these are needed, but keep list
 # compatible with 1.2.1 release for now
