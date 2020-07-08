@@ -79,6 +79,10 @@ RUN apt-get -q=2 -V --no-install-recommends install \
     vim \
     time
 
+# install packages used by NuttX SDK
+RUN apt-get -q=2 -V --no-install-recommends install \
+    genromfs
+
 # FIXTHIS: determine if these tools are really necessary
 #RUN apt-get -q=2 -V --no-install-recommends install \
 #	apt-utils python-paramiko \
