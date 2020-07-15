@@ -1,6 +1,6 @@
 # ==============================================================================
 # WARNING: this Dockerfile assumes that the container will be created with
-# several volume bind mounts (see docker-create-container.sh)
+# several bind mounts (see docker-create-container.sh)
 # ==============================================================================
 # FIXTHIS: build this as an extension of the nonjenkins image
 

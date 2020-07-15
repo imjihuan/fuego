@@ -133,7 +133,7 @@ This file serves as the common changelog for both repositories.
    * Handle proxies in container build
    * Use user UID as Jenkins uid inside container
  * Move fuego-core directory from /home/jenkins to /fuego-core
- * Move volume mounts and put more stuff outside the container
+ * Move bind mounts and put more stuff outside the container
  * Add some tests of fuego itself (*.fuego_* tests)
  * Add new transports (ttc and serial)
    * These are experimental in this release

@@ -71,9 +71,9 @@ Please see the Docker manual for different network setup options.
 
 Updating fuego-core and fuego
 -------------------------------------------------------------------------------
-The repository fuego-core is mounted as a external docker volume. All you
-need to do is to issue a ``git pull'' from the host directory. This will
-update the following components:
+The repository fuego-core is bind-mounted inside the Fuego docker container.
+To update it, all you need to do is to issue a ``git pull'' from the host
+directory. This will update the following components:
 - Fuego engine
 - tests
 - overlays

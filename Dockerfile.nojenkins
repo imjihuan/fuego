@@ -1,6 +1,6 @@
 # ==============================================================================
 # WARNING: this Dockerfile assumes that the container will be created with
-# several volume bind mounts (see docker-create-container.sh)
+# several bind mounts (see docker-create-container.sh)
 # ==============================================================================
 # Usage:
 # host$ vi fuego-ro/conf/fuego.conf
