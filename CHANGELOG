@@ -3,13 +3,16 @@ This is the CHANGELOG file for the Fuego test framework
 This file is in tbwiki markdown format, based on the Changelog format
 described at: http://keepachangelog.com/
 
-This file is for human-readable, high-level changes (not just a 
+This file is for human-readable, high-level changes (not just a
 git log dump), with the intent to help people decide when they
 want to upgrade Fuego versions.
 
 Note that Fuego is distributed as two repositories, one with docker
 and Jenkins stuff, and one with the fuego tests and script system.
 This file serves as the common changelog for both repositories.
+
+== 2020-07-26 ==
+ * Added support for short test names to 'ftc run-test'
 
 == [1.5.0] - 2019-08-14 ==
  * Added a new "batch test" feature
