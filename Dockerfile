@@ -194,13 +194,22 @@ RUN service jenkins start && \
 # Explicitly install script-security v1.68, otherwise
 # v1.74 will automatically be installed as a dependency of
 # the junit plugin. Make sure to install before junit plugin.
-RUN /usr/local/bin/install-plugins.sh \
-    script-security:1.68
+# Explicitly install junit:1.27
 
 # install other plugins from Jenkins update center
 # NOTE: not sure all of these are needed, but keep list
-# compatible with 1.2.1 release for now
+# as compatible as possible with 1.2.1 release for now
+# Do NOT change the order of the plugins, unless you know what
+# you are doing.  Otherwise, the install-plugins.sh script will
+# install the wrong versions of other plugins based on dependency
+# information in the plugin files.
 RUN /usr/local/bin/install-plugins.sh \
+    script-security:1.68 \
+    structs:1.20 \
+    workflow-step-api:2.22 \
+    workflow-api:2.40 \
+    junit:1.27 \
+    scm-api:2.6.3 \
     ant:1.9 \
     antisamy-markup-formatter:1.5 \
     bouncycastle-api:2.17 \
@@ -212,14 +221,12 @@ RUN /usr/local/bin/install-plugins.sh \
     icon-shim:2.0.3 \
     javadoc:1.5 \
     jdk-tool:1.2 \
-    junit:1.27 \
     ldap:1.20 \
     mailer:1.23 \
     matrix-auth:2.3 \
     matrix-project:1.14 \
     pam-auth:1.5 \
     pegdown-formatter:1.3 \
-    structs:1.19 \
     windows-slaves:1.4
 
 # make the mod.js symlink well after flot is installed
