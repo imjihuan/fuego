@@ -108,7 +108,7 @@ Do the following:::
 
 Edit the variables in the board file to match your board.
 Most variables can be left alone, but you will need
-to change the IPADDR, PLATFORM and ARCHITECTURE variables,
+to change the IPADDR, TOOLCHAIN and ARCHITECTURE variables,
 and set the BOARD_TESTDIR to the directory
 you just created above.
 
