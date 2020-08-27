@@ -13,6 +13,7 @@ Fuego User's Guide
 
    Introduction
    QuickstartGuide
+   architecture
 
 Indices and tables
 ==================

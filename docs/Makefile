@@ -5,7 +5,7 @@
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 SPHINXPROJ    = Fuego
-SOURCEDIR     = .
+SOURCEDIR     = rst_src
 BUILDDIR      = _build
 
 # Put it first so that "make" without argument is like "make help".
@@ -18,13 +18,13 @@ help:
 # leave old documentation targets in place for now
 .PHONY: fuego-docs.pdf oldclean
 fuego-docs.pdf:
-	make -C source $@
+	make -C tex_src $@
 
 schemes:
-	make -C source $@
+	make -C tex_src $@
 
 oldclean:
-	make -C source clean
+	make -C tex_src clean
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
