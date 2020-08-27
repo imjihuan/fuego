@@ -15,12 +15,19 @@ host. For Ubuntu, this includes the packages:
   texlive-latex-base, texlive-latex-recommended, texlive-fonts-extra
 
 = building =
-To build the old PDF documentation, do:
-
-make fuego-docs.pdf
-
 To build the new documentation (as HTML), do:
 
 make html
 
 The resulting files will be in docs/_build/html, with starting file index.html
+
+To build the new documentation as a PDF, do:
+
+make latexpdf
+
+The resulting PDF will be docs_build/latex/Fuego.pdf
+
+== old docs =
+To build the old PDF documentation, do:
+
+make fuego-docs.pdf
