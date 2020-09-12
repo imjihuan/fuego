@@ -23,20 +23,21 @@ Major elements
 
 The major elements in the Fuego architecture are:
 
- * host system
+ * Host system
 
-   * container build system
-   * fuego container instance
-
+     * Fuego container instance
+     * Container build system
      * Jenkins continuous integration system
 
-       * web-based user interface (web server on port 8090)
-       * plugins
-     * test programs
-     * abstraction scripts (test scripts)
-     * build environment (not shown in the diagram above)
- * target system
- * web client, for interaction with the system
+        * web-based user interface (web server on port 8090)
+        * plugins
+
+     * Test programs
+     * Build environment (not shown in the diagram above)
+     * Fuego core system
+
+ * Target system
+ * Web client, for interaction with the system
 
 ==============
 Jenkins 
@@ -175,12 +176,14 @@ How does Jenkins work?
  * Jenkins records stdout from slave process
  * The slave (slave.jar) runs a script specified in the config.xml
    for the job
-    * This script sources functions from the scripts and overlays
-      directory of Fuego, and does the actual building, deploying and
-      test executing
-    * Also, the script does results analysis on the test logs, and calls
-      the post_test operation to collect additional information and cleanup
-      after the test
+
+   * This script sources functions from the scripts and overlays
+     directory of Fuego, and does the actual building, deploying and
+     test executing
+   * Also, the script does results analysis on the test logs, and calls
+     the post_test operation to collect additional information and cleanup
+     after the test
+
  * While a test is running, Jenkins accumulates the log output from the
    generated test script and displays it to the user (if they are watching
    the console log)
@@ -204,6 +207,7 @@ Test execution
    the overlay generator
  * The overlay generator creates a script containing test variables
    for this test run
+
     * The script is created in the run directory for the test
     * The script is called prolog.sh
     * The overlay generator is called ovgen.py
@@ -214,7 +218,7 @@ Test execution
    :ref:`test execution flow outline <Outline>`
 
 ================================
-test variable file generation 
+Test variable file generation 
 ================================
 
  * The generator takes the following as input:
@@ -225,12 +229,13 @@ test variable file generation
     * the distribution file, and (selected with DISTRIB)
     * the testplans for the test (selected with TESTPLAN)
     * test specs for the test
- * the generator produces the test variable file
- * the test variable file is in "run" directory for a test, and
-   has the name: prolog.sh
- * this generation happens on the host, inside the docker container
- * the test variable file has functions which are available to
-   be called by the base test script
+
+The generator produces the test variable file, which it places
+in the "run" directory for a test, which has the name ``prolog.sh``
+This generation happens on the host, inside the docker container.
+This test variable file has all the functions which are available to
+be called by the base test script, as well as test variables
+from various source in the test system.
 
 .. image:: ../images/fuego-script-generation.png
    :width: 600
@@ -238,35 +243,42 @@ test variable file generation
 Input
 ======
  * Input descriptions:
-   * the board file has variables defining attributes of the board,
-     like the toolchain, network address, method of accessing the
-     board, etc.
-   * tools.sh has variables which are used for identifying the
-     toolchain used to build binary test programs
-      * It uses the TOOLCHAIN variable to determine the set of variables
-        to define
-   * a testplan lists multiple tests to run
-     * It specifies a test name and spec for each one
-     * a spec file holds the a set of variable declarations which
-       are used by the tests themselves.
-       These are put into environment variables on the target.
+    * the board file has variables defining attributes of the board,
+      like the toolchain, network address, method of accessing the
+      board, etc.
+    * The tools.sh script has variables which are used for identifying the
+      toolchain used to build binary test programs
+
+       * It uses the TOOLCHAIN variable to determine the set of variables
+         to define
+
+   * A testplan lists multiple tests to run
+      * It specifies a test name and spec for each one
+      * a spec file holds the a set of variable declarations which
+        are used by the tests themselves.
+        These are put into environment variables on the target.
 
  * ovgen.py reads the plans, board files, distrib files and specs,
    and produces a single prolog.sh file that has all the information
    for the test 
 
  * Each test in the system has a fuego shell script
+
     * This must have the same name as the base name of the test:
-      * \<base_test_name>.sh
+       * \<base_test_name>.sh
+
  * Most (but not all) tests have an additional test program
+
     * this program is executed on the board (the device under test)
     * it is often a compiled program, or set of programs
     * it can be a simple shell script
     * it is optional - sometime the base script can execute the
       needed commands for a test without an additional program
       placed on the board
+
  * The base script declares the tarfile for the test, and has functions
    for: test_build(), test_deploy() and test_run()
+
     * The test script is run on host (in the container)
        * but it can include commands that will run on the board
     * tarball has the tarfile 
@@ -277,6 +289,7 @@ Input
       test, and log the results.
 
  * The test program is run on the target
+
     * This is the actual test program that runs and produces a result
 
 ====================
@@ -327,8 +340,10 @@ software.
 This phase is split into multiple parts:
  * pre_build - build workspace is created, a build lock is acquired
    and the tarball is unpacked
+
     * :ref:`unpack <unpack>` is called during pre_build
  * test_build - this function, from the base script, is called
+
     * Usually this consists of 'make', or 'configure ; make'
  * post_build - (empty for now)
 
@@ -496,4 +511,6 @@ Human roles:
 
 You can find additional notes about details of Fuego, Jenkins and
 their interactions at:
+
  * :ref:`Fuego Developer Notes <Devref>`
+
