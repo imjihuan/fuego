@@ -11,7 +11,7 @@ As of July, 2020, the Fuego documentation is currently available in 3 places:
  * .rst files in fuego/docs
 
 The fuego-docs.pdf file is a legacy file that is several years old.  It
-is only kept around for backwards compatibility.  I might be worthwhile
+is only kept around for backwards compatibility.  It might be worthwhile
 to scan it and see if any information is in it that is not in the wiki
 and migrate it to the wiki.
 
