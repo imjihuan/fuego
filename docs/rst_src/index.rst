@@ -165,12 +165,11 @@ Indices and tables
 * :ref:`search`
 
 
-::
-   This is to hide a warning.  FrontPage.rst is included rather than referenced
-   using toctree
+..
+   The following is to hide a warning.
+   FrontPage.rst is included rather than referenced using toctree
 
 .. toctree::
   :hidden:
 
   FrontPage
-  _ug

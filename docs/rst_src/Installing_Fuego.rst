@@ -17,11 +17,11 @@ Overview
 
 The overview of the steps is:
 
- * 1. install pre-requisite software
- * 2. download the Fuego repository
- * 3. build your Fuego container
- * 4. start the container
- * 5. access the Jenkins interface
+ 1. install pre-requisite software
+ 2. download the Fuego repository
+ 3. build your Fuego container
+ 4. start the container
+ 5. access the Jenkins interface
 
 =================================
 Install pre-requisite software
@@ -226,7 +226,7 @@ to do A/B testing when
 migrating from one release of Fuego to the next.
 
 You can provide a different name for the Fuego image and container,
-by supplying one on the command line for install.sh, like so:
+by supplying one on the command line for install.sh, like so: ::
 
   $ ./install.sh my-fuego
 
@@ -239,8 +239,7 @@ container named 'my-fuego-container'
 Start the Fuego container 
 ===========================
 
-To start the Fuego docker container, use the 'start.sh' script.
-
+To start the Fuego docker container, use the 'start.sh' script. ::
 
   $ ./start.sh
 
