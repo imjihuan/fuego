@@ -97,8 +97,8 @@ Downloading the repository
 You can use 'git clone' to download the main 'fuego' repository, like so: ::
 
 
-	$ git clone https://bitbucket.org/fuegotest/fuego.git
-	$ cd fuego
+  $ git clone https://bitbucket.org/fuegotest/fuego.git
+  $ cd fuego
 
 
 After downloading the repositories, switch to the 'fuego' directory,
@@ -110,11 +110,12 @@ repository, which is the current main released version of Fuego.
 Downloading a different branch
 --------------------------------
 
-*NOTE:* If you are experimenting with an unreleased version of Fuego in the
-'next' branch, then please replace the 'git clone' command in the instructions above with these: ::
+If you are experimenting with an unreleased version of Fuego
+in the 'next' branch, then please replace the 'git clone' command in the
+instructions above with these: ::
 
-	$ git clone -b next https://bitbucket.org/fuegotest/fuego.git
-	$ cd fuego
+  $ git clone -b next https://bitbucket.org/fuegotest/fuego.git
+  $ cd fuego
 
 
 This uses '-b next' to indicate a different branch to check out during the
@@ -128,8 +129,7 @@ The third step of the installation is to run install.sh to create the
 Fuego docker container.  While in the 'fuego' directory,
 run the script from the current directory, like so: ::
 
-
-	$ ./install.sh
+  $ ./install.sh
 
 
 install.sh uses docker and the Dockerfile in the fuego directory to
