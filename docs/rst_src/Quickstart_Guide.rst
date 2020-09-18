@@ -1,26 +1,30 @@
-.. _quickstart:
+.. _quickstart_guide:
 
 #######################
 Fuego Quickstart Guide
 #######################
 
+Running tests from Fuego on your hardware can be accomplished in a few
+simple steps.
 
-Running tests from Fuego on your hardware can be accomplished in a few simple steps.
+.. Note:: This is the Quickstart Guide.  More detailed explanations
+   can be found at `Installing Fuego <installfuego>`_.
 
- *Note: this is the quickstart guide.  More details and explanations can be found on the* :ref:`Installing Fuego <installfuego>` page.
+.. _quickstart overview:
 
 =========
 Overview
 =========
 
 The overview of the steps is:
- * 1. install pre-requisite software
- * 2. download the fuego repository
- * 3. build your fuego container
- * 4. start the container
- * 5. access the interface
- * 6. add your board to fuego
- * 7. run a test
+
+1. install pre-requisite software
+2. download the fuego repository
+3. build your fuego container
+4. start the container
+5. access the interface
+6. add your board to fuego
+7. run a test
 
 These steps are described below.
 
@@ -57,12 +61,15 @@ where this is run will be placed at a shell prompt, as the root user,
 inside the docker container.  The container will run until you exit this
 shell.  You should leave it running for the duration of your testing.::
 
-*Note:If you are experimenting with the unreleased version of Fuego in the'next' branch, then please replace the 'git clone' command in the instructions above with these:*
+ .. note:: If you are experimenting with the unreleased version of Fuego
+    in the'next' branch, then please replace the 'git clone' command in
+    the instructions above with these:*
 
  * git clone -b next https://bitbucket.org/fuegotest/fuego.git
 
-On the last step, to access the Fuego interface you can use any browser - not just Firefox.  By default the Fuego interface runs on your host machine, on
-port 8090, with URL path "/fuego".
+On the last step, to access the Fuego interface you can use any
+browser - not just Firefox.  By default the Fuego interface runs
+on your host machine, on port 8090, with URL path "/fuego".
 
 In your browser, you should see a screen similar to the following:
 
@@ -94,7 +101,6 @@ Login to your board, and create a directory to use for testing:::
  $ ssh root@your_board
  <board>$ mkdir /home/a
  <board>$ exit
-
 
 If not using ssh, use whatever method you normally use to
 access the board.

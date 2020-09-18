@@ -1,49 +1,51 @@
 
-############
-Front page
-############
+##################
+Fuego Test System
+##################
 
-This is the documentation for the Fuego test system.
+=================
+Welcome to Fuego!
+=================
 
-===============
-Introduction 
-===============
-
-Fuego is a test framework specifically designed for embedded Linux testing.
-
+Fuego is a test system specifically designed for embedded Linux testing.
 It supports automated testing of embedded targets from a host system,
-as it's primary method of test execution.
+as its primary method of test execution.
 
-The quick introduction to Fuego is that it consists of a host/target
-script engine, with a Jenkins front-end, and over 50 pre-packaged
-tests, installed in a docker container.
+Fuego consists of a host/target script engine, and over 100 pre-packages
+tests.  These are installed in a docker container along with a Jenkins
+web interface and job control system, ready for out-of-the-box
+Continuous Integration testing of your embedded Linux project., and over
+100 pre-packaged
 
-Intro presentation 
-------------------
+The idea is that in the simplest case, you just add your board, select
+or install a toolchain, and go!
 
-Tim Bird gave a talk introducing Fuego, at Embedded Linux Conference
-in April 2016, and LinuxCon Japan 2016.  The slides were improved a
-bit for the talk in Japan, but there's only video for the ELC talk
-(not the LCJ talk).  Therefore, here are links to the LCJ slides and
-the ELC video.  The slides are close enough that you should be able to
-follow along.
+Introduction presentation 
+-------------------------
 
-The slides from LCJ are available here:
-`Introduction-to-Fuego-LCJ-2016.pdf <http://fuegotest.org/ffiles/Introduction-to-Fuego-LCJ-2016.pdf>`_
+Tim Bird gave some talks introducing Fuego, at various conferences
+in 2016.  The slides and a video are provided below, if you want
+to see an overview and introduction to Fuego.
 
-And here is the video from ELC:
-`You tube video <https://youtu.be/AueBSRN4wLk>`_
-
+The slides are here:
+`Introduction-to-Fuego-LCJ-2016.pdf <http://fuegotest.org/ffiles/Introduction-to-Fuego-LCJ-2016.pdf>`_, along with a 
+`YouTube video <https://youtu.be/AueBSRN4wLk>`_.
 You can find more presentations about Fuego on our wiki at:
 `<http://fuegotest.org/wiki/Presentations>`_.
 
 
-============
-Quickstart 
-============
+================
+Getting Started 
+================
 
-Please see the :ref:`Fuego Quickstart Guide <quickstart>` for how to
-get up an running quickly in Fuego.
+There are a few different ways to get started with Fuego:
+ 1. Use the `Fuego Quickstart Guide <quickstart_guide>`_ to
+    get Fuego up an running quickly.
+ 2. Or go through our `Install and First Test <install_and_first_test>`_
+    tutorial to install Fuego and run a test on a single "fake" board.
+    This will give you an idea of basic Fuego operations, without having to
+    configure Fuego for your own board
+ 3. Work through the documentation for `Installation <installation>`_
 
 Where to download 
 -----------------
@@ -52,17 +54,23 @@ Code for the test framework is available in 2 git repositories:
  * `<https://bitbucket.org/fuegotest/fuego/>`_
  * `<https://bitbucket.org/fuegotest/fuego-core/>`_
 
-The fuego-core directory should reside inside the fuego directory.
+The fuego-core directory resides inside the fuego directory.
 But normally you do not clone that repository directly.  It is cloned
 for you during the Fuego install process.  See the
-:ref:`Fuego Quickstart Guide <quickstart>` or the
+`Fuego Quickstart Guide <quickstart_guide>`_ or the
 :ref:`Installing Fuego <installfuego>` page for more information.
 
 ===============
 Documentation 
 ===============
+For more complete documentation, see the following areas:
 
- * :ref:`Documentation <doc>` has user documentation for Fuego.
+ * Installation_ has information about installation and
+   administration documentation for Fuego.
+ * `User Guides <user-guides>`_ has User documentation for Fuego.
+ * `Developer Info <developer_info>`_ has information for test developers and
+   people who want to extend Fuego
+ * `Reference Material <reference_material>`_ has APIs and other material about Fuego
 
 ============
 Resources
@@ -72,11 +80,13 @@ Mailing list
 ------------
 
 Fuego discussions are held on the fuego mailing list:
+
  * `<https://lists.linuxfoundation.org/mailman/listinfo/fuego>`_
 
 Note that this is a new list (as of September 2016).  Previously,
 discussions about Fuego (and its predecessor JTA) were held on the
 ltsi-dev mailing list:
+
  * `<https://lists.linuxfoundation.org/mailman/listinfo/ltsi-dev>`_
 
 Presentations
@@ -99,10 +109,10 @@ testing process.
 
 It can be summed up like this:
 
-.. note:: 
+..
+   FIXTHIS - 'admonition:: Vision' didn't work with rtd theme
 
-  Do for testing
-  what open source has done for coding
+.. Note:: Do for testing what open source has done for coding
 
 There are numerous aspects of testing that are still done in an ad-hoc
 and company-specific way.  Although there are open source test
@@ -115,13 +125,11 @@ embedded Linux, that is distributed and allows individuals and
 organizations to easily run their own tests, and at the same time
 allows people to share their tests and test results with each other.
 
-Historically, test frameworks for embedded Linux have been difficult
-to set up, and difficult to extend. In cases where a test program was
-reasonably self-contained, the test system was not easy to to extend.
-Many Linux test systems are not easily applied in cross or embedded
-environments. Some very full frameworks are either not viewed as
-processor-neutral, and are difficult to set up, or are targeted at
-running tests on a dedicated group of boards or devices.
+Historically, test frameworks for embedded Linux have been difficult to
+set up, and difficult to extend.  Many Linux test systems are not easily
+applied in cross or embedded environments. Some very full frameworks are
+either not viewed as processor-neutral, and are difficult to set up, or
+are targeted at running tests on a dedicated group of boards or devices.
 
 The vision of open source in general is one of sharing source code and
 capabilities, to expand the benefits to all participants in the
@@ -151,12 +159,12 @@ Linux, and to provide a place for centralized sharing of test
 configurations and collateral.
 
 There is no such thing as a "Linux Test distribution".  Fuego aims to
-be this.  It intends to provide test programs, scripts to build,
+be this.  It intends to provide test programs, a system to build,
 deploy and run them, and tools to analyze, track, and visualize test
 results.
 
 For more details about a high-level vision of open source testing,
-please see :ref:`OSS Test Vision <oss>`.
+please see `OSS Test Vision <oss>`_.
 
 ================
 Other Resources 
@@ -171,7 +179,8 @@ Historical information
 Related systems
 ---------------
  
-See :ref:`Other test systems <ots>` for notes and comparisons
+See :ref:`Other test systems <ots>` for notes about other test frameworks
+and comparisons between Fuego and those other systems.
 
 Things to do 
 ------------
