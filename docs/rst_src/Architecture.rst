@@ -425,25 +425,25 @@ It also shows the most common commands utilized by base script
 functions for this phase.
 
 
-  +------------+-------------------------------+----------------------------+
-  | phase      | relationship to base script   | common operations          |
-  +============+===============================+============================+
-  | pre_test   | calls 'test_pre_check'        |assert_define,is_on_target, |
-  |            |                               |check_process_is_running    |
-  +------------+-------------------------------+----------------------------+
-  | build      | uses the 'tarfile' definition,|patch,configure,make        |
-  |            | calls'test_build'             |                            |
-  +------------+-------------------------------+----------------------------+
-  | deploy     | Calls 'test_deploy'           | put                        |
-  +------------+-------------------------------+----------------------------+
-  | run        | calls 'test_run'              | cmd,report,report_append   |
-  +------------+-------------------------------+----------------------------+
-  |get_testlog |(none)                         |                            |
-  +------------+-------------------------------+----------------------------+
-  |processing  |calls 'test_processing'        | log_compare                |
-  +------------+-------------------------------+----------------------------+
-  |post_test   |calls 'test_cleanup'           | kill procs                 |
-  +------------+-------------------------------+----------------------------+
+  +------------+-------------------------------+------------------------------+
+  | phase      | relationship to base script   | common operations            |
+  +============+===============================+==============================+
+  | pre_test   | calls 'test_pre_check'        |assert_define, is_on_target,  |
+  |            |                               |check_process_is_running      |
+  +------------+-------------------------------+------------------------------+
+  | build      | uses the 'tarfile' definition,|patch,configure,make          |
+  |            | calls'test_build'             |                              |
+  +------------+-------------------------------+------------------------------+
+  | deploy     | Calls 'test_deploy'           | put                          |
+  +------------+-------------------------------+------------------------------+
+  | run        | calls 'test_run'              | cmd,report,report_append     |
+  +------------+-------------------------------+------------------------------+
+  |get_testlog |(none)                         |                              |
+  +------------+-------------------------------+------------------------------+
+  |processing  |calls 'test_processing'        | log_compare                  |
+  +------------+-------------------------------+------------------------------+
+  |post_test   |calls 'test_cleanup'           | kill procs                   |
+  +------------+-------------------------------+------------------------------+
 
 
 other scripts and programs 
