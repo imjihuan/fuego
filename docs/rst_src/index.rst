@@ -29,7 +29,7 @@ Index
 
    Quickstart_Guide
    Installing_Fuego
-   Adding_a_board
+   Adding_a_Board
    Adding_a_toolchain
    Adding_test_jobs_to_Jenkins
    Adding_views_to_Jenkins
