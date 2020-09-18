@@ -1,8 +1,7 @@
-.. _addingboard:
-
+.. _adding_board:
 
 #################
-Adding Board
+Adding a Board
 #################
 
 ==============

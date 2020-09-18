@@ -71,7 +71,7 @@ Here is a list of the variables which might be found in a board file:
  * USB_DEV - specifies a filesystem device node (on the board) for USB filesystem tests
  * USB_MP - specifies a filesystem mount point (on the board) for USB filesystem tests
 
-See :ref:`Adding a board <addingboard>` for more details about these variables.
+See :ref:`Adding a Board <adding_board>` for more details about these variables.
 
 A board may also have additional variables, including variables that
 are used for results evaluation for specific tests.

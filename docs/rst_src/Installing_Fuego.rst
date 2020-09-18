@@ -8,8 +8,8 @@ This page describes the steps to install Fuego on your Linux machine.
 It includes detailed descriptions of the operations, for both users
 and developers.
 
-If you are interested in a quick outline of steps, please see the
-:ref:`Fuego Quickstart Guide <quickstart>` instead.
+.. Tip:: If you are interested in a quick outline of steps, please see the
+   :ref:`Fuego Quickstart Guide <quickstart_guide>` instead.
 
 ===========
 Overview
@@ -325,7 +325,7 @@ remain in order to use it with your hardware.  You need to:
 These steps are described in subsequent sections of this documentation.
 
 See:
- * :ref:`Adding a board <addingboard>`
+ * :ref:`Adding a Board <adding_board>`
  * :ref:`Adding a toolchain <addtoolchain>`
  * :ref:`Adding test jobs to Jenkins <addtestjob>`
 

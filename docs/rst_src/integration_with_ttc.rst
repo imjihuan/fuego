@@ -80,7 +80,7 @@ Steps to use ttc with a target board
 
 Here is a list of steps to set up a target board to use ttc.
 These steps assume you have already added a board to fuego
-following the steps described in :ref:`Adding a board <addingboard>`.
+following the steps described in :ref:`Adding a Board <adding_board>`.
 
  * If needed, create your docker container using 'docker-create-usb-privileged-container.sh
 
@@ -103,7 +103,7 @@ following the steps described in :ref:`Adding a board <addingboard>`.
 
 ===========================
 modify your copy_to_cmd
-============================
+===========================
 
 In your ttc.conf file, you may need to make changes to any copy_to_cmd definitions.  Fuego allows programs to pass a '-r' argument to its internal
 'put' command, which in turn invokes ttc's cp command, with the source as target

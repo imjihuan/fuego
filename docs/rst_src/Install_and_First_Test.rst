@@ -77,10 +77,10 @@ duration of your testing.
 
 The next steps populate the Jenkins system objects used for testing:
 
-At the shell prompt inside the container type the following:
+At the shell prompt inside the container type the following: ::
 
-	# ftc add-node -b docker
-	# ftc add-jobs -b docker -t Functional.batch_smoketest
+    # ftc add-node -b docker
+    # ftc add-jobs -b docker -t Functional.batch_smoketest
 
 This will add the 'docker' node in the Jenkins interface, and a small
 set of tests.  The 'docker' node simulates an embedded "board" using the
@@ -194,5 +194,5 @@ distribution), and then triggers Fuego jobs, after the new software is
 installed on the board.
 
 See further instructions see the Fuego :ref:`Quickstart Guide <quickstart_guide>`,
-:ref:`Adding a board <addingboard>`, :ref:`Adding a toolchain <addtoolchain>`
+:ref:`Adding a Board <adding_board>`, :ref:`Adding a toolchain <addtoolchain>`
 or the :ref:`Installing Fuego <installfuego>` page.

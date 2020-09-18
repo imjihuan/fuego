@@ -7,7 +7,7 @@ Fuego Quickstart Guide
 Running tests from Fuego on your hardware can be accomplished in a few
 simple steps.
 
-.. Note:: This is the Quickstart Guide.  More detailed explanations
+.. Note:: This is the Quickstart Guide.  More detailed instructions
    can be found at `Installing Fuego <installfuego>`_.
 
 .. _quickstart overview:
@@ -59,13 +59,13 @@ container.
 When you run the 'start.sh' script, the terminal
 where this is run will be placed at a shell prompt, as the root user,
 inside the docker container.  The container will run until you exit this
-shell.  You should leave it running for the duration of your testing.::
+shell.  You should leave it running for the duration of your testing.
 
- .. note:: If you are experimenting with the unreleased version of Fuego
-    in the'next' branch, then please replace the 'git clone' command in
-    the instructions above with these:*
+.. Note:: If you are experimenting with the unreleased version of Fuego
+   in the'next' branch, then please replace the 'git clone' command in
+   the instructions above with this (i.e. add '-b next'):
 
- * git clone -b next https://bitbucket.org/fuegotest/fuego.git
+     $ git clone -b next https://bitbucket.org/fuegotest/fuego.git
 
 On the last step, to access the Fuego interface you can use any
 browser - not just Firefox.  By default the Fuego interface runs
@@ -88,7 +88,7 @@ To add your own board to Fuego, there are three main steps:
  * 3. add your board to the Jenkins interface
 
 You can find detailed instructions for adding a board at:
-:ref:`Adding a board <addingboard>`
+:ref:`Adding a Board <adding_board>`
 
 However, here is a quick list of steps you can do to add
 a your own board, and a sample 'docker' board to Fuego:
@@ -127,7 +127,7 @@ you just created above.
 
 For other variables in the board file, or specifically to use
 a different transport than SSH, see more complete instructions
-at: :ref:`Adding a board <addingboard>`
+at: :ref:`Adding a Board <adding_board>`
 
 Add boards to the Jenkins interface
 ====================================
@@ -218,19 +218,22 @@ Other variables in the board file
 
 Depending on the test you want to run, you may need to define some other
 variables that are specific to your board or the configuration of the
-filesystem on it.  Please see :ref:`Adding a board <addingboard>` for detailed instructions
-and a full list of variables that may be used on the target.
+filesystem on it.  Please see :ref:`Adding a Board` for
+detailed instructions and a full list of variables that may be used on
+the target.
 
 the Jenkins interface
 ========================
 
-See :ref:`Jenkins User Interface <jUsrinterface>` for more screenshots of the Jenkins web interface.  This will help familiarize you with some of the features
-of Jenkins, if you are new to using this tool.
+See :ref:`Jenkins User Interface <jUsrinterface>` for more screenshots
+of the Jenkins web interface.  This will help familiarize you with some
+of the features of Jenkins, if you are new to using this tool.
 
 =================
 Troubleshooting
 =================
 
-If you have problems installing or using Fuego, please see our :ref:`Troubleshooting Guide <troubleshootingguide>`
+If you have problems installing or using Fuego, please see our
+:ref:`Troubleshooting Guide <troubleshootingguide>`
 
 
