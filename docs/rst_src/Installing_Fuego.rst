@@ -143,8 +143,9 @@ This step requires Internet access.  You need to make sure that
 you have proxy access to the Internet if you are behind a corporate
 firewall.
 
-Please see the section "Alternative Installation Configuratons" below for 
-other arguments to *install.sh*, or for alternative installation scripts.
+Please see the section
+:ref:`Alternative Installation Configurations <alt_install>` below
+for other arguments to ``install.sh``, or for alternative installation scripts.
 
 
 Fuego Linux distribution
@@ -327,6 +328,8 @@ See:
  * :ref:`Adding a Board <adding_board>`
  * :ref:`Adding a toolchain <addtoolchain>`
  * :ref:`Adding test jobs to Jenkins <addtestjob>`
+
+.. _alt_install:
 
 ================================================
 Alternative installation configurations 
