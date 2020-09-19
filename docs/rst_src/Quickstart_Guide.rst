@@ -8,7 +8,7 @@ Running tests from Fuego on your hardware can be accomplished in a few
 simple steps.
 
 .. Note:: This is the Quickstart Guide.  More detailed instructions
-   can be found at `Installing Fuego <installfuego>`_.
+   can be found at :ref:`Installing Fuego <installfuego>`.
 
 .. _quickstart overview:
 

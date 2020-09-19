@@ -45,7 +45,7 @@ There are a few different ways to get started with Fuego:
     tutorial to install Fuego and run a test on a single "fake" board.
     This will give you an idea of basic Fuego operations, without having to
     configure Fuego for your own board
- 3. Work through the documentation for `Installation <install_fuego>`_
+ 3. Work through the documentation for :ref:`Installation <installfuego>`
 
 Where to download 
 -----------------
