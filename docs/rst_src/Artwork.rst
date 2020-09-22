@@ -27,6 +27,11 @@ Logos
 
  * fuego-logo-from-Daniel:svg (SVG, high-res)
 
+   Please see this image in the Fuegotest wiki at:
+   http://fuegotest.org/ffiles/fuego-logo-from-Daniel.svg
+   *(Sphinx cannot include this image in PDF output)*
+
+..
   .. image:: ../images/fuego-logo-from-Daniel.svg
      :height: 100
 
