@@ -1,9 +1,11 @@
+.. _artwork:
 
 #########
 Artwork
 #########
 
-This page has artwork (logos, photos and images) for use in Fuego presentations and documents.
+This page has artwork (logos, photos and images) for use in Fuego
+presentations and documents.
 
 =======
 Logos 
@@ -88,7 +90,8 @@ images
 Photos 
 =========
 
- * Tim Bird presenting Introduction to Fuego at ELC 2016 (Youtube video framegrab) (png, 370x370)
+ * Tim Bird presenting Introduction to Fuego at ELC 2016 (Youtube
+   video framegrab) (png, 370x370)
 
   .. image:: ../images/Youtube-Intro-to-Fuego-ELC-2016-square.png
      :height: 100

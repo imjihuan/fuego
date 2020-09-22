@@ -4,14 +4,14 @@
 Raspberry Pi Fuego Setup
 #########################
 
-This is a list of instructions for setting up a Raspberry Pi board
-for use with Fuego.  These instructions will help you set up the
-ssh server, used by Fuego to communicate with the board, and the 
-test directory on the machine, that Fuego will use to store programs
-and files during a test.
+This is a list of instructions for setting up a Raspberry Pi board for
+use with Fuego.  These instructions will help you set up the ssh
+server, used by Fuego to communicate with the board, and the test
+directory on the machine, that Fuego will use to store programs and
+files during a test.
 
-These instructions and the screen shots are for a Raspberry Pi Model 3 B,
-running "Raspbian 9 (stretch)".
+These instructions and the screen shots are for a Raspberry Pi Model 3
+B, running "Raspbian 9 (stretch)".
 
 This assumes that the Raspberry Pi is already installed, and that
 networking is already configured and running.
@@ -20,21 +20,22 @@ networking is already configured and running.
 Obtain your network address
 ==============================
 
-First, determine what your Pi's network address is.  You can see this by using
-the command 'ifconfig' in a terminal window, and checking for the 'inet' address.
+First, determine what your Pi's network address is.  You can see this
+by using the command 'ifconfig' in a terminal window, and checking for
+the 'inet' address.
 
-Or, move your mouse cursor over the network icon in the desktop panel bar.
-If you leave the mouse there for a second or two, a box will appear showing
-information about your current network connection.
+Or, move your mouse cursor over the network icon in the desktop panel
+bar.  If you leave the mouse there for a second or two, a box will
+appear showing information about your current network connection.
 
-This is what the network information box looks like (in the upper right corner
-of this screen shot):
+This is what the network information box looks like (in the upper
+right corner of this screen shot):
 
 .. image:: ../images/rpi-network-address.png
    :height: 400
 
-In this case, my network address is 10.0.1.103.
-Your address might start with 192.168, which is common for home or local networks.
+In this case, my network address is 10.0.1.103.  Your address might
+start with 192.168, which is common for home or local networks.
 
 Note this address for use later.
 
@@ -46,14 +47,14 @@ Configure the SSH server
 In order for other machines to access the Pi remotely, you need to
 enable the ssh server.
 
-This is done by enabling the SSH interface in the Raspberry Pi Configuration
-dialog.
+This is done by enabling the SSH interface in the Raspberry Pi
+Configuration dialog.
 
-To access this dialog, click on the raspberry logo in the upper right corner
-of the main desktop window.  Then click on "Preferences", then on
-"Raspberry Pi Configuration".  In the dialog that appears, click on the
-"Interfaces" tab, and on the list of interfaces click on the "Enable"
-radio button for the SSH interface.
+To access this dialog, click on the raspberry logo in the upper right
+corner of the main desktop window.  Then click on "Preferences", then
+on "Raspberry Pi Configuration".  In the dialog that appears, click on
+the "Interfaces" tab, and on the list of interfaces click on the
+"Enable" radio button for the SSH interface.
 
 Here is the menu:
 
@@ -69,8 +70,8 @@ The configuration dialog looks something like this:
 Try connecting
 ================
 
-Now, close this dialog, and make sure you can access the Pi using
-SSH from your host machine.
+Now, close this dialog, and make sure you can access the Pi using SSH
+from your host machine.
 
 
 Try the following command, from your host machine:
@@ -91,8 +92,8 @@ This is not recommended on machines that are in production, as it is
 a significant security risk.  However, for test machines it may be
 acceptable to allow root access over ssh.
 
-To do this, on the Raspberry Pi, with root permissions, edit the file /etc/ssh/sshd_config
-and add the following line: ::
+To do this, on the Raspberry Pi, with root permissions, edit the file
+/etc/ssh/sshd_config and add the following line: ::
 
    PermitRootLogin yes
 
@@ -126,9 +127,9 @@ information.
 
 ``$ adduser fuego``
 
-Answer the questions, including setting the password for this
-account. Remember the password you select, and use that in the board
-file when configuring Fuego to access this board.
+Answer the questions, including setting the password for this account.
+Remember the password you select, and use that in the board file when
+configuring Fuego to access this board.
 
 This will create the directory ``/home/fuego``.
 
@@ -196,7 +197,8 @@ Inside the Fuego container, run: ::
   $ ftc add-job -b rpi -t Functional.fuego_board_check
 
 
-An easy way to populate Jenkins with a set of tests is to install a batch test.
+An easy way to populate Jenkins with a set of tests is to install a
+batch test.
 
 Install the "smoketest" batch test, as follows:
 
@@ -211,11 +213,12 @@ Run a board check
 To see if everything is set up correctly, execute the test:
 Functional.fuego_board_check.
 
-In the Jenkins interface, select "rpi.default.Functional.fuego_board_check"
-and select the menu item "Build Now" on the left hand side of the screen.
+In the Jenkins interface, select
+"rpi.default.Functional.fuego_board_check" and select the menu item
+"Build Now" on the left hand side of the screen.
 
-Wait a few moments for the test to complete. when the test completes, check
-the log for the test by clicking on the link to the 'testlog'.
+Wait a few moments for the test to complete. when the test completes,
+check the log for the test by clicking on the link to the 'testlog'.
 
 
 

@@ -8,8 +8,8 @@ This page describes the steps to install Fuego on your Linux machine.
 It includes detailed descriptions of the operations, for both users
 and developers.
 
-.. Tip:: If you are interested in a quick outline of steps, please see the
-   :ref:`Fuego Quickstart Guide <quickstart_guide>` instead.
+If you are interested in a quick outline of steps, please see the
+:ref:`Fuego Quickstart Guide <quickstart>` instead.
 
 ===========
 Overview
@@ -17,18 +17,18 @@ Overview
 
 The overview of the steps is:
 
- 1. install pre-requisite software
- 2. download the Fuego repository
- 3. build your Fuego container
- 4. start the container
- 5. access the Jenkins interface
+ * 1. install pre-requisite software
+ * 2. download the Fuego repository
+ * 3. build your Fuego container
+ * 4. start the container
+ * 5. access the Jenkins interface
 
 =================================
 Install pre-requisite software
 =================================
 
-To retrieve the Fuego software and create the docker image for it, you need
-to have git and docker installed on your system.
+To retrieve the Fuego software and create the docker image for it, you
+need to have git and docker installed on your system.
 
 On Ubuntu, try the following commands: ::
 
@@ -94,11 +94,12 @@ of tests, and the main Fuego command line tool 'ftc'.
 Downloading the repository
 ============================
 
-You can use 'git clone' to download the main 'fuego' repository, like so: ::
+You can use 'git clone' to download the main 'fuego' repository, like
+so: ::
 
 
-  $ git clone https://bitbucket.org/fuegotest/fuego.git
-  $ cd fuego
+	$ git clone https://bitbucket.org/fuegotest/fuego.git
+	$ cd fuego
 
 
 After downloading the repositories, switch to the 'fuego' directory,
@@ -110,16 +111,16 @@ repository, which is the current main released version of Fuego.
 Downloading a different branch
 --------------------------------
 
-If you are experimenting with an unreleased version of Fuego
-in the 'next' branch, then please replace the 'git clone' command in the
-instructions above with these: ::
+*NOTE:* If you are experimenting with an unreleased version of Fuego
+in the 'next' branch, then please replace the 'git clone' command in
+the instructions above with these: ::
 
-  $ git clone -b next https://bitbucket.org/fuegotest/fuego.git
-  $ cd fuego
+	$ git clone -b next https://bitbucket.org/fuegotest/fuego.git
+	$ cd fuego
 
 
-This uses '-b next' to indicate a different branch to check out during the
-clone operation.
+This uses '-b next' to indicate a different branch to check out during
+the clone operation.
 
 ============================
 Create the Fuego container
@@ -129,39 +130,41 @@ The third step of the installation is to run install.sh to create the
 Fuego docker container.  While in the 'fuego' directory,
 run the script from the current directory, like so: ::
 
-  $ ./install.sh
+
+	$ ./install.sh
 
 
 install.sh uses docker and the Dockerfile in the fuego directory to
 create a docker container with the Fuego Linux distribution.
 
 This operation may take a long time.  It takes about 45 minutes on my
-machine.  This is due to building a nearly complete distribution of Linux,
-from binary packages obtained from the Internet.
+machine.  This is due to building a nearly complete distribution of
+Linux, from binary packages obtained from the Internet.
 
 This step requires Internet access.  You need to make sure that
 you have proxy access to the Internet if you are behind a corporate
 firewall.
 
-Please see the section
-:ref:`Alternative Installation Configurations <alt_install>` below
-for other arguments to ``install.sh``, or for alternative installation scripts.
+Please see the section "Alternative Installation Configuratons" below
+for other arguments to *install.sh*, or for alternative installation
+scripts.
 
 
 Fuego Linux distribution
 ===========================
 
-The Fuego Linux distribution is a distribution of Linux based on Debian Linux,
-with many additional packages and tools installed.  These
-additional packages and tools are required for aspects of Fuego operation,
-and to support host-side processes and services needed by the tests
-included with Fuego.
+The Fuego Linux distribution is a distribution of Linux based on
+Debian Linux, with many additional packages and tools installed.
+These additional packages and tools are required for aspects of Fuego
+operation, and to support host-side processes and services needed by
+the tests included with Fuego.
 
 For example, the Fuego distribution includes
  * the 'Jenkins' continuous integration server
  * the 'netperf' server, for testing network performance.
  * the 'ttc' command, which is a tool for board farm management
- * the python 'jenkins' module, for interacting with Fuego's Jenkins instance
+ * the python 'jenkins' module, for interacting with Fuego's Jenkins 
+   instance
  * and many other tools, programs and modules used by Fuego and its tests
 
 Fuego commands execute inside the Fuego docker container, and Fuego
@@ -186,22 +189,22 @@ the '--priv' options with install.sh: ::
 Customizing the privileged container
 -------------------------------------
 
-Note that using '--priv' causes install.sh to use a different container
-creation script.
-Normally (in the non --priv case), install.sh uses ``fuego-host-scripts/docker-create-container.sh``.
+Note that using '--priv' causes install.sh to use a different
+container creation script.  Normally (in the non --priv case),
+install.sh uses ``fuego-host-scripts/docker-create-container.sh``.
 
-When --priv is used, Fuego uses ``fuego-host-scripts/docker-create-usb-privileged-container.sh``.
+When --priv is used, Fuego uses
+``fuego-host-scripts/docker-create-usb-privileged-container.sh``.
 
 
 ``docker-create-usb-privileged-container.sh`` can be edited, before
 running install.sh, to change the set of hardware devices
 that the docker container will have privileged access to.
 
-This is done
-by adding more bind mount options to the 'docker create' command inside
-this script.  Explaining exactly how to do this is outside the scope
-of this documentation.  Please see documentation and online resources for
-the 'docker' system for information about this.
+This is done by adding more bind mount options to the 'docker create'
+command inside this script.  Explaining exactly how to do this is
+outside the scope of this documentation.  Please see documentation and
+online resources for the 'docker' system for information about this.
 
 The script currently creates bind mounts for:
  * /dev/bus/usb - USB ports, and newly created ports
@@ -210,24 +213,24 @@ The script currently creates bind mounts for:
  * /dev/serial - general serial ports, and newly created ports
 
 If you experience problems with Fuego accessing hardware on your host
-system, you may need to build the Fuego docker container using additional
-bind mounts that are specific to your configuration.  Do so by 
-editing docker-create-used-privileged-container.sh, removing the old container,
-and re-running './install.sh --priv' to build a new container with the
-desired privileges.
+system, you may need to build the Fuego docker container using
+additional bind mounts that are specific to your configuration.  Do so
+by editing docker-create-used-privileged-container.sh, removing the
+old container, and re-running './install.sh --priv' to build a new
+container with the desired privileges.
 
 Using an different container name
 ======================================
 
 By default, install.sh creates a docker image called 'fuego' and a
 docker container called 'fuego-container'.  There are some situations
-where it is desirable to use different names.  For example, having different
-container names is useful for Fuego self-testing.  It can also used
-to do A/B testing when
-migrating from one release of Fuego to the next.
+where it is desirable to use different names.  For example, having
+different container names is useful for Fuego self-testing.  It can
+also used to do A/B testing when migrating from one release of Fuego
+to the next.
 
-You can provide a different name for the Fuego image and container,
-by supplying one on the command line for install.sh, like so: ::
+You can provide a different name for the Fuego image and container, by
+supplying one on the command line for install.sh, like so:
 
   $ ./install.sh my-fuego
 
@@ -240,7 +243,8 @@ container named 'my-fuego-container'
 Start the Fuego container 
 ===========================
 
-To start the Fuego docker container, use the 'start.sh' script. ::
+To start the Fuego docker container, use the 'start.sh' script.
+
 
   $ ./start.sh
 
@@ -266,16 +270,18 @@ ran 'start.sh' from) running for the duration of your testing.
 Access the Fuego Jenkins web interface
 =========================================
 
-Fuego includes a version of Jenkins and a set of plugins as part of its
-system. Jenkins is running inside the Fuego docker container.
-By default the Fuego Jenkins interface runs on port 8090, with an URL path "/fuego".
+Fuego includes a version of Jenkins and a set of plugins as part of
+its system. Jenkins is running inside the Fuego docker container.  By
+default the Fuego Jenkins interface runs on port 8090, with an URL
+path "/fuego".
 
-Here is an example showing use of firefox to access the Jenkins interface
-with Fuego ::
+Here is an example showing use of firefox to access the Jenkins
+interface with Fuego ::
 
   $ firefox http://localhost:8090/fuego
 
-To access the Fuego interface you can use any browser - not just Firefox.  
+To access the Fuego interface you can use any browser - not just
+Firefox.  
 
 In your browser, you should see a screen similar to the following:
 
@@ -283,16 +289,19 @@ In your browser, you should see a screen similar to the following:
    :width: 900
 
 Note that this web interface is available from any machine that has
-access to your host machine via the network.  This means that test operations and test results are available to anyone with access to your machine.
-You can configure Jenkins with different security to avoid this.
+access to your host machine via the network.  This means that test
+operations and test results are available to anyone with access to
+your machine.  You can configure Jenkins with different security to
+avoid this.
 
 ======================================
 Access the Fuego docker command line 
 ======================================
 
-For some Fuego operations, it is handy to use the command line (shell prompt)
-inside the docker container.  In particular, parts of the remaining
-setup of your Fuego system involve running the 'ftc' command line tool.
+For some Fuego operations, it is handy to use the command line (shell
+prompt) inside the docker container.  In particular, parts of the
+remaining setup of your Fuego system involve running the 'ftc' command
+line tool.
 
 Some 'ftc' commands can be run outside the container, but other require
 that you execute the command inside the container.
@@ -315,8 +324,8 @@ Fuego docker container, like so: ::
 Remaining steps 
 ===================
 
-Fuego is now installed and ready for test operations.  However, some steps
-remain in order to use it with your hardware.  You need to:
+Fuego is now installed and ready for test operations.  However, some
+steps remain in order to use it with your hardware.  You need to:
 
  * add one or more hardware boards (board definition files)
  * add a toolchain
@@ -325,18 +334,18 @@ remain in order to use it with your hardware.  You need to:
 These steps are described in subsequent sections of this documentation.
 
 See:
- * :ref:`Adding a Board <adding_board>`
+ * :ref:`Adding a board <adding_board>`
  * :ref:`Adding a toolchain <addtoolchain>`
  * :ref:`Adding test jobs to Jenkins <addtestjob>`
-
-.. _alt_install:
 
 ================================================
 Alternative installation configurations 
 ================================================
 
-The default installation of Fuego installs the entire Fuego system, including Jenkins and the Fuego core, into a docker container running on a host system, which Jenkins running on port 8090.  However, it is possible
-to install Fuego in other configurations.
+The default installation of Fuego installs the entire Fuego system,
+including Jenkins and the Fuego core, into a docker container running
+on a host system, which Jenkins running on port 8090.  However, it is
+possible to install Fuego in other configurations.
 
 The configuration alternatives that are supported are:
  * install using a different TCP/IP port for Jenkins
@@ -346,50 +355,76 @@ The configuration alternatives that are supported are:
 with a different Jenkins TCP/IP port
 ===========================================
 
-By default the Fuego uses TCP/IP port 8090, but this can be changed to another port.  This can be used to avoid a conflict with a service already using port 8090 on your host machine, or so that multiple instances of Fuego can be run simultaneously.
+By default the Fuego uses TCP/IP port 8090, but this can be changed to
+another port.  This can be used to avoid a conflict with a service
+already using port 8090 on your host machine, or so that multiple
+instances of Fuego can be run simultaneously.
 
-To use a different port than 8090 for Jenkins, specify it after the image name on the command line when you run install.sh. Note that this means that you must specify a Docker image name in order to specify a non-default port. For example: ::
+To use a different port than 8090 for Jenkins, specify it after the
+image name on the command line when you run install.sh. Note that this
+means that you must specify a Docker image name in order to specify a
+non-default port. For example: ::
 
 
   $ ./install.sh fuego 7777
 
 
-This would install Fuego, with an docker image name of 'fuego', a docker container name of 'fuego-container', and with Jenkins configured to run on port 7777
+This would install Fuego, with an docker image name of 'fuego', a
+docker container name of 'fuego-container', and with Jenkins
+configured to run on port 7777
 
 without Jenkins
 ==================
 
-Some Fuego users have their own front-ends or back-ends, and don't need to
-use the Jenkins CI server to control Fuego tests, or visualize Fuego test
-results. ``install.sh`` supports the option '--nojenkins' which produces a docker container without the Jenkins server. This reduces the overhead of the docker container by quite a bit, for those users.
+Some Fuego users have their own front-ends or back-ends, and don't
+need to use the Jenkins CI server to control Fuego tests, or visualize
+Fuego test results. ``install.sh`` supports the option '--nojenkins'
+which produces a docker container without the Jenkins server. This
+reduces the overhead of the docker container by quite a bit, for those
+users.
 
-Inside the docker container, the Fuego core is still available.  Boards, toolchains, and tests are configured normally, but the 'ftc' command line
-tool is used to execute tests.  There is no need to use any of the 'ftc'
-functions to manage nodes, jobs or views in the Jenkins system.  'ftc'
-is used to directly execute tests using 'ftc run-test', and results can be
-queried using 'ftc list-runs' and 'ftc gen-report'.
+Inside the docker container, the Fuego core is still available.
+Boards, toolchains, and tests are configured normally, but the 'ftc'
+command line tool is used to execute tests.  There is no need to use
+any of the 'ftc' functions to manage nodes, jobs or views in the
+Jenkins system.  'ftc' is used to directly execute tests using 'ftc
+run-test', and results can be queried using 'ftc list-runs' and 'ftc
+gen-report'.
 
-When using Fuego with a different results visualization backend, the user will
-use 'ftc put-run' to send the test result data to the configured back end.
+When using Fuego with a different results visualization backend, the
+user will use 'ftc put-run' to send the test result data to the
+configured back end.
 
 without a container
 ===========================
 
-Usually, for security and test reproducibility reasons, Fuego is executed inside a docker container on your host machine. That is, the default installation of Fuego will create a docker container using all the software that is needed for Fuego's tests.
-However, in some configurations it is desirable to execute Fuego directly on a host machine (not inside a docker container). A user may have a dedicated machine, or they may want to avoid the overhead of running a docker container.
+Usually, for security and test reproducibility reasons, Fuego is
+executed inside a docker container on your host machine. That is, the
+default installation of Fuego will create a docker container using all
+the software that is needed for Fuego's tests.  However, in some
+configurations it is desirable to execute Fuego directly on a host
+machine (not inside a docker container). A user may have a dedicated
+machine, or they may want to avoid the overhead of running a docker
+container.
 
-A separate install script, called 'install-debian.sh' can be used in place
-of 'install.sh' to install the Fuego system onto a Debian-based Linux distribution.
+A separate install script, called 'install-debian.sh' can be used in
+place of 'install.sh' to install the Fuego system onto a Debian-based
+Linux distribution.
 
-Please note that installing without a container is not advised unless you know exactly what you are doing. In this configuration, Fuego will not be able to manage host-side test dependencies for you correctly.
+Please note that installing without a container is not advised unless
+you know exactly what you are doing. In this configuration, Fuego will
+not be able to manage host-side test dependencies for you correctly.
 
-Please note also that executing without a container presents a possible
-security risk for your host. Fuego tests can run arbitrary bash
-instruction sequences as part of their execution. So there is a danger when running tests from unknown third parties that they will execute something on your test host that breaches the security, or that inadvertently damages
-you filesystem or data.
+Please note also that executing without a container presents a
+possible security risk for your host. Fuego tests can run arbitrary
+bash instruction sequences as part of their execution. So there is a
+danger when running tests from unknown third parties that they will
+execute something on your test host that breaches the security, or
+that inadvertently damages you filesystem or data.
 
-However, despite these drawbacks, there are test scenarios (such as installing
-Fuego directly to a target board), where this configuration makes sense.
+However, despite these drawbacks, there are test scenarios (such as
+installing Fuego directly to a target board), where this configuration
+makes sense.
 
 
 
