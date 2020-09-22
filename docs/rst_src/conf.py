@@ -38,7 +38,8 @@ import sphinx_rtd_theme
 # but it seems to work OK without it.  Possibly I'm missing
 # some features by not having this listed.  However, this was
 # generating a warning about a missing 'setup' function.
-extensions = ['sphinx_rtd_theme']
+extensions = ['sphinx.ext.autosectionlabel',
+        'sphinx_rtd_theme']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -102,14 +103,14 @@ html_theme = 'sphinx_rtd_theme'
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-html_theme_options = {}
+#html_theme_options = {}
 
 # Tim's sphinx_rtd_theme is too old on his desktop (0.1.9).
 # The following theme options are not available with that version of the
 # theme.  Users with better installations of sphinx_rtd_theme may
 # benefit from uncommenting the following lines:
-#html_theme_options = {'includehidden': False,
-#        'prev_next_button_locations': 'both'}
+html_theme_options = {'includehidden': False,
+        'prev_next_button_locations': 'both'}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
