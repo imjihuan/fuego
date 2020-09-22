@@ -67,10 +67,15 @@ Reference: \:ref\:\`Pointer to slandbox page3 <sndbx2>\`
 Here is another way to refer to a section on a page, with cover text:
 :ref:`Pointer to slandbox page3 <sndbx2>`
 
-Result:
+Result from default Ubuntu 16.03 Sphinx:
 
- * cover text of Pointer to slandbox page2
+ * cover text of "Pointer to slandbox page3"
  * NO URL! - FAIL
+
+Result from python3 venv py3-sphinx Sphinx installation:
+
+ * cover text of "Pointer to slandbox page3"
+ * URL of .../_build/html/Sandbox2.html#sndbx2 - PASS
 
 test 4
 ~~~~~~~~
@@ -85,7 +90,7 @@ Result:
  * cover text of Pointer to slandbox2 page4
  * NO URL! - FAIL
 
-test 5 
+test 5
 ~~~~~~~~
 
 Reference \`Pointer to slandbox2 page5 <Sandbox2.html>\`_
@@ -103,7 +108,7 @@ section heading on a page, unless it is marked with an anchor.
 (unless you reference the page with it's .html extension)
 
 
-test 6 
+test 6
 ~~~~~~~~
 
 Reference \`Pointer to slandbox2 test6 <chapheader2>\`
@@ -116,7 +121,11 @@ Result:
  * cover text of Pointer to slandbox test6
  * URL = .../_build/html/Sandbox2.html#chapheader2 - PASS
 
-Which ways worked? - Test 5, but it's gross, Test 6 is preferred.
+Which ways worked?
+
+ * Test 3 - worked it should have
+ * Test 5 -  but it's gross
+ * Test 6 - is preferred.
 
 Toctree test
 ------------
@@ -127,7 +136,7 @@ The items put into the tree are the section headings from those pages
 .. toctree::
    :maxdepth: 2
 
-   Installing_Fuego   
+   Installing_Fuego
    Introduction
 
 Here's another toctree - this time with a caption
@@ -136,15 +145,15 @@ Here's another toctree - this time with a caption
    :maxdepth: 2
    :caption: Important Pages!!
 
-   Installing_Fuego   
+   Installing_Fuego
    Introduction
 
 Following this is a hidden toctree
 
 .. toctree::
-   :hidden:  
+   :hidden:
 
-   Installing_Fuego   
+   Installing_Fuego
    Introduction
 
 I can keep doing this all day!!

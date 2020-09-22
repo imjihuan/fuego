@@ -35,7 +35,7 @@ Reference: \`Sandbox\`_
 
 Here is how you refer to a page: `Sandbox`_
 
-Result: .../_build/html/Sandbox2.html#id2 - FAIL
+Result: .../_build/html/Sandbox2.html#id4 - FAIL
 
 Test 2
 ~~~~~~
@@ -44,7 +44,7 @@ Reference: \`Sandbox2\`_
 
 Here is another way to refer to a page: `Sandbox2`_
 
-Result: .../_build/html/Sandbox2.html#id4 - FAIL
+Result: .../_build/html/Sandbox2.html#id6 - FAIL
 
 Test 3 
 ~~~~~~
@@ -55,7 +55,7 @@ Here is another way to refer to a page: Sandbox2_
 
 Result:
  * cover = ???
- * URL = .../_build/html/Sandbox2.html#id4 - FAIL
+ * URL = .../_build/html/Sandbox2.html#id8 - FAIL
 
 Test 4
 ~~~~~~~
