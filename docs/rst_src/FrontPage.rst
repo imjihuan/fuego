@@ -39,9 +39,9 @@ Getting Started
 ================
 
 There are a few different ways to get started with Fuego:
- 1. Use the `Fuego Quickstart Guide <quickstart_guide>`_ to
+ 1. Use the :ref:`Fuego Quickstart Guide <quickstart_guide>` to
     get Fuego up an running quickly.
- 2. Or go through our `Install and First Test <install_and_first_test>`_
+ 2. Or go through our :ref:`Install and First Test <install_and_first_test>`
     tutorial to install Fuego and run a test on a single "fake" board.
     This will give you an idea of basic Fuego operations, without having to
     configure Fuego for your own board
@@ -57,20 +57,20 @@ Code for the test framework is available in 2 git repositories:
 The fuego-core directory resides inside the fuego directory.
 But normally you do not clone that repository directly.  It is cloned
 for you during the Fuego install process.  See the
-`Fuego Quickstart Guide <quickstart_guide>`_ or the
+:ref:`Fuego Quickstart Guide <quickstart_guide>` or the
 :ref:`Installing Fuego <installfuego>` page for more information.
 
 ===============
 Documentation 
 ===============
-For more complete documentation, see the following areas:
+See the index below for links to the major sections of the documentation
+for Fuego.  The major sections are:
 
- * Installation_ has information about installation and
-   administration documentation for Fuego.
- * `User Guides <user-guides>`_ has User documentation for Fuego.
- * `Developer Info <developer_info>`_ has information for test developers and
-   people who want to extend Fuego
- * `Reference Material <reference_material>`_ has APIs and other material about Fuego
+ * :ref:`Tutorials <tutor>`
+ * :ref:`Installation and Administration <admin>`
+ * :ref:`User Guides <user_guides>`
+ * :ref:`Developer Resources <dev_res>`
+ * :ref:`API Reference <api_rex>`
 
 ============
 Resources

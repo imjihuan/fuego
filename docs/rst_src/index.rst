@@ -17,11 +17,15 @@ Index
    Introduction
    Architecture
 
+.. _tutor:
+
 .. toctree::
    :maxdepth: 2
    :caption: Tutorials:
 
    Install_and_First_Test
+
+.. _admin:
 
 .. toctree::
    :maxdepth: 2
@@ -33,6 +37,7 @@ Index
    Adding_a_toolchain
    Adding_test_jobs_to_Jenkins
    Adding_views_to_Jenkins
+   Test_variables
 
 .. _user_guides:
 
@@ -43,23 +48,26 @@ Index
    Jenkins_User_Interface
 
 .. toctree::
-   :hidden:
+   :maxdepth: 2
    :caption: Advanced Topics:
 
    Adding_or_Customizing_a_Distribution
    integration_with_ttc
-   Test_variables
    Working_with_remote_boards
 
+.. _dev_res:
+
 .. toctree::
-   :hidden:
+   :maxdepth: 2
    :caption: Developer resources
 
    Building_Documentation
    License_And_Contribution_Policy
 
+.. _api_rex:
+
 .. toctree::
-   :hidden:
+   :maxdepth: 2
    :caption: API Reference
 
    Core_interfaces
@@ -82,17 +90,13 @@ Index
 .. toctree::
    :hidden:
 
-   Fuego_Quickstart_Guide
    Raspberry_Pi_Fuego_Setup
    Using_the_qemuarm_target
-
 
 .. toctree::
    :hidden:
 
-   Fuego_To_Do_List
    Fuego_Outline
-
 
 .. toctree::
    :hidden:
@@ -173,3 +177,5 @@ Indices and tables
   :hidden:
 
   FrontPage
+  Sandbox
+  Sandbox2
