@@ -211,7 +211,7 @@ this directory.
 The ARCHITECTURE is a string describing the architecture used by toolchains to build the tests for the target.
 
 The TOOLCHAIN variable indicates the toolchain to use to build the tests
-for the target.  If you are using an ARM target, set this to "qemu-armv7hf".
+for the target.  If you are using an ARM target, set this to "debian-armhf".
 This is a default ARM toolchain installed in the docker container, and should
 work for most ARM boards.
 
