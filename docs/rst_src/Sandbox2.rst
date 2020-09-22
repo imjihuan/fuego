@@ -46,7 +46,7 @@ Here is another way to refer to a page: `Sandbox2`_
 
 Result: .../_build/html/Sandbox2.html#id6 - FAIL
 
-Test 3 
+Test 3
 ~~~~~~
 
 Reference: Sandbox2\_
@@ -119,7 +119,7 @@ The items put into the tree are the section headings from those pages
 .. toctree::
    :maxdepth: 2
 
-   Installing_Fuego   
+   Installing_Fuego
    Introduction
 
 Here's another toctree - this time with a caption
@@ -128,15 +128,15 @@ Here's another toctree - this time with a caption
    :maxdepth: 2
    :caption: Important Pages2!!
 
-   Installing_Fuego   
+   Installing_Fuego
    Introduction
 
 Following this is a hidden toctree
 
 .. toctree::
-   :hidden:  
+   :hidden:
 
-   Installing_Fuego   
+   Installing_Fuego
    Introduction
 
 I can keep doing this all day!!

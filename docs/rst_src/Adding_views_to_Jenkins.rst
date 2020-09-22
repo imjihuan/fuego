@@ -31,7 +31,7 @@ created using a regular expression statement that Jenkins uses to
 select the jobs to include in the view.
 
 ======================
-Adding a board view 
+Adding a board view
 ======================
 
 By convention, most Fuego users populate their Jenkins interface with

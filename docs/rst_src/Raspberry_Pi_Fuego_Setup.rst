@@ -118,7 +118,7 @@ If logged in as the 'pi' account, then switch to root (using
 something like 'sudo su'), and type,
 at a shell prompt:
 
-``$ mkdir /home/fuego`` 
+``$ mkdir /home/fuego``
 
 If you do not wish to use the root account for testing, then
 you should create a 'fuego' account for testing.  To do this,
@@ -142,7 +142,7 @@ Add the board file to Fuego
 
 Now that you have set up the Raspberry Pi board, add the board file to
 Fuego.  Assuming your IP address is 10.0.1.17, and you wish to log in
-as root, you would create a board file 
+as root, you would create a board file
 called "rpi.board", and located at ::
 
    <fuego-top-dir>/fuego-ro/boards/rpi.board

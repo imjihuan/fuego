@@ -21,7 +21,7 @@ Continuous Integration testing of your embedded Linux project., and over
 The idea is that in the simplest case, you just add your board, select
 or install a toolchain, and go!
 
-Introduction presentation 
+Introduction presentation
 -------------------------
 
 Tim Bird gave some talks introducing Fuego, at various conferences
@@ -29,16 +29,16 @@ in 2016.  The slides and a video are provided below, if you want
 to see an overview and introduction to Fuego.
 
 The slides are here:
-`Introduction-to-Fuego-LCJ-2016.pdf 
-<http://fuegotest.org/ffiles/Introduction-to-Fuego-LCJ-2016.pdf>`_, 
-along with a 
+`Introduction-to-Fuego-LCJ-2016.pdf
+<http://fuegotest.org/ffiles/Introduction-to-Fuego-LCJ-2016.pdf>`_,
+along with a
 `YouTube video <https://youtu.be/AueBSRN4wLk>`_.
 You can find more presentations about Fuego on our wiki at:
 `<http://fuegotest.org/wiki/Presentations>`_.
 
 
 ================
-Getting Started 
+Getting Started
 ================
 
 There are a few different ways to get started with Fuego:
@@ -50,7 +50,7 @@ There are a few different ways to get started with Fuego:
     having to configure Fuego for your own board
  3. Work through the documentation for :ref:`Installation <installfuego>`
 
-Where to download 
+Where to download
 -----------------
 
 Code for the test framework is available in 2 git repositories:
@@ -64,7 +64,7 @@ for you during the Fuego install process.  See the
 :ref:`Installing Fuego <installfuego>` page for more information.
 
 ===============
-Documentation 
+Documentation
 ===============
 See the index below for links to the major sections of the documentation
 for Fuego.  The major sections are:
@@ -106,7 +106,7 @@ or view for more information about Fuego.
 ==========
 Vision
 ==========
- 
+
 The purpose of Fuego is to bring the benefits of open source to the
 testing process.
 
@@ -172,23 +172,23 @@ For more details about a high-level vision of open source testing,
 please see  :ref:`OSS Test Vision <oss>`.
 
 ================
-Other Resources 
+Other Resources
 ================
 
 Historical information
 ----------------------
 
 
-`<http://elinux.org/Fuego>`_ has some historical information about 
+`<http://elinux.org/Fuego>`_ has some historical information about
 Fuego.
 
 Related systems
 ---------------
- 
-See :ref:`Other test systems <ots>` for notes about other test 
+
+See :ref:`Other test systems <ots>` for notes about other test
 frameworks and comparisons between Fuego and those other systems.
 
-Things to do 
+Things to do
 ------------
 
 Looking for something to do on Fuego?  See the Fuego wiki

@@ -163,7 +163,7 @@ For example, the Fuego distribution includes
  * the 'Jenkins' continuous integration server
  * the 'netperf' server, for testing network performance.
  * the 'ttc' command, which is a tool for board farm management
- * the python 'jenkins' module, for interacting with Fuego's Jenkins 
+ * the python 'jenkins' module, for interacting with Fuego's Jenkins
    instance
  * and many other tools, programs and modules used by Fuego and its tests
 
@@ -240,7 +240,7 @@ container named 'my-fuego-container'
 
 
 ===========================
-Start the Fuego container 
+Start the Fuego container
 ===========================
 
 To start the Fuego docker container, use the 'start.sh' script.
@@ -281,7 +281,7 @@ interface with Fuego ::
   $ firefox http://localhost:8090/fuego
 
 To access the Fuego interface you can use any browser - not just
-Firefox.  
+Firefox.
 
 In your browser, you should see a screen similar to the following:
 
@@ -295,7 +295,7 @@ your machine.  You can configure Jenkins with different security to
 avoid this.
 
 ======================================
-Access the Fuego docker command line 
+Access the Fuego docker command line
 ======================================
 
 For some Fuego operations, it is handy to use the command line (shell
@@ -321,7 +321,7 @@ Fuego docker container, like so: ::
 
 
 ===================
-Remaining steps 
+Remaining steps
 ===================
 
 Fuego is now installed and ready for test operations.  However, some
@@ -339,7 +339,7 @@ See:
  * :ref:`Adding test jobs to Jenkins <addtestjob>`
 
 ================================================
-Alternative installation configurations 
+Alternative installation configurations
 ================================================
 
 The default installation of Fuego installs the entire Fuego system,

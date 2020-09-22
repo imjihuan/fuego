@@ -7,9 +7,9 @@ Building Documentation
 As of July, 2020, the Fuego documentation is currently available in 3
 places:
 
- * the fuego-docs.pdf generated from TEX files in the fuego/docs/source 
+ * the fuego-docs.pdf generated from TEX files in the fuego/docs/source
    directory
- * the Fuegotest wiki, located at: 
+ * the Fuegotest wiki, located at:
    `<https://fuegotest.org/wiki/Documentation>`_
  * .rst files in fuego/docs
 
@@ -29,15 +29,15 @@ project.  But there are several issues with this documentation:
 
  - there is a mixture of information in the wiki
 
-   - not just documentation, but a crude issues tracker, random 
-     technical notes testing information, release information and 
+   - not just documentation, but a crude issues tracker, random
+     technical notes testing information, release information and
      other data that should not be part of official documentation
 
 The .rst files are intended to be the future documentation source for
 the project.
 
 ==============================
-building the outdated PDF 
+building the outdated PDF
 ==============================
 
 To build the outdated PDF, cd to fuego/docs, and type ::
@@ -48,7 +48,7 @@ To build the outdated PDF, cd to fuego/docs, and type ::
 This will use latex to build the file fuego/docs/fuego-docs.pdf
 
 ===========================
-building the RST docs 
+building the RST docs
 ===========================
 
 The RST docs can be build in several different formats, including
@@ -60,7 +60,7 @@ Here are some of the most popular targets:
 
 html
 ======
- 
+
 ::
 
   $ make html

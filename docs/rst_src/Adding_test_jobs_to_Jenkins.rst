@@ -51,7 +51,7 @@ file. The testplan files are in JSON format, and are in the
 directory ``fuego-core/engine/overlays/testplans``.
 
 ============================
-Adding individual tests 
+Adding individual tests
 ============================
 
 To add an individual test, add it using the 'ftc add-jobs'
@@ -59,15 +59,15 @@ command.  For example, to add the test "Functional.hello_world"
 for the board "beaglebone", you would use the following command: ::
 
 
-  (container prompt)$ ftc add-job -b beaglebone -t 
+  (container prompt)$ ftc add-job -b beaglebone -t
   Functional.hello_world
 
 
 Configuring job options
 =========================
 
-When Fuego executes a test job, several options are available to 
-control aspects of job execution.  These can be configued on the 
+When Fuego executes a test job, several options are available to
+control aspects of job execution.  These can be configued on the
 'ftc add-job' command line.
 
 The options available are:
@@ -78,28 +78,28 @@ The options available are:
  * precleanup flag
  * postcleanup flag
 
-See 'ftc add-jobs help' for details about these options and how to 
+See 'ftc add-jobs help' for details about these options and how to
 specify them.
 
-Adding tests for more than one board 
+Adding tests for more than one board
 ======================================
 
 If you want to add tests for more than one board at a time, you can do
-so by specifying multiple board names after the '-b' option with 
-'ftc add-jobs'.Board names should be a single string argument, with 
+so by specifying multiple board names after the '-b' option with
+'ftc add-jobs'.Board names should be a single string argument, with
 individual board names separated by commas.
 
-For example, the following would add a job for Functional.hello_world 
+For example, the following would add a job for Functional.hello_world
 to each of the boards rpi1, rpi2 and beaglebone. ::
 
 
-  (container prompt)$ ftc add-job -b rpi1,rpi2,beaglebone -t 
+  (container prompt)$ ftc add-job -b rpi1,rpi2,beaglebone -t
   Functional.hello_world
 
 
 
 ================================
-Adding jobs based on testplans 
+Adding jobs based on testplans
 ================================
 
 A testplan is a list of Fuego tests with some options for each one.
@@ -110,14 +110,14 @@ system with the following command: ::
   (container prompt)$ ftc list-plans
 
 
-To create a set of jobs related to docker image testing, for the 
+To create a set of jobs related to docker image testing, for the
 'docker' board on the system, do the following: ::
 
 
   (container prompt)$ ftc add-jobs -b docker -p testplan_docker
 
 
-To create a set of jobs for a board called 'beaglebone', 
+To create a set of jobs for a board called 'beaglebone',
 do the following: ::
 
 
@@ -125,10 +125,10 @@ do the following: ::
 
 
 The "smoketest" testplan has about 20 tests that exercise a variety of
-features on a Linux system.  After running these commands, a set of 
+features on a Linux system.  After running these commands, a set of
 jobs will appear in the Jenkins interface.
 
-Once this is done, your Jenkins interface should look something like 
+Once this is done, your Jenkins interface should look something like
 this:
 
 .. image:: ../images/fuego-1.1-jenkins-dashboard-beaglebone-jobs.png

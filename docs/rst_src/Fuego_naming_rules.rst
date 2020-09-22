@@ -10,7 +10,7 @@ files and define a number of variables.
 Here are some rules and conventions for naming things in Fuego:
 
 ===================
-Fuego test name 
+Fuego test name
 ===================
 
  * a Fuego test name must have one of the following prefixes:
@@ -18,7 +18,7 @@ Fuego test name
    * 'Functional.'
    * 'Benchmark.'
 
- * the name following the prefix is known as the base test name, and 
+ * the name following the prefix is known as the base test name, and
    has the following rules:
 
    * it may only use letters, numbers and underscores
@@ -27,7 +27,7 @@ Fuego test name
 
    * it may use upper and lower case letters
 
- * All test definition materials reside in a directory with the full 
+ * All test definition materials reside in a directory with the full
    test name:
 
    * e.g. Functional.hello_world
@@ -43,7 +43,7 @@ Test files
  * the parser module for a test has the filename **parser.py**
 
 ====================
-Test spec names 
+Test spec names
 ====================
 
 Test spec names are declared in the spec file for a test.
@@ -55,7 +55,7 @@ If no spec file exists for a test, then Fuego generates a 'default'
 spec (on-the-fly), which is empty (ie. has no test variables).
 
 ================
-Board names 
+Board names
 ================
 
  * boards are defined by files in the /fuego-ro/boards directory
@@ -68,7 +68,7 @@ Board names
    * specifically, no dashes, periods, or other punctuation is allowed
 
 ==========================
-Jenkins element names 
+Jenkins element names
 ==========================
 
 Several of the items in Fuego are represented in the Jenkins interface.
@@ -77,7 +77,7 @@ The following sections describe the names used for these elements.
 Node name
 ===================
 
- * A Jenkins node corresponding to a board must have the same name as 
+ * A Jenkins node corresponding to a board must have the same name as
    the board.
 
    * e.g. beaglebone
@@ -91,10 +91,10 @@ Job name
 
    * e.g. beaglebone.default.Functional.hello_world
 
- 
+
 
 ===================
-Run identifier 
+Run identifier
 ===================
 
 A Fuego run identifier is used to refer to a "run" of a test - that is
@@ -103,10 +103,10 @@ artifacts.  A run identifier should be unique throughout the world, as
 these are used in servers where data from runs from different hosts
 are stored.
 
-The parts of a run id are separated by dashes, except that the 
+The parts of a run id are separated by dashes, except that the
 separator between the host and the board is a colon.
 
-A fully qualified (global) run identifier consist of the following 
+A fully qualified (global) run identifier consist of the following
 parts:
 
  * test name
@@ -132,18 +132,18 @@ Example:
  * Functional.netperf-default-2-minnow
 
 =============
-timestamp 
+timestamp
 =============
 
  * A Fuego timestamp has the format: YYYY-mm-dd_HH:MM:SS
 
    * e.g. 2017-03-29_10:25:14
 
- * times are expressed in localtime (relative to the host where they 
+ * times are expressed in localtime (relative to the host where they
    are created)
 
 ====================
-test identifiers 
+test identifiers
 ====================
 
 Also know as TGUIDs (or test globally unique identifiers), a test
@@ -163,16 +163,16 @@ The parts are:
 
 Legal characters for these parts are letters, numbers, and underscores.
 Only testset names may include a period ("."), as that is used as the
-separator between constituent parts of the identifier. 
+separator between constituent parts of the identifier.
 
-testcase identifiers should be consistent from run-to-run of a test, 
+testcase identifiers should be consistent from run-to-run of a test,
 and should be globally unique.
 
 test identifiers may be in fully-qualified form, or in shortened
 form - missing some parts.  The following rules are used to convert
 between from shortened forms to fully-qualified forms.
 
-If the testsuite name is missing, then the base name of the test is 
+If the testsuite name is missing, then the base name of the test is
 used.
 
  * e.g. Functional.jpeg has a default testsuite name of "jpeg"
@@ -216,7 +216,7 @@ name.
 If there are three parts, the first part is the testset name.
 
 =======================
-Test variable names 
+Test variable names
 =======================
 
 Test variable names are defined in the board file, and by the user
@@ -226,7 +226,7 @@ underscores
 
 Some test variable prefixes and suffixes are used in a consistent way.
 
-Dependency check variables 
+Dependency check variables
 ============================
 
 The following is the preferred format for variables used in dependency
@@ -258,7 +258,7 @@ checking code:
 
    * ex: SDK_LIB_FOO=/opt/poky2.1.2/sysroots/x86_64-pokysdk-
      linux/usr/lib/libfoo.so
-   * Note that in case a static library is required (.a), then the 
+   * Note that in case a static library is required (.a), then the
      variable name should include that suffix:
    * ex: SDK_LIB_FOO_A=/opt/poky1.2.1/sysroots/x86_64-pokysdk-
      linux/usr/lib/libfoo.a

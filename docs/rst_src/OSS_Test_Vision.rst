@@ -18,76 +18,76 @@ Letter to ksummit discuss
 
 Here's an e-mail Tim sent to the ksummit-discuss list in October,
 2016 ::
- 
+
 	I have some ideas on Open Source testing that I'd like to
-        throw out there for discussion.  Some of these I have been 
-	stewing on for a while, while some came to mind after talking 
+        throw out there for discussion.  Some of these I have been
+	stewing on for a while, while some came to mind after talking
 	to people at recent conference events.
 
 	Sorry - this is going to be long...
 
-	First, it would be nice to increase the amount of testing we 
-        do, by having more test automation. (ok, that's a no-brainer). 
-        Recently there has been a trend towards more centralized 
-        testing facilities, like the zero-day stuff or board farms 
-        used by kernelci. That makes sense, as this requires 
+	First, it would be nice to increase the amount of testing we
+        do, by having more test automation. (ok, that's a no-brainer).
+        Recently there has been a trend towards more centralized
+        testing facilities, like the zero-day stuff or board farms
+        used by kernelci. That makes sense, as this requires
  	specialized hardware, setup,  or skills to operate certain
-	kinds of test environments.  As one example, an automated test 
+	kinds of test environments.  As one example, an automated test
 	of kernel boot requires automated control of power to a board
  	or platform, which is not very common among kernel developers.
-	A centralized test facility has the expertise and hardware to 
-	add new test nodes relatively cheaply. They can do this more 
-	quickly	and much less expensively than the first such node by 
+	A centralized test facility has the expertise and hardware to
+	add new test nodes relatively cheaply. They can do this more
+	quickly	and much less expensively than the first such node by
 	an individual new to testing.
 
-	However, I think to make great strides in test quantity and 
-        coverage, it's important to focus on ease of use for 
- 	individual test nodes. My vision would be to have tens of 
-	thousands of individual test nodes running automated tests on 
-	thousands of different hardware platforms and configurations 
+	However, I think to make great strides in test quantity and
+        coverage, it's important to focus on ease of use for
+ 	individual test nodes. My vision would be to have tens of
+	thousands of individual test nodes running automated tests on
+	thousands of different hardware platforms and configurations
         and workloads.
 
-	The kernel selftest project is a step in the right direction 
-	for this, because it allows any kernel developer to easily 
+	The kernel selftest project is a step in the right direction
+	for this, because it allows any kernel developer to easily
 	(in theory) run automated unit tests for the kernel.  However,
-        this is still a manual process.  I'd like to see improved 
-        standards and infrastructure for automating tests. 
+        this is still a manual process.  I'd like to see improved
+        standards and infrastructure for automating tests.
 
 	It turns out there are lots of manual steps in the testing
-	and bug-fixing process with the kernel (and other 
- 	Linux-related software).  It would be nice if a new system 
-	allowed us to capture manual steps, and over time convert 
+	and bug-fixing process with the kernel (and other
+ 	Linux-related software).  It would be nice if a new system
+	allowed us to capture manual steps, and over time convert
 	them to automation.
 
-	Here are some problems with the manual process that I think 
+	Here are some problems with the manual process that I think
 	need addressing:
 
-	1) How does an individual know what tests are valid for their 
-	platform? Currently, this is a manual decision.  In a world 
-        with thousands or tens of thousands of tests, this will be 
-        very difficult.  We need to have automated mechanisms to 
-        indicate which tests are relevant for a platform.Test 
-	definitions should include a description of the hardware 
-	they need,or the test setup they need.  For example, it would 
-	be nice to have tests indicate that they need to be run on a 
+	1) How does an individual know what tests are valid for their
+	platform? Currently, this is a manual decision.  In a world
+        with thousands or tens of thousands of tests, this will be
+        very difficult.  We need to have automated mechanisms to
+        indicate which tests are relevant for a platform.Test
+	definitions should include a description of the hardware
+	they need,or the test setup they need.  For example, it would
+	be nice to have tests indicate that they need to be run on a
 	node with USB gadget support,
-	or on a node with the gadget hardware from a particular vendor 
-        (e.g. a particular SOC), or with a particular hardware phy 
- 	(e.g. Synopsis).  As another example, if a test requires that 
-        the hardware physically reboot,then that should be indicated 
-        in the test.  If a test requires that a particular button be 
+	or on a node with the gadget hardware from a particular vendor
+        (e.g. a particular SOC), or with a particular hardware phy
+ 	(e.g. Synopsis).  As another example, if a test requires that
+        the hardware physically reboot,then that should be indicated
+        in the test.  If a test requires that a particular button be
         pressed (and that the button be available to be pressed), it
-	should be listed.  Or if the test requires that an external 
-	node be available to participate in the test (such as a wifi 
+	should be listed.  Or if the test requires that an external
+	node be available to participate in the test (such as a wifi
         endpoint, CANbus endpoint, or
-	i2C device) be present, that should be indicated.  
-	There should be a way for the test nodes which provide those 
- 	hardware capabilities, setups, or external resources to 
+	i2C device) be present, that should be indicated.
+	There should be a way for the test nodes which provide those
+ 	hardware capabilities, setups, or external resources to
         identify themselves.  Standards should
-	be developed for how a test node and a test can express these 
-	capabilities and requirements.  Also, standards need to be 
-        developed so that a test can control those external resources 
-	to participate in tests.Right now each test framework handles 
+	be developed for how a test node and a test can express these
+	capabilities and requirements.  Also, standards need to be
+        developed so that a test can control those external resources
+	to participate in tests.Right now each test framework handles
 	this in its own way (if it provides
 	support for it at all).
 
@@ -271,8 +271,8 @@ Ideas related to the vision
 
 Capturing tests easily
 ========================
- 
- * should be easy to capture a command line sequence, and test the 
+
+ * should be easy to capture a command line sequence, and test the
    results
  * maybe do an automated capture and format into a clitest file that
    can be used at a here document inside a fuego test script?
@@ -308,8 +308,8 @@ test collateral
     * pn and reference logs
     * positive and negative result counts (specific to board)
     * test specs indicate parameters for the test
-    * test plans indicate different profiles (method to match test to 
-      test environment - e.g. filesystem test with type of filesystem 
+    * test plans indicate different profiles (method to match test to
+      test environment - e.g. filesystem test with type of filesystem
       hardware)
 
 =================
@@ -322,7 +322,7 @@ test app store
    * like debian package feed
 
  * need a client for browsing tests, installing tests, updating tests
- * store a test in github, and just refer to different tests in 
+ * store a test in github, and just refer to different tests in
    different git repositories?
  * test ratings
  * test metrics (how many bugs found)

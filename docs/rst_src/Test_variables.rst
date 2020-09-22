@@ -37,7 +37,7 @@ test execution.
 ==============
 Board file
 ==============
- 
+
 The board file contains static information about a board.  It is
 processed by the overlay system, and the values inside it appear as
 variables in the environment of a test, during test execution.
@@ -50,7 +50,7 @@ There are a number of variables which are used by the Fuego system
 itself, and there may also be variables that are used by individual
 tests.
 
-Common board variables 
+Common board variables
 =========================
 
 Here is a list of the variables which might be found in a board file:
@@ -58,43 +58,43 @@ Here is a list of the variables which might be found in a board file:
  * ARCHITECTURE - specifies the architecture of the board
  * BAUD - baud rate for serial device (if using 'serial' transport)
  * BOARD_TESTDIR - directory on board where tests are executed
- * BOARD_CONTROL - the mechanism used to control board hardware 
+ * BOARD_CONTROL - the mechanism used to control board hardware
    (e.g. hardware reboot)
- * DISTRIB - filename of distribution overlay file 
+ * DISTRIB - filename of distribution overlay file
    (if not the default)
- * IO_TIME_SERIAL - serial port delay parameter 
+ * IO_TIME_SERIAL - serial port delay parameter
    (if using 'serial' transport)
  * IPADDR - network address of the board
  * LOGIN - specifies the user account to use for Fuego operations
- * PASSWORD - specifies the password for the user account on the board 
+ * PASSWORD - specifies the password for the user account on the board
    used by Fuego
  * PLATFORM - specifies the toolchain to use for the platform
- * SATA_DEV - specifies a filesystem device node (on the board) for 
+ * SATA_DEV - specifies a filesystem device node (on the board) for
    SATA filesystem tests
- * SATA_MP - specifies a filesystem mount point (on the board) 
+ * SATA_MP - specifies a filesystem mount point (on the board)
    for SATA filesystem tests
- * SERIAL - serial device on host for board's serial console 
+ * SERIAL - serial device on host for board's serial console
    (if using 'serial' transport)
- * SRV_IP - network address of server endpoint, for networking tests 
+ * SRV_IP - network address of server endpoint, for networking tests
    (if not the same as the host)
- * SSH_KEY - the absolute path to key file  with ssh key for 
+ * SSH_KEY - the absolute path to key file  with ssh key for
    password-less ssh operations (e.g. "/fuego-ro/board/myboard_id_rsa")
- * SSH_PORT - network port of ssh daemon on board (if using 
+ * SSH_PORT - network port of ssh daemon on board (if using
    ssh transport)
  * TRANSPORT - this specifies the transport to use with the target
- * USB_DEV - specifies a filesystem device node (on the board) for 
+ * USB_DEV - specifies a filesystem device node (on the board) for
    USB filesystem tests
- * USB_MP - specifies a filesystem mount point (on the board) for 
+ * USB_MP - specifies a filesystem mount point (on the board) for
    USB filesystem tests
 
-See :ref:`Adding a board <adding_board>` for more details about these 
+See :ref:`Adding a board <adding_board>` for more details about these
 variables.
 
 A board may also have additional variables, including variables that
 are used for results evaluation for specific tests.
 
 ==================
-Overlay system 
+Overlay system
 ==================
 
 The overlay system gathers variables from several places, and puts
@@ -116,7 +116,7 @@ The overlay system is described in greater detail here:
 :ref:`Overlay_Generation <overlay_generation>`
 
 =======================
-Stored variables 
+Stored variables
 =======================
 
 Stored board variables are test variables that are defined on a
@@ -149,14 +149,14 @@ The board stored variables are kept in the file:
 
 These variables are included in the test by the overlay generator.
 
-Commands for interacting with stored variables 
+Commands for interacting with stored variables
 ====================================================
 
 A user or a test can manipulate a board stored variable using the ftc
-command.The following commands can be used to set, query and delete 
+command.The following commands can be used to set, query and delete
 variables:
 
- *  **tc query-board** - to see test variables (both regular board 
+ *  **tc query-board** - to see test variables (both regular board
     variables and stored variables)
  *  **ftc set-var** - to add or update a stored variable
  *  **ftc delete-var** - to delete a stored variable
@@ -226,19 +226,19 @@ variables, rather than static variables from the board file:
 
  * SATA_DEV = Linux device node for SATA file system tests
  * SATA_MP = Linux mount point for SATA file system tests
- * LTP_OPEN_POSIX_SUBTEST_COUNT_POS = expected number of pass results 
+ * LTP_OPEN_POSIX_SUBTEST_COUNT_POS = expected number of pass results
    for LTP OpenPosix test
- * LTP_OPEN_POSIX_SUBTEST_COUNT_NEG = expected number of fail results 
+ * LTP_OPEN_POSIX_SUBTEST_COUNT_NEG = expected number of fail results
    for LTP OpenPosix test
  * PROGRAM_BC = path to 'bc' program on the target board
- * MAX_REBOOT_RETRIES = number of retries to use when rebooting a 
+ * MAX_REBOOT_RETRIES = number of retries to use when rebooting a
    board
 
 ===================
-Spec variables 
+Spec variables
 ===================
-A test spec can define one or more variables to be used with a test.  
-These are commonly used to control test variations, and are specified 
+A test spec can define one or more variables to be used with a test.
+These are commonly used to control test variations, and are specified
 in a spec.json file.
 
 When a spec file defines a variable associated with a named test spec,
@@ -246,7 +246,7 @@ the variable is read by the overlay generator on test execution, and
 the variable name is prefixed with the name of the test, and converted
 to all upper case.
 
-For example, support a test called "Functional.foo" had a test spec 
+For example, support a test called "Functional.foo" had a test spec
 that defined the variable 'args' with a line
 like the following in its spec.json file: ::
 
@@ -262,7 +262,7 @@ variable FUNCTIONAL_FOO_ARGS would be defined, with the value "-v
 See  :ref:`Test_Specs_and_Plans <test_specs_and_plans>` for more
 information about specs and plans.
 
-Note that spec variables are overridden by 
+Note that spec variables are overridden by
 
 =========================
 Dynamic variables
@@ -288,14 +288,14 @@ defined with the value *-p*.
 See :ref:`Dynamic Variables <dynamic_variables>` for more information.
 
 ========================
-Variable precedence 
+Variable precedence
 ========================
 
 Here is the precedence of variable definition for Fuego, during test
 execution:
 
 (from lowest to highest)
- * environment variable (from Jenkins or shell where 'ftc run-test' is 
+ * environment variable (from Jenkins or shell where 'ftc run-test' is
    invoked)
  * board variable (from fuego-ro/boards/$BOARD.board file)
  * stored variable (from fuego-rw/boards/$BOARD.vars file)
@@ -304,8 +304,8 @@ execution:
  * core variable (from Fuego scripts)
  * fuego_test variable (from fuego_test.sh)
 
-Spec and dynamic variables are prefixed with the test name, and 
-converted to upper case.  That tends to keep them in a separate name 
+Spec and dynamic variables are prefixed with the test name, and
+converted to upper case.  That tends to keep them in a separate name
 space from the rest of the test variables.
 
 

@@ -17,7 +17,7 @@ Fuego version 1.5 replaces the testplan system.
 =============================
 How to make a batch test
 =============================
- 
+
 A batch test consists of a Fuego test that runs other tests.  A Fuego
 batch test is similar to other Fuego tests, in that the test
 definition lives in fuego-core/tests/<test-name>, and it consists of a
@@ -85,7 +85,7 @@ The body of the test_run function for a batch test usually has a few
 common elements:
 
  * setting of the FUEGO_BATCH_ID
- * execution of the sub-tests, using a call to the function 
+ * execution of the sub-tests, using a call to the function
    :ref:`run_test <func_run_test>` for each one
 
 Here are the commands in the test_run function for the test
@@ -189,7 +189,7 @@ batch tests in the system (See
 fuego-core/tests/Functional.batch_hello/parser.py)
 
 ========================================
-Preparing the system for a batch job 
+Preparing the system for a batch job
 ========================================
 
 In order to run a batch test from Jenkins, you need to define a
@@ -207,7 +207,7 @@ test jobs need to be defined prior to running the batch test from the
 command line.
 
 ===========================
-Executing a batch test 
+Executing a batch test
 ===========================
 
 A batch test is executed the same way as any other Fuego test.  Once
@@ -217,7 +217,7 @@ automatically.  Or, you can run the test from the command line using
 'ftc run-test'.
 
 ===============================
-Viewing batch test results 
+Viewing batch test results
 ===============================
 
 You can view results from a batch test in two ways:
@@ -236,7 +236,7 @@ to see that individual test's result and data in the Jenkins
 interface.
 
 
-Generating a report 
+Generating a report
 ======================
 
 You can view a report for a batch test, by specifying the batch_id
@@ -245,11 +245,11 @@ with the  'ftc gen-report' command.
 To determine the batch_id, look at the log for the batch test
 (testlog.txt file).  Or, generate a report listing the batch_ids for
 the batch test, like so:
- 
- * $ ``ftc gen-report --where test=batch_<name> --fields 
+
+ * $ ``ftc gen-report --where test=batch_<name> --fields
    timestamp,batch_id``
 
-Select an appropriate batch_id from the list that appears, and note it 
+Select an appropriate batch_id from the list that appears, and note it
 for use in the next command.
 
 Now, to see the results from the individual sub-tests in the batch, use

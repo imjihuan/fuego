@@ -8,10 +8,10 @@ This page has artwork (logos, photos and images) for use in Fuego
 presentations and documents.
 
 =======
-Logos 
+Logos
 =======
 
- * fuego-logo.svg (SVG, high-res) 
+ * fuego-logo.svg (SVG, high-res)
 
   .. image:: ../images/fuego-logo.png
      :height: 100
@@ -38,21 +38,21 @@ Logos
      :height: 100
 
 =========
-Banners 
+Banners
 =========
 
- * Fuego Jamboree: (png, 567x120) 
+ * Fuego Jamboree: (png, 567x120)
 
   .. image:: ../images/HeadTitle_Fuego-Jamboree.png
      :height: 100
 
- * firestrip: (jpg, 1710x282) 
+ * firestrip: (jpg, 1710x282)
 
   .. image:: ../images/fire-strip-bg1.jpg
      :height: 50
- 
+
 ========
-images 
+images
 ========
 
  * vertical fire (public domain, png, 687x2712)
@@ -61,7 +61,7 @@ images
      :height: 200
 
 
- * horizontal fire (public domain, jpg, 615x318) 
+ * horizontal fire (public domain, jpg, 615x318)
 
   .. image:: ../images/horizontal-fire-public-domain.jpg
      :height: 100
@@ -73,7 +73,7 @@ images
      :height: 200
 
 
- * rectangle fire with Fuego (png, 1431x1056) 
+ * rectangle fire with Fuego (png, 1431x1056)
 
   .. image:: ../images/Tahoe-firepit-with-Fuego.png
      :height: 200
@@ -87,7 +87,7 @@ images
 
 
 =========
-Photos 
+Photos
 =========
 
  * Tim Bird presenting Introduction to Fuego at ELC 2016 (Youtube
@@ -123,7 +123,7 @@ Presentation templates
 
 
 
- 
+
 
 
 

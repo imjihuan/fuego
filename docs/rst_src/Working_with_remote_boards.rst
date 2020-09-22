@@ -38,7 +38,7 @@ For example, in your local ttc.conf, you can put: ::
 
 	PASSWORD=foo
 	USER=myuser
-	SSH_ARGS=-o UserKnownHostsFile=/dev/null -o 
+	SSH_ARGS=-o UserKnownHostsFile=/dev/null -o
         StrictHostKeychecking=no -o LogLevel=QUIET
 
 	pos_cmd=ssh timdesk ttc %%(target)s pos
@@ -46,13 +46,13 @@ For example, in your local ttc.conf, you can put: ::
 	on_cmd=ssh timdesk ttc %%(target)s on
 	reboot_cmd=ssh timdesk ttc %%(target)s reboot
 
-	login_cmd=sshpass -p %%(PASSWORD)s ssh %%(SSH_ARGS)s -x 
+	login_cmd=sshpass -p %%(PASSWORD)s ssh %%(SSH_ARGS)s -x
         %%(USER)s@%%(target)s
-	run_cmd=sshpass -p %%(PASSWORD)s ssh %%(SSH_ARGS)s -x 
+	run_cmd=sshpass -p %%(PASSWORD)s ssh %%(SSH_ARGS)s -x
         %%(USER)s@%%(target)s "$COMMAND"
-	copy_to_cmd=sshpass -p %%(PASSWORD)s scp %%(SSH_ARGS)s 
+	copy_to_cmd=sshpass -p %%(PASSWORD)s scp %%(SSH_ARGS)s
         $src %%(USER)s@%%(target)s:/$dest
-	copy_from_cmd=sshpass -p %%(PASSWORD)s scp %%(SSH_ARGS)s 
+	copy_from_cmd=sshpass -p %%(PASSWORD)s scp %%(SSH_ARGS)s
         %%(USER)s@%%(target)s:/$src $dest
 
 
@@ -62,7 +62,7 @@ function network_status(), which will not be correct for the
 remote-board.
 
 =============================================================
-setting up ssh ProxyCommand in the Fuego docker container 
+setting up ssh ProxyCommand in the Fuego docker container
 =============================================================
 
 Please note that tests in Fuego are executed inside the docker

@@ -6,7 +6,7 @@ License And Contribution Policy
 ##########################################
 
 ===============
-License 
+License
 ===============
 
 Fuego has the following license policy.
@@ -37,7 +37,7 @@ in order to accommodate external software added to our system, our
 preference is to avoid the proliferation of licenses in the Fuego
 code itself.
 
-External test materials 
+External test materials
 ----------------------------
 
 Individual tests in Fuego consist of files in the directory:
@@ -45,7 +45,7 @@ engine/tests/<test_name> (which is known as the test home directory),
 and may include two types of materials:
 
  * 1) Fuego-specific files
- * 2) files obtained from external sources, which have their own 
+ * 2) files obtained from external sources, which have their own
    license.
 
 The Fuego-specific materials consist of files such as: fuego_test.sh,
@@ -70,7 +70,7 @@ If there is any ambiguity in the category of a particular file
 (external or Fuego-specific), please designate the intended license
 clearly in the file itself, when making a contribution.
 
-Copyright statements 
+Copyright statements
 ======================
 
 Copyrights for individual contributions should be added to individual
@@ -112,42 +112,42 @@ indicates agreement to the following: ::
 
 		      (a) The contribution was created in whole or in
                           part by me and I have the right to submit it
-                          under the open source license indicated in 
+                          under the open source license indicated in
                           the file; or
 
 		      (b) The contribution is based upon previous work
-                          that, to the best of my knowledge, is 
+                          that, to the best of my knowledge, is
                           covered under an appropriate open source
-		          license and I have the right under that 
-                          license to submit that work with 
-                          modifications, whether created in whole or 
-                          in part by me, under the same open source 
-                          license (unless I am permitted to submit 
+		          license and I have the right under that
+                          license to submit that work with
+                          modifications, whether created in whole or
+                          in part by me, under the same open source
+                          license (unless I am permitted to submit
                           under a different license), as indicated
 		          in the file; or
 
-		      (c) The contribution was provided directly to me 
-                          by some other person who certified (a), (b) 
+		      (c) The contribution was provided directly to me
+                          by some other person who certified (a), (b)
                           or (c) and I have not modified it.
 
 		      (d) I understand and agree that this project and
-                          the contribution are public and that a 
+                          the contribution are public and that a
                           record of the contribution (including all
-		          personal information I submit with it, 
-                          including my sign-off) is maintained 
-                          indefinitely and may be redistributed 
-                          consistent with this project or the open 
+		          personal information I submit with it,
+                          including my sign-off) is maintained
+                          indefinitely and may be redistributed
+                          consistent with this project or the open
                           source license(s) involved.
 
 
-*Note*: Please note that an "official" DCO at the web site 
-`<https://developercertificate.org/>`_  has additional text 
-(an LF copyright, address, and statement of non-copyability).All of 
-these are either nonsense or problematical in some legalsense. 
-The above is a quote of a portion of the document found in the 
+*Note*: Please note that an "official" DCO at the web site
+`<https://developercertificate.org/>`_  has additional text
+(an LF copyright, address, and statement of non-copyability).All of
+these are either nonsense or problematical in some legalsense.
+The above is a quote of a portion of the document found in the
 Linuxkernel guide for submitting patches.  See
 `<https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
-tree/Documentation/process/submitting-patches.rst>`_ 
+tree/Documentation/process/submitting-patches.rst>`_
 (copied in March, 2018).
 
 Each commit must include a DCO which looks like this ::
@@ -167,17 +167,17 @@ options to 'git commit' to add the Signed-off-by line to the end of
 the commit message.
 
 ==========================
-Submitting contributions 
+Submitting contributions
 ==========================
 
 Please format contributions as a patch, and send the patch to the
 `Fuego mailing list <https://lists.linuxfoundation.org/mailman/
 listinfo/fuego>`_
 
-Before making the patch, please verify that you have followed our 
+Before making the patch, please verify that you have followed our
 preferred :ref:`Coding style <coding_style>`.
 
-We follow the style of patches used by the Linux kernel, which is 
+We follow the style of patches used by the Linux kernel, which is
 described here: `<https://www.kernel.org/doc/html/latest/process/
 submitting-patches.html>`_
 
@@ -193,8 +193,8 @@ Not everything described there applies, but please do the following:
 
    - the test name can be the short name, if it is unambiguous
 
-     - That is, please don't use the 'Functional' or 'Benchmark' 
-       prefix unless there are both types of tests with the same 
+     - That is, please don't use the 'Functional' or 'Benchmark'
+       prefix unless there are both types of tests with the same
        short name
 
  - describe your changes in the commit message body

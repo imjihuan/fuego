@@ -13,9 +13,9 @@ file processing, and results processing and aggregation.
 It is used by the parser.py program from the test directory, to process
 the log after each test run.  The data from a test run is processed to:
 
- * check numeric values for pass/fail result(by checking against a 
+ * check numeric values for pass/fail result(by checking against a
    reference threshold values)
- * determine the overall result of the test, based on potentially 
+ * determine the overall result of the test, based on potentially
    complex results criteria
  * save the data for use in history and comparison charts
 
@@ -25,29 +25,29 @@ Parser API
 
 The following are functions used during log processing, by a test's
 parser.py program.
-  
- * :ref:`parse_log() <parser_func_parse_log>` - parse the data from a 
+
+ * :ref:`parse_log() <parser_func_parse_log>` - parse the data from a
    test log
 
-    * this routine takes a regular expression, with one or more 
-      groups, and results a list of tuples for lines that matched the 
+    * this routine takes a regular expression, with one or more
+      groups, and results a list of tuples for lines that matched the
       expression
-    * the tuples consist of the strings from the matching line 
+    * the tuples consist of the strings from the matching line
       corresponding to the regex groups
 
  * :ref:`process() <parser_func_process>` - process results from a test
 
-    * this routine taks a dictionary of test results, and does 3 
+    * this routine taks a dictionary of test results, and does 3
       things:
 
       * formats them into the run.json file (run results file)
       * detects pass or fail by using the specified pass criteria
       * formats the data into charts (plots and tables)
 
- * :ref:`split_output_per_testcase() 
-   <parser_func_split_output_per_testcase>` 
+ * :ref:`split_output_per_testcase()
+   <parser_func_split_output_per_testcase>`
 
-   - split testlog into chunks accessible from the Jenkins user 
+   - split testlog into chunks accessible from the Jenkins user
      interface (one per testcase)
 
 In general, a parser module will normally call **parse_log()**, then
@@ -90,7 +90,7 @@ parse()
 
  * output:
 
-    * list of regular expression matches for each line matching the 
+    * list of regular expression matches for each line matching the
       specified pattern
 
 This routine scans the current log file, using a regular expression.
@@ -110,7 +110,7 @@ metrics, and populates various output files for test.
 
    * ref_section_pat - regular expression used to read reference.log
    * cur_dict - dictionary of metric/value pairs
-   * m - indicates the size of the plot. It should be one of: 's', 
+   * m - indicates the size of the plot. It should be one of: 's',
      'm', 'l', 'xl'
 
      * if 'm', 'l', or 'xl' are used, then a multiplot is created
@@ -127,23 +127,23 @@ This routine has the following outline:
  * save the plot to an image file (plot.png)
 
 =================
-Developer notes 
+Developer notes
 =================
 
 functions in common.py
 ========================
 
  * hls - print a big warning or error message
- * parse_log(regex_str) - specify a regular expression string to use 
+ * parse_log(regex_str) - specify a regular expression string to use
    to parse lines in the log
 
-   * this is a helper function that returns a list of matches 
-     (with groups) that the parser.py can use to populate its 
+   * this is a helper function that returns a list of matches
+     (with groups) that the parser.py can use to populate its
      dictionary of measurements
 
  * parse(regex_compiled_object)
 
-   * similar to parse_log, but it takes a compiled regular expression 
+   * similar to parse_log, but it takes a compiled regular expression
      object, and returns a list of matches (with groups)
 
    * this is deprecated, but left to support legacy tests
@@ -171,7 +171,7 @@ functions in common.py
 
      * key=test_case_id (not including measure name)
 
-       * for a functional test, the test_case_id is usually 
+       * for a functional test, the test_case_id is usually
          "default.<test_name>"
 
      * value=list of measures (for a benchmark)
@@ -179,7 +179,7 @@ functions in common.py
 
  * process_data(ref_sections_pat, test_results, plot_type, label)
 
-call trees 
+call trees
 ================
 
 ::
@@ -214,16 +214,16 @@ call trees
 miscellaneous notes
 ========================
 
- * create_default_ref_tim 
+ * create_default_ref_tim
    (for docker.hello-fail.Functional.hello_world)
 
-   * ref={'test_sets': [{'test_cases': [{'measurements': 
-     [{'status': 'FAIL', 'name': 'Functional'}], 'name': 'default'}], 
+   * ref={'test_sets': [{'test_cases': [{'measurements':
+     [{'status': 'FAIL', 'name': 'Functional'}], 'name': 'default'}],
      'name': 'default'}]}
 
  * create_default_ref
 
-   * ref={'test_sets': [{'test_cases': [{'status': 'FAIL', 
+   * ref={'test_sets': [{'test_cases': [{'status': 'FAIL',
      'name': 'default'}], 'name': 'default'}]}
 
 data format and tguid rules
@@ -234,23 +234,23 @@ different test identifiers.  This sections explains the difference:
 
 Data format for benchmark test with new API
 
- * measurements[test_case_id] = [{"name": measure_name, 
+ * measurements[test_case_id] = [{"name": measure_name,
    "measure": value}]
 
 Data format for benchmark test with old API:
 
  * in reference.log
 
-    * if tguid is a single word, then use that word as the  
+    * if tguid is a single word, then use that word as the
       measure name and "default" as the test_case.
 
-      * e.g. for benchmark.arm, the reference.log has "short".  
+      * e.g. for benchmark.arm, the reference.log has "short".
         This becomes the fully-qualified tguid: arm.default.arm.short:
 
-        * test_name = arm, test_case = default, test_case_id = arm, 
+        * test_name = arm, test_case = default, test_case_id = arm,
           measure = short
 
-Data format for functional tests with new API and the old API is the 
+Data format for functional tests with new API and the old API is the
 same:
 
  * e.g. measurements["status"] = "PASS|FAIL"

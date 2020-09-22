@@ -93,7 +93,7 @@ You can find detailed instructions for adding a board at:
 However, here is a quick list of steps you can do to add
 a your own board, and a sample 'docker' board to Fuego:
 
-Create a test directory on your board 
+Create a test directory on your board
 ========================================
 
 Login to your board, and create a directory to use for testing:::
@@ -196,7 +196,7 @@ Once this is done, your Jenkins interface should look something like this:
    :width: 900
 
 =============
-Run a test 
+Run a test
 =============
 
 To run a job manually, you can do the following:

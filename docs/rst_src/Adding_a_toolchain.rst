@@ -6,7 +6,7 @@ Adding a toolchain
 ###################
 
 ==================
-Introduction 
+Introduction
 ==================
 
 In order to build tests for your target board, you need to install a
@@ -22,7 +22,7 @@ Adding a toolchain to Fuego consists of these steps:
  * 5. reference the toolchain in the appropriate board file
 
 ========================
-Obtain a toolchain 
+Obtain a toolchain
 ========================
 
 First, you need to obtain a toolchain that will work with your board.
@@ -92,7 +92,7 @@ At this step look in tmp/deploy/sdk and note the name of the sdk
 install package (the file ending with .sh).
 
 ===========================================
-Install the SDK in the docker container 
+Install the SDK in the docker container
 ===========================================
 
 To allow fuego to use the SDK, you need to install it into the fuego
@@ -115,7 +115,7 @@ At the shell inside the container, run the SDK install script
 
   * /tmp/poky-....sh
 
-    * during the installation, select a toolchain installation 
+    * during the installation, select a toolchain installation
       location, like: /opt/poky/2.0.1
 
 These instructions are for an SDK built by the Yocto Project.  Similar
@@ -157,22 +157,22 @@ in the sample file /fuego-ro/toolchains/poky-qemuarm-tools.sh: ::
 
 
 	# fuego toolchain script
-	# this sets up the environment needed for fuego to use a 
+	# this sets up the environment needed for fuego to use a
 	# toolchain
 	# this includes the following variables:
 	# CC, CXX, CPP, CXXCPP, CONFIGURE_FLAGS, AS, LD, ARCH
 	# CROSS_COMPILE, PREFIX, HOST, SDKROOT
 	# CFLAGS and LDFLAGS are optional
-	# 
+	#
 	# this script is sourced by /fuego-ro/toolchains/tools.sh
 
 	POKY_SDK_ROOT=/opt/poky/2.0.1
 	export SDKROOT=${POKY_SDK_ROOT}/sysroots/
         armv5e-poky-linux-gnueabi
 
-	# the Yocto project environment setup script changes PATH so 
+	# the Yocto project environment setup script changes PATH so
         # that python uses
-	# libs from sysroot, which is not what we want, so save the 
+	# libs from sysroot, which is not what we want, so save the
         # original path
 	# and use it later
 	ORIG_PATH=$PATH

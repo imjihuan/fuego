@@ -7,7 +7,7 @@
 Install and First Test
 #######################
 
-This tutorial has some short setup instructions if you just want to 
+This tutorial has some short setup instructions if you just want to
 get a taste of what Fuego is like.  This allows you to experiment
 with Fuego and try out some tests to see what it looks like and
 how it works, without investing a lot of time (well, except for
@@ -65,7 +65,7 @@ type the following commands at a Linux shell prompt: ::
 The third step (with :command:./install.sh) will take some time - about 45 minutes
 on an average Linux machine.  You might want to go make yourself a sandwich,
 (or go watch the `Fuego introduction video <https://youtu.be/AueBSRN4wLk>`_).
-This step is building the "Fuego" distribution 
+This step is building the "Fuego" distribution
 of Linux (based on Debian) and putting it into the Fuego docker container.
 You will also need a connection to the Internet with fairly decent
 bandwidth.
@@ -104,7 +104,7 @@ In your browser, you should see a screen similar to the following:
 
 
 =================
-Run a test 
+Run a test
 =================
 
 Manually start a test
@@ -173,7 +173,7 @@ installation) was click a button.
 What do do next?
 ==================
 
-In order to use Fuego in a real Continuus Integration loop, you need to do 
+In order to use Fuego in a real Continuus Integration loop, you need to do
 a few things:
 
  * Configure Fuego to work with your own board or product

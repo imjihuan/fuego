@@ -28,7 +28,7 @@ Note that these steps are for Ubuntu.
 
  * make sure you have required packages for building the software
 
-   * sudo apt-get install gawk wget git-core diffstat unzip texinfo 
+   * sudo apt-get install gawk wget git-core diffstat unzip texinfo
      gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
 
  * install the qemu software

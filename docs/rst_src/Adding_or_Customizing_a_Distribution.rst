@@ -92,7 +92,7 @@ that commonly occur in embedded Linux testing.
 
 
 ===========================================================
-Referencing the distribution in the board file 
+Referencing the distribution in the board file
 ===========================================================
 
 Inside the board file for your board, indicate the distribution
@@ -111,7 +111,7 @@ is the case: ::
   DISTRIB="nosyslogd.dist"
 
 ==================================================
-Testing Fuego/distribution interactions 
+Testing Fuego/distribution interactions
 ==================================================
 
 There is a test you can run to see if the minimal command set
@@ -128,19 +128,19 @@ distribution does not support, or that adds checks for things
 that your distribution overlay uses to interact with the board.
 
 =========
-Notes 
+Notes
 =========
 
 Fuego does not yet fully support testing non-Linux operating systems.
-There is work-in-progress to support testing of NuttX, but that 
-feature is not complete as of this writing. In any event, Fuego does 
-include a 'NuttX' distribution overlay, which may provide some ideas 
+There is work-in-progress to support testing of NuttX, but that
+feature is not complete as of this writing. In any event, Fuego does
+include a 'NuttX' distribution overlay, which may provide some ideas
 if you wish to write your own overlay for a non-Linux OS.
 
 NuttX distribution overlay
 ============================
 
-By way of illustration, here are the contents of the NuttX 
+By way of illustration, here are the contents of the NuttX
 distribution overlay file (fuego-core/overlays/distribs/nuttx.dist). ::
 
 
@@ -161,7 +161,7 @@ distribution overlay file (fuego-core/overlays/distribs/nuttx.dist). ::
 		  # no-op
 		  true
 	}
-		  
+		
 	override-func ov_rootfs_state() {
 		  cmd "echo; date; echo; free; echo; ps; echo; mount" || \
 		      abort_job "Error executing rootfs_status operation on target"
@@ -207,15 +207,15 @@ Say you wanted to add support for testing QNX with Fuego.
 Here are some first steps to add a QNX distribution overlay:
 
  * set up your board file
- * create a custom QNX.dist (stubbing out or replacing base class 
+ * create a custom QNX.dist (stubbing out or replacing base class
    functions as needed)
 
-    * you could copy null.dist to QNX.dist, and deciding which items 
+    * you could copy null.dist to QNX.dist, and deciding which items
       to replace with QNX-specific functionality
- 
+
  * add DISTRIB="QNX.dist" to your board file
- * run the Functional.fuego_board_check test (using ftc, or adding 
-   the node and job to Jenkins and building the job using the Jenkins 
+ * run the Functional.fuego_board_check test (using ftc, or adding
+   the node and job to Jenkins and building the job using the Jenkins
    interface), and
  * examine the console log to see what issues surface
 
