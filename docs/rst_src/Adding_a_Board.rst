@@ -2,7 +2,7 @@
 
 
 #################
-Adding a board
+Adding a Board
 #################
 
 ==============
@@ -11,13 +11,13 @@ Overview
 
 To add your own board to Fuego, there are five main steps:
 
- * 1. Make sure you can access the target via ssh, serial or some
-   other connection
- * 2. Decide whether to use an existing user account, or to create a
-   user account specifically for testing
- * 3. create a test directory on the target
- * 4. create a board file (on the host)
- * 5. add your board as a node in the Jenkins interface
+ 1. Make sure you can access the target via ssh, serial or some
+    other connection
+ 2. Decide whether to use an existing user account, or to create a
+    user account specifically for testing
+ 3. Create a test directory on the target
+ 4. Create a board file (on the host)
+ 5. Add your board as a node in the Jenkins interface
 
 1 - Set up communication to the target board
 ==============================================
@@ -119,7 +119,8 @@ Do the following: ::
 	$ vi myboard.board
 
 
-*Note: you can use your own editor in place of 'vi'*
+.. Note::
+   You can use your own editor in place of 'vi'*
 
 Set board parameters
 ----------------------
@@ -197,15 +198,17 @@ port, so it should be adjusted with caution.  However, if you find
 that some operations are not working over the serial port, try
 increasing this value (in small increments - 0.15, 0.2, etc.)
 
-*Note: In the case of TRANSPORT="serial", Please make sure that docker
-container and Fuego have sufficient permissions to access the
-specified serial port. You may need to modify
-docker-create-usb-privileged-container.sh prior to making your docker
-image, in order to make sure the container can access the ports.
-Also, if check that the host filesystem permissions on the device node
-(e.g /dev/ttyACM0 allows access. From inside the container you can try
-using the sersh or sercp commands directly, to test access to the
-target.*
+.. Note::
+   In the case of TRANSPORT="serial", Please make sure that docker
+   container and Fuego have sufficient permissions to access the
+   specified serial port. You may need to modify
+   docker-create-usb-privileged-container.sh prior to making your docker
+   image, in order to make sure the container can access the ports.
+
+   Also, if check that the host filesystem permissions on the device node
+   (e.g /dev/ttyACM0 allows access. From inside the container you can try
+   using the sersh or sercp commands directly, to test access to the
+   target.
 
 For targets using ttc:
 
