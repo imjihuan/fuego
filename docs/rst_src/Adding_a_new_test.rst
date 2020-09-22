@@ -16,12 +16,12 @@ To add a new test to Fuego, you need to perform the following steps:
  * 4. Write a test script for the test
  * 5. Add the test_specs (if any) for the test
  * 6. Add log processing to the test
- * 6-a. (if a benchmark) Add parser.py and criteria and reference 
+ * 6-a. (if a benchmark) Add parser.py and criteria and reference
    files
  * 7. Create the Jenkins test configuration for the test
 
 ==========================
-Decide on a test name 
+Decide on a test name
 ==========================
 
 The first step to creating a test is deciding the test name.  There
@@ -42,7 +42,7 @@ This name is used as the directory name where the test materials will
 live in the Fuego system.
 
 ======================================
-Create the directory for the test 
+Create the directory for the test
 ======================================
 
 The main test directory is located in
@@ -54,7 +54,7 @@ create the directory:
  * /fuego-core/engine/tests/Functional.foo
 
 ================================
-Get the source for a test 
+Get the source for a test
 ================================
 
 The actual creation of the test program itself is outside
@@ -65,7 +65,7 @@ This page describes how to integrate such a test program into the
 Fuego test system.
 
 A test program in Fuego is provided in source form so that it can
-be compiled for whatever processor architecture is used by the 
+be compiled for whatever processor architecture is used by the
 target under test. This source may be in the form of a tarfile,
 or a reference to a git repository, and one or more patches.
 
@@ -73,7 +73,7 @@ Create a tarfile for the test, by downloading the test source
 manually, and creating the tarfile.  Or, note the reference for the
 git repository for the test source.
 
-tarball source 
+tarball source
 ================
 
 If you are using source in the form of a tarfile, you add the name of
@@ -81,7 +81,7 @@ the tarfile (called 'tarball') to the test script.
 
 The tarfile may be compressed.  Supported compression schemes, and
 their associated extensions are:
- 
+
  * uncompressed (extension='.tar')
  * compressed with gzip (extension='.tar.gz' or '.tgz')
  * compressed with bzip2 (extension='.bz2')
@@ -93,7 +93,7 @@ reference this source: ::
   tarball=foo-1.2.tgz
 
 
-git source 
+git source
 ===============
 
 If you are using source from an online git repository, you reference
@@ -113,7 +113,7 @@ have some lines like the following in the test's script. ::
   gitref=master/v1.2
 
 
-script-based source 
+script-based source
 =====================
 
 Some tests are simple enough to be implemented as a single script
@@ -131,7 +131,7 @@ the test home directory instead of from the test build directory.
 
 
 =================
-Test script 
+Test script
 =================
 
 The test script is a small shell script called ``fuego_test.sh``. It
@@ -148,11 +148,11 @@ The test script for a functional test should contain the following:
  * function test_run
  * function test_processing
 
-The test_pre_check function is optional, and is used to check that 
+The test_pre_check function is optional, and is used to check that
 the test environment and target configuration and setup are correct
 in order to run the test.
 
-Sample test script 
+Sample test script
 ========================
 
 Here is the ``fuego_test.sh`` script for the test
@@ -173,12 +173,12 @@ elements of a test script.::
 	}
 
 	function test_run {
-	    report "cd $BOARD_TESTDIR/fuego.$TESTDIR; 
+	    report "cd $BOARD_TESTDIR/fuego.$TESTDIR; \
             ./hello $FUNCTIONAL_HELLO_WORLD_ARG"
 	}
 
 	function test_processing {
-	    log_compare "$TESTDIR" "1" "SUCCESS" "p"          
+	    log_compare "$TESTDIR" "1" "SUCCESS" "p"
 	}
 
 
@@ -200,7 +200,7 @@ following links:
 
 
 =======================
-Test spec and plan 
+Test spec and plan
 =======================
 
 Another element of every test is the *test spec*.  A file is used
@@ -220,10 +220,10 @@ variables.
 The test spec file is:
 
  * named 'spec.json' in the test directory,
- * in JSON format, 
- * provides a ``testName`` attribute, and a ``specs`` 
+ * in JSON format,
+ * provides a ``testName`` attribute, and a ``specs``
    attribute, which is a list,
- * may include any named spec you want, but must define at least the 
+ * may include any named spec you want, but must define at least the
    'default' spec for the test
 
    * Note that the 'default' spec can be empty, if desired.
@@ -268,7 +268,7 @@ corresponding file. For example, to add your test to the list of tests
 executed when the 'default' testplan is used, add an entry ``default``
 to the 'testplan_default.json' file.
 
-Note that you should add a comma after your entry, if it is not the 
+Note that you should add a comma after your entry, if it is not the
 last one in the list of *tests*.
 
 Please read :ref:`Test Specs and Plans <test_specs_and_plans>` for
@@ -276,7 +276,7 @@ more details.
 
 
 ========================
-Test results parser 
+Test results parser
 ========================
 Each test should also provide some mechanism to parse the results
 from the test program, and determine the success of the test.
@@ -311,11 +311,11 @@ See :ref:`parser.py <parser>` for information about this program.
 
 
 
-==================================== 
+====================================
 Pass criteria and reference info
-==================================== 
+====================================
 
-You should also provide information to Fuego to indicate how to 
+You should also provide information to Fuego to indicate how to
 evaluate the ultimate resolution of the test.
 
 For a Functional test, it is usually the case that the whole test
@@ -339,7 +339,7 @@ Please see the links for those files to learn more about what they are
 and how to write them, and customize them for your system.
 
 =================================
-Jenkins job definition file 
+Jenkins job definition file
 =================================
 
 The last step in creating the test is to create the Jenkins job for
@@ -374,9 +374,9 @@ This results in the creation of a file called config.xml, in the
 
 
 
-========================= 
+=========================
 Publishing the test
-========================= 
+=========================
 
 Tests that are of general interest should be
 submitted for inclusion into fuego-core.
@@ -394,17 +394,17 @@ There is already preliminary support for packaging a test using the
 be made available in the future.
 
 =======================
-Technical Details 
+Technical Details
 =======================
 
 This section has technical details about a test.
 
-Directory structure 
+Directory structure
 ========================
 
-The directory structure used by Fuego is documented at 
+The directory structure used by Fuego is documented at
 [[Fuego directories]]
- 
+
 
 
 Files
@@ -418,14 +418,14 @@ File or item    format          location                              descriptio
 config.xml      Jenkins XML     /var/lib/jenkins/jobs/{test_name}     Has the Jenkins (front-end) configuration for the test                            all
 tarfile         tar format      /fuego-core/engine/tests/{test_name}  Has the source code for the test program                                          all
 patches         patch format    /fuego-core/engine/tests/{test_name}  Zero or more patches to customize the test program (applied during the unpack     all
-                                                                      phase 
+                                                                      phase
 base script     shell script    /fuego-core/engine/tests/{test_name}  Is the shell script that implements the different test phases in Fuego            all
-                                /fuego_test.sh 
+                                /fuego_test.sh
 test spec       JSON            /fuego-core/engine/tests/{test_name}  Has groups of variables (and their values) that can be used with this test        all
                                 /spec.json
 test plan(s)    JSON            /fuego-core/engine/overlays/testplan  Has the testplans for the entire system                                           all
 parser.py       python          /fuego-core/engine/tests/{test_name}  Python program to parse benchmark metrics out of the log, and provide a           all
-                                                                      dictionary to the Fuego plotter all,                                              but 
+                                                                      dictionary to the Fuego plotter all,                                              but
                                                                                                                                                         can be
                                                                                                                                                         missing
                                                                                                                                                         for
