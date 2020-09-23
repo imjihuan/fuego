@@ -44,15 +44,15 @@ Individual tests in Fuego consist of files in the directory:
 engine/tests/<test_name> (which is known as the test home directory),
 and may include two types of materials:
 
- * 1) Fuego-specific files
- * 2) files obtained from external sources, which have their own
-   license.
+ 1. Fuego-specific files
+ 2. files obtained from external sources, which have their own
+    license.
 
-The Fuego-specific materials consist of files such as: fuego_test.sh,
-spec.json, reference.json, test.yaml, chart_config.json, and possibly
-others as created for use in the Fuego project.  External test
-materials may consist of tar files, helper scripts and patches against
-the source in the tar files.
+The Fuego-specific materials consist of files such as:
+``fuego_test.sh``, ``spec.json``, ``criteria.json``, ``test.yaml``,
+``chart_config.json``, and possibly others as created for use in the
+Fuego project.  External test materials may consist of tar files, helper
+scripts and patches against the source in the tar files.
 
 Unless otherwise indicated, the Fuego-specific materials are
 licensed under the Fuego default license, and the external test
@@ -62,7 +62,7 @@ license - as indicated in the test source.
 In some cases, there is no external source code, but only source that
 is originally written for Fuego and stored in the test home directory.
 This commonly includes tests based on a single shell script, that is
-written to be deployed to the Device Under Test by fuego_test.sh.
+written to be deployed to the Device Under Test by ``fuego_test.sh``.
 Unless otherwise indicated, these files (source and scripts) are
 licensed under the Fuego default license.
 
@@ -222,9 +222,3 @@ While I will sometimes process patches through a repo, it is
 strongly preferred for patches to go through the mailing list
 as plain text, so that community members can review the patch
 in public.
-
-
-
-
-
-
