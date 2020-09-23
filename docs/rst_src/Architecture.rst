@@ -82,14 +82,14 @@ system).
 =========================
 Pre-packaged tests
 =========================
-Fuego contains over 100 pre-packages tests, ready for you to
-start testing with these tests "out-of-the-box".  There are
-tests of individual programs or features, such as 'iputils' or
-'pmqtest', as well as several benchmarks in the areas of
-CPU performance, networking, graphics, and realtime. Fuego
-also incluse some full test suites, like LTP (Linux Test
-Project).  Finally, Fuego includes a set of selftest tests,
-to validate board operation or core Fuego functionality.
+
+Fuego contains over 100 pre-packaged tests, ready for you to start
+testing "out-of-the-box".  There are tests of individual programs or
+features, such as 'iputils' or 'pmqtest', as well as several benchmarks
+in the areas of CPU performance, networking, graphics, and realtime.
+Fuego also includes some full test suites, like LTP (Linux Test Project).
+Finally, Fuego includes a set of selftests, to validate board
+operation or core Fuego functionality.
 
 =========================
 Abstraction scripts
