@@ -351,10 +351,10 @@ software.
 
 This phase is split into multiple parts:
  * pre_build - build workspace is created, a build lock is acquired
- * and the tarball is unpacked
+   and the tarball is unpacked
 
    * :ref:`unpack <unpack>` is called during pre_build
- * test_build - this function, from the base script, is called
+ * test_build - the test_build function from fuego_test.sh is called
 
    * usually this consists of 'make', or 'configure ; make'
  * post_build - (empty for now)
