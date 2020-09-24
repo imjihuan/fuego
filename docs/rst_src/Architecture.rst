@@ -61,6 +61,7 @@ Fuego installs several plugins that are used by various aspects of the
 system.
 
 Jenkins is used to:
+
  * Start tests
  * Schedule tests for automatic execution
  * Shows test results (particularly over time)
@@ -312,6 +313,7 @@ A test execution in fuego runs through several phases, some of which
 are optional, depending on the test.
 
 The test phases are:
+
  * pre_test
  * build
  * deploy
@@ -350,6 +352,7 @@ built.  The toolchain specified by PLATFORM is used to build the
 software.
 
 This phase is split into multiple parts:
+
  * pre_build - build workspace is created, a build lock is acquired
    and the tarball is unpacked
 
@@ -366,6 +369,7 @@ The purpose of this phase is to copy the test programs, and any
 required supporting files, to the target.
 
 This consists of 3 sub-phases:
+
  * pre_deploy - cd's to the build directory
  * test_deploy - the base script's 'test_deploy' function is called.
 
@@ -534,6 +538,7 @@ Roles
 ========
 
 Human roles:
+
  * test program author - person who creates a new standalone test
    program
  * test integrator - person who integrates a standalone test into
