@@ -9,17 +9,43 @@ in the Fuego documentation.  This is intended to be used during the
 conversion from wiki pages, to make sure all important formatting is
 preserved.
 
-##################
-Page Level Header
-##################
+#######################
+Page Level Header (H1)
+#######################
 
 Here is some text
 
 .. _chapheader:
 
-=====================
-Chapter Level Header
-=====================
+==========================
+Chapter Level Header (H2)
+==========================
+
+This is the start of a level 2 section
+
+Level 3 header
+==============
+
+Does this actually do a level 3 header?
+
+Level 4 header
+--------------
+
+Some content here at level 4
+
+Level 5 header
+~~~~~~~~~~~~~~
+
+Some content here at level 5
+
+Some Example Markup
+====================
+
+Here is a **bold** word, and an *italic* word.
+Also here is a ``filename.txt``, and a ``command -a arg``.
+
+Here is a glossary terms: :term:`board`
+
 
 Admonition test
 ---------------
