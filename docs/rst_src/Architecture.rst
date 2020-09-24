@@ -524,12 +524,12 @@ the host). That is, tests that involve actions on both the host and
 target.
 
 To add a new test, the user defines several files and puts them into
-/fuego-core/engine/tests
+``/fuego-core/engine/tests``
 
-The 'ftc' command uses this directory and the directory
-'/fuego-ro/boards' to show available boards and tests on the command
+The ``ftc`` command uses this directory and the directory
+``/fuego-ro/boards`` to show available boards and tests on the command
 line.  Then a user can populate the nodes and jobs in Jenkins, using
-'ftc' commands. Each test has to have a front-end entry (a Jenkins job
+``ftc`` commands. Each test has to have a front-end entry (a Jenkins job
 definition) to allow Jenkins to execute it.  This front-end entry
 specifies the board, spec and base script for the test.
 
@@ -543,7 +543,7 @@ Human roles:
    program
  * test integrator - person who integrates a standalone test into
    fuego
- * fuego developer - person who modifies Fuego (including the fuego
+ * fuego developer - person who modifies Fuego (including the Fuego
    system scripts or Jenkins) to support more test scenarios or
    additional features
  * tester - person who executes tests and evaluates results
