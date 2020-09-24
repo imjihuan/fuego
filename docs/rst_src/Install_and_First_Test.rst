@@ -173,8 +173,8 @@ installation) was click a button.
 What do do next?
 ==================
 
-In order to use Fuego in a real Continuus Integration loop, you need to do
-a few things:
+In order to use Fuego in a real Continous Integration loop, you need to
+do a few things:
 
  * Configure Fuego to work with your own board or product
  * Select the set of tests you would like to run on your board

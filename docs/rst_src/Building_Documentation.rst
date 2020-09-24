@@ -7,11 +7,12 @@ Building Documentation
 As of July, 2020, the Fuego documentation is currently available in 3
 places:
 
- * the fuego-docs.pdf generated from TEX files in the fuego/docs/source
+ * The ``fuego-docs.pdf`` generated from TEX files in the fuego/docs/source
    directory
- * the Fuegotest wiki, located at:
+ * The Fuegotest wiki, located at:
    `<https://fuegotest.org/wiki/Documentation>`_
- * .rst files in fuego/docs
+ * A set of html files in fuego/docs/_build/html that are generated from
+   .rst files in ``fuego/docs/rst_src``
 
 The fuego-docs.pdf file is a legacy file that is several years old.
 It is only kept around for backwards compatibility.  It might be
