@@ -100,14 +100,12 @@ The toolchain used to compile programs for a board is controlled via the
 ``TOOLCHAIN`` variable in the board file.  Currently the
 ``qemu-arm.board`` file specifies TOOLCHAIN="debian-armhf".
 
-You may need to install the ``debian-armhf`` toolchain, or your own
-SDK from your Yocto Project build, into the Fuego container
-in order to build test programs for the qemuarm emulator.
+You may need to install the ``debian-armhf`` toolchain, or your own SDK
+from your Yocto Project build, into the Fuego container in order to
+build test programs for the qemuarm emulator.  See :ref:`Adding a
+toolchain <addtoolchain>` for information about how to do that.
 
-See :ref:`Adding a toolchain <addtoolchain>` for information about how
-to do that.
-
-Try building a simple program, like hello_world, as a test for the new
+Try building a simple program, like ``hello_world``, as a test for the new
 system, and see what happens.  You can try this by executing the
 test ``Functional.hello_world``.  You can do that with this command: ::
 
