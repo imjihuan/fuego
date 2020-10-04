@@ -107,48 +107,42 @@ Each contribution to Fuego must be accompanied by a
 Signed-off-by line in the patch or commit description, which
 indicates agreement to the following: ::
 
+  By making a contribution to this project, I certify that:
 
-	By making a contribution to this project, I certify that:
+     (a) The contribution was created in whole or in part by me and I
+         have the right to submit it under the open source license
+         indicated in the file; or
 
-		      (a) The contribution was created in whole or in
-                          part by me and I have the right to submit it
-                          under the open source license indicated in
-                          the file; or
+     (b) The contribution is based upon previous work that, to the best
+         of my knowledge, is covered under an appropriate open source
+         license and I have the right under that license to submit that
+         work with modifications, whether created in whole or in part
+         by me, under the same open source license (unless I am
+         permitted to submit under a different license), as indicated
+         in the file; or
 
-		      (b) The contribution is based upon previous work
-                          that, to the best of my knowledge, is
-                          covered under an appropriate open source
-		          license and I have the right under that
-                          license to submit that work with
-                          modifications, whether created in whole or
-                          in part by me, under the same open source
-                          license (unless I am permitted to submit
-                          under a different license), as indicated
-		          in the file; or
+     (c) The contribution was provided directly to me by some other
+         person who certified (a), (b) or (c) and I have not modified
+         it.
 
-		      (c) The contribution was provided directly to me
-                          by some other person who certified (a), (b)
-                          or (c) and I have not modified it.
-
-		      (d) I understand and agree that this project and
-                          the contribution are public and that a
-                          record of the contribution (including all
-		          personal information I submit with it,
-                          including my sign-off) is maintained
-                          indefinitely and may be redistributed
-                          consistent with this project or the open
-                          source license(s) involved.
+     (d) I understand and agree that this project and the contribution
+         are public and that a record of the contribution (including all
+         personal information I submit with it, including my sign-off) is
+         maintained indefinitely and may be redistributed consistent with
+         this project or the open source license(s) involved.
 
 
-*Note*: Please note that an "official" DCO at the web site
-`<https://developercertificate.org/>`_  has additional text
-(an LF copyright, address, and statement of non-copyability).All of
-these are either nonsense or problematical in some legalsense.
-The above is a quote of a portion of the document found in the
-Linuxkernel guide for submitting patches.  See
-`<https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
-tree/Documentation/process/submitting-patches.rst>`_
-(copied in March, 2018).
+.. note::
+
+   Please note that an "official" DCO at the web site
+   `<https://developercertificate.org/>`_  has additional text
+   (an LF copyright, address, and statement of non-copyability).
+   All of these extra items are either nonsense or problematical
+   in some legal sense. The above is a quote of a portion of the
+   document found in the Linux kernel guide for submitting patches.
+   See
+   `<https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst>`_
+   (copied in March, 2018).
 
 Each commit must include a DCO which looks like this ::
 
@@ -182,29 +176,31 @@ described here: `<https://www.kernel.org/doc/html/latest/process/
 submitting-patches.html>`_
 
 Not everything described there applies, but please do the following:
- - used a Signed-off-by line
- - send patch in plain text
- - include PATCH in the subject line
- - number patches in a series (1/n, 2/n, .. n/n)
- - patch subject should have: "subsystem: description"
 
-   - in the case of modifications to a test, the subject should have:
+ - Use a Signed-off-by line
+ - Send patch in plain text
+ - Include PATCH in the subject line
+ - Number patches in a series (1/n, 2/n, .. n/n)
+ - Use a subsystem prefix on the patch subject line
+
+   - Patch subject should have: "subsystem: description"
+   - In the case of modifications to a test, the subject should have:
      "test: description"  (that is, the test is the subsystem name)
 
-   - the test name can be the short name, if it is unambiguous
+   - The test name can be the short name, if it is unambiguous
 
      - That is, please don't use the 'Functional' or 'Benchmark'
        prefix unless there are both types of tests with the same
        short name
 
- - describe your changes in the commit message body
+ - Describe your changes in the commit message body
 
 Creating patches
 ===================
 
 If you use git, it's easy to create a patch (or patch series),
-using 'git format-patch'. Or, you can go directly to e-mailing
-a patch or patch series using 'git send-email'
+using ``git format-patch``. Or, you can go directly to e-mailing
+a patch or patch series using ``git send-email``.
 
 Alternative submission method
 ================================
