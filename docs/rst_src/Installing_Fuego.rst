@@ -172,6 +172,8 @@ Fuego commands execute inside the Fuego docker container, and Fuego
 operations initiate in the container, but may access hardware (such as
 USB ports, networking, or serial ports) that are outside the container.
 
+.. _priv_option:
+
 Configuring for 'privileged' hardware access
 ==============================================
 
