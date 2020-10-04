@@ -117,14 +117,5 @@ Diagrams
 Presentation templates
 =======================
 
-
-''See 2017-12-JJ63''
-
-
-
-
-
-
-
-
-
+There are templates for making Fuego presentations, on the Fuego
+wiki at: http://fuegotest.org/wiki/Presentation_Templates
