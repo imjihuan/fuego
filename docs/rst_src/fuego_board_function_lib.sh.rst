@@ -18,19 +18,18 @@ special-case implementations.
 The library is written purely in POSIX, so it can be used for
 board-side testing on almost all Linux platforms.
 The library is normally copied to the board during the test's deploy
-phase.  It resides in found in the host computer in the 'scripts'
-directory.  This is found at
-``/fuego-core/engine/scripts/fuego_board_function_lib.sh`` inside the
+phase.  It resides in the ``/fuego-core/scripts`` directory, which is
+``/fuego-core/scripts/fuego_board_function_lib.sh`` inside the
 Docker container.
 
 Deploying the library
 =======================
 
-To put the script on board being tested, copy it to the board during
-the test's 'deploy' phase (in test_deploy in the test's ``fuego_test.sh``
-file), with a command like so: ::
+To put the script on board being tested, copy it to the board during the
+test's 'deploy' phase (in the ``test_deploy`` function in the test's
+``fuego_test.sh`` file), with a command like so: ::
 
- put $FUEGO_CORE/engine/scripts/fuego_board_function_lib.sh $BOARD_TESTDIR/fuego.$TESTDIR
+ put $FUEGO_CORE/scripts/fuego_board_function_lib.sh $BOARD_TESTDIR/fuego.$TESTDIR
 
 Using the library
 =====================
@@ -47,7 +46,7 @@ lines inside your script: ::
   set_init_manager
 
 This 'sources' the script (function library) into your current shell
-environment, and then calls the 'set_init_manager' routine, which is
+environment, and then calls the ``set_init_manager`` function, which is
 one of the functions in the library.
 
 Functionality overview
@@ -64,9 +63,9 @@ Functionality overview
 Function reference
 =======================
 
- * set_init_manager - sets 'init_manager' to either 'systemd' or
+ * ``set_init_manager`` - sets 'init_manager' to either 'systemd' or
    'sysvinit'
- * detect_logger_service - sets 'logger_service' to either 'syslog-ng'
+ * ``detect_logger_service`` - sets 'logger_service' to either 'syslog-ng'
    or 'syslog'
- * exec_service_on_target - is used to start or stop a named service
+ * ``exec_service_on_target`` - is used to start or stop a named service
    on the target board
