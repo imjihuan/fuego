@@ -13,7 +13,7 @@ Main screen elements
 =========================
 
 If you click on "Jenkins" in the upper left
-part of any page in the = web interface, you will be taken to a page
+part of any page in the web interface, you will be taken to a page
 with the following parts:
 
  * Top of screen are some logos and a search bar
@@ -25,11 +25,21 @@ with the following parts:
     * A "Build Executor Status"
     * Target status
 
- * The main job panel, which may consists of several tabs, but
-   which will have at least the following:
+ * The main job panel, which may consists of several tabs, for different
+   views of the jobs defined in Jenkins. At a minimum, the following tabs
+   should be present:
 
     * All
+
+      * this shows a list of all defined jobs
     * ``+`` sign
+
+      * this allows you to create a new view of jobs
+
+  .. image:: ../images/fuego-1.1-jenkins-dashboard-beaglebone-jobs.png
+     :width: 900
+
+Clicking on a job will take you to the dashboard for that job.
 
 Job dashboard
 ==============
@@ -48,10 +58,9 @@ Changing the interface
 Create a new view
 ==================
 
-It is often handyto see just a subset of the jobs
-(like those for a particular board,
-or those having to do with a specific test area (like filesystems or
-networking).
+It is often handyto see just a subset of the jobs (like those for a
+particular board, or those having to do with a specific test area
+(like filesystems or networking).
 
 You can create a new view by clicking on the "+" sign, to add a new
 tab to the dashboard.  Then entering a name, and selecting the "List
