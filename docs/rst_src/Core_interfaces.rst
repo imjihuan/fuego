@@ -50,20 +50,18 @@ Built-in Jenkins variables for shell script jobs
 ``JENKINS_URL``
   Full URL of Jenkins, like `<http://server:port/jenkins/>`_
 
-``JOB_NAME:``
-  Name of runned test or test suite, such as "foo" or
-
-``foo/bar``
-  In Fuego, this will be something like: ``Functional.foo``
-  or ``Benchmark.bar``
+``JOB_NAME``
+  Name of Jenkins job for this test.
+  In Fuego, this will be something like: "myboard.default.Functional.foo"
+  or "myboard.default.Benchmark.bar".  The job name has the form:
+  {board}.{spec}.{type}.{test_name}
 
 ``JOB_URL``
   Full URL of this test or test suite, like
-  `<http://server:port/jenkins/job/foo/>`_
+  `<http://server:port/jenkins/job/myboard.default.Functional.foo/>`_
 
 ``NODE_LABELS``
-  Whitespace-separated list of labels that the node is
-  assigned.
+  Whitespace-separated list of labels that are assigned to the node.
 
 ``NODE_NAME``
   Name of the slave if the test run is on a slave, or
@@ -277,7 +275,11 @@ bbb.default.Functional.hello_world:
 From Fuego to Jenkins
 ===========================
 
- * FIXTHIS - add interface to perform Jenkins operations from the scripts
+This sections describes some of the operations that Fuego core
+scripts (or a test) can perform to invoke an action by Jenkins
+during a test.  To perform a Jenkins action, Fuego uses
+Jenkins' REST API using the wget command.
+
  * To abort a job, fuego does:
 
    * wget -qO- ${BUILD_URL}/stop
@@ -295,12 +297,31 @@ From Fuego to Jenkins
 
    * This is called by functions.sh:``concurrent_check()``
 
+Jenkins python module
+======================
+
+Fuego's ``ftc`` command uses the 'jenkins' python module to perform a
+number of operations with Jenkins.  This module is used to:
+
+ * list nodes
+ * add nodes
+ * remove nodes
+ * list jobs
+ * build jobs
+ * remove jobs
+ * re-synch build data for a job (using get_job_config() and reconfig_job())
+ * add view
+
+.. note::
+   Fuego uses jenkins-cli to add jobs (described next).
+
+
 Jenkins-cli interface
 ======================
 
-You can run jenkins commands from the command line, using the
-pre-installed jenkins-cli interface.  Note that Fuego does not use
-this interface (that I can tell).
+You can run Jenkins commands from the command line, using the
+pre-installed jenkins-cli interface.  This is used by Fuego's
+``ftc`` command to create jobs.
 
 jenkins-cli.jar is located in the Docker container at: ::
 
