@@ -15,7 +15,7 @@ See also :ref:`Core interfaces <core_interfaces>`
 A
 ==
 
- * ``ARCHITECTURE:`` the processor architecture of the target board
+ * ``ARCHITECTURE`` : the processor architecture of the target board
 
    * Defined in the board file for a target
 
@@ -23,15 +23,15 @@ A
 
      * *NOTE: this appears to only be used by iozone.sh*
 
-   * Sample: arm
+   * Example value: **arm**
 
- * ``ARCH:`` architecture used by the toolchain
+ * ``ARCH`` : architecture used by the toolchain
 
-   * Sample: arm
+   * Example value: **arm**
 
    * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
 
- * ``AS:`` name of the assembler
+ * ``AS`` : name of the assembler
 
    * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
    * Commonly used during the build phase
@@ -41,50 +41,50 @@ A
 B
 ==
 
- * ``BAUD:`` Baud rate to be used with the serialport
+ * ``BAUD`` : Baud rate to be used with the serialport
 
    * Defined in the board file for a target
    * Used by serial transport
-   * Sample: "115200"
+   * Example value: **115200**
 
- * ``BOARD_TESTDIR:`` directory on the target board where test data will
+ * ``BOARD_TESTDIR`` : directory on the target board where test data will
    be placed
 
    * Defined in the board file for a target
-   * Sample: ``/home/fuego``
+   * Example value: **/home/fuego**
 
 ==
 C
 ==
 
- * ``CC:`` name of the C compiler
+ * ``CC`` : name of the C compiler
 
    * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
    * Commonly used during the build phase
      (in the function :ref:`test_build <function_test_build>`)
-   * Sample: arm-linux-gnueabihf-gcc
+   * Example value: **arm-linux-gnueabihf-gcc**
 
- * ``CONFIGURE_FLAGS:`` flags used with the 'configure' program
+ * ``CONFIGURE_FLAGS`` : flags used with the 'configure' program
 
    * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
    * Commonly used during the build phase
      (in the function :ref:`test_build <function_test_build>`)
 
- * ``CROSS_COMPILE:`` cross-compile prefix used for kernel builds
+ * ``CROSS_COMPILE`` : cross-compile prefix used for kernel builds
 
    * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
-   * Sample: arm-linux-gnueabihf-
+   * Example value: **arm-linux-gnueabihf-**
    * *NOTE: this is often $PREFIX followed by a single dash*
 
- * ``CPP:`` name of the C pre-processor
+ * ``CPP`` : name of the C pre-processor
 
    * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
 
- * ``CXX:`` name of the C++ compiler
+ * ``CXX`` : name of the C++ compiler
 
    * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
 
- * ``CXXCPP:`` name of the C++ pre-processor
+ * ``CXXCPP`` : name of the C++ pre-processor
 
    * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
 
@@ -92,33 +92,45 @@ C
 F
 ==
 
- * ``FUEGO_BUILD_FLAGS:`` has special flags used to control builds
+ * ``FUEGO_BUILD_FLAGS`` : has special flags used to control builds
    (for some tests)
 
     * See :ref:`FUEGO_BUILD_FLAGS <fuego_build_flags>`
 
- * ``FUEGO_CORE:`` directory for Fuego core scripts and tests
+ * ``FUEGO_CORE`` : directory for Fuego core scripts and tests
 
     * This is defined in Jenkins and Fuego system-level configurations
-    * Set to ``/fuego-core`` inside the Docker container.
+    * This will always be ``/fuego-core`` inside the Docker container,
+      but will have a different value outside the container.
+    * Example value: **/fuego-core**
 
- * ``FUEGO_DEBUG:`` controls whether Fuego emits debug information during
-   test execution
+ * ``FUEGO_DEBUG`` : controls whether Fuego emits debug information during
+   test execution.  This variables is now deprecated in favor of
+   ``FUEGO_LOGLEVELS``
 
-    * See :ref:`FUEGO_DEBUG  <feugo_debug>`
+    * See :ref:`FUEGO_DEBUG  <fuego_debug>`
 
- * ``FUEGO_RO:`` directory for Fuego read-only data
+ * ``FUEGO_LOGLEVELS`` : controls what level of messages Fuego emits
+   during test execution
+
+    * See :ref:`FUEGO_LOGLEVELS  <fuego_loglevels>`
+
+ * ``FUEGO_RO`` : directory for Fuego read-only data
 
     * This is defined in the Jenkins and Fuego system-level
       configurations
-    * Set to ``/fuego-ro`` inside the Docker container.
+    * This will always be ``/fuego-ro`` inside the Docker container,
+      but will have a different value outside the container.
+    * Example value: **/fuego-ro**
 
- * ``FUEGO_RW:`` directory for Fuego read-write data
+ * ``FUEGO_RW`` : directory for Fuego read-write data
 
     * This is defined in Jenkins and Fuego system-level configurations
-    * Set to ``/fuego-rw`` inside the Docker container.
+    * This will always be ``/fuego-rw`` inside the Docker container,
+      but will have a different value outside the container.
+    * Example value: **/fuego-rw**
 
- * ``FUEGO_TARGET_TMP:`` directory on target to use for syslogs
+ * ``FUEGO_TARGET_TMP`` : directory on target to use for syslogs
 
    * This is defined in the board file for a target board
    * This should specify a directory in the board filesystem that is
@@ -126,78 +138,81 @@ F
      directory (of ``/tmp``), if that directory is erased on a board
      reboot.
 
- * ``FUEGO_TEST_PHASES:`` specifies a list of phases to perform during
+ * ``FUEGO_TEST_PHASES`` : specifies a list of phases to perform during
    test execution
 
-   * This is usually set by 'ftc run-test' based on the '-p' option.
-   * This is a space-separated list of strings, with the following
-     possible strings: pre_test pre_check build deploy run post_test
-     processing
+   * This is usually set by ``ftc run-test`` based on the '-p' option.
+   * This is a space-separated list of strings, from the following
+     possible individual phase strings: **pre_test**, **pre_check**, **build**,
+     **deploy**, **snapshot**, **run**, **post_test**, **processing**,
+     **makepkg**
+   * Example value: **pre_test pre_check build deploy snapshot run
+     post_test processing**
 
 ==
 G
 ==
 
- * ``GEN_TESTRES_FILE:`` set to the value of TEST_RES, when a
+ * ``GEN_TESTRES_FILE`` : set to the value of TEST_RES, when a
    BATCH_TESTPLAN is in effect
 
 ==
 I
 ==
 
- * ``IO_TIME_SERIAL:`` Time required for echoing the whole command and
+ * ``IO_TIME_SERIAL`` : Time required for echoing the whole command and
    response
 
    * Defined in the board file
    * Used by the transport functions
-   * Sample: 0.1
+   * Example value: **0.1**
 
- * ``IPADDR:`` IP address of the target board
+ * ``IPADDR`` : IP address of the target board
 
    * Defined in the board file
    * Used by the transport functions
-   * Sample: 10.0.1.74
+   * Example value: **10.0.1.74**
 
 ==
 L
 ==
 
- * ``LD:`` name of the linker
+ * ``LD`` : name of the linker
 
    * Set by :ref:`tools.sh  <tools.sh>` based on TOOLCHAIN
-   * Sample: arm-linux-gnueabihf-ld
+   * Example value: **arm-linux-gnueabihf-ld**
 
- * ``LOGIN:`` login account name for the target
+ * ``LOGIN`` : login account name for the target
 
    * Defined in the board file for the target
    * Used by the transport functions
    * The account on the target should have sufficient rights to run a
      variety of tests and perform a variety of operations on the target
-   * Sample: root
+   * Example value: **root**
 
 ==
 M
 ==
 
- * ``MAX_BOOT_RETRIES:`` Number of times to retry connecting to target
+ * ``MAX_BOOT_RETRIES`` : Number of times to retry connecting to target
    during a :ref:`target_reboot <function_target_reboot>` operation.
 
    * Defined in the board file
-   * Sample: 20
+   * Example value: **20**
 
- * ``MMC_DEV:`` device filename for an MMC device on the target
-
-   * Defined in the board file
-   * Used by filesystem test specs
-   * Sample: ``/dev/mmcblk0p2``
-
- * ``MMC_MP:`` mount point for a filesystem on an MMC device on the target
+ * ``MMC_DEV`` : device filename for an MMC device on the target
 
    * Defined in the board file
    * Used by filesystem test specs
-   * Sample: ``/mnt/mmc``
+   * Example value: **/dev/mmcblk0p2**
 
- * ``MOUNT_BLOCKDEV:`` device filename for a block device on the target
+ * ``MMC_MP`` : mount point for a filesystem on an MMC device on the target
+
+   * Defined in the board file
+   * Used by filesystem test specs
+   * Example value: **/mnt/mmc**
+
+ * ``MOUNT_BLOCKDEV`` : device filename for a block device on the target
 
    * Defined in a filesystem test spec
 
@@ -207,9 +222,9 @@ M
    * Usually references either ``MMC_DEV``, ``SATA_DEV`` or ``USB_DEV``,
      depending on what the test spec indicates to test
 
-   * Sample: ``/dev/sda1``
+   * Example value: **/dev/sda1**
 
- * ``MOUNT_POINT:`` mount point for a filesystem to be tested on the target
+ * ``MOUNT_POINT`` : mount point for a filesystem to be tested on the target
 
    * Defined in a filesystem test spec
 
@@ -219,13 +234,13 @@ M
    * Usually references either ``MMC_MP``, ``SATA_MP``, or ``USB_MP``, depending
      on what the test spec indicates to test
 
-   * Sample: ``/mnt/sata``
+   * Example value: **/mnt/sata**
 
 ==
-N 
+N
 ==
 
-  * ``NODE_NAME:`` the name of the board
+  * ``NODE_NAME`` : the name of the board
 
     * This is set by Jenkins, and is the first part of the
       Fuego job name
@@ -233,63 +248,63 @@ N
 O
 ==
 
- * ``OF_ROOT:`` root of overlay system
+ * ``OF_ROOT`` : root of overlay system
 
-   * Sample: ``/home/jenkins/overlays/``
+   * Example value: **/home/jenkins/overlays/**
 
 ==
 P
 ==
 
- * ``PASSWORD:`` password used with to login to the target board
+ * ``PASSWORD`` : password used with to login to the target board
 
    * Defined in the board file for a target
    * Used by the transport functions
    * It can be the empty string: ""
-   * Sample: mypass
+   * Example value: **mypass**
 
- * ``PLATFORM:`` name of the target "platform"  This is used to identify
+ * ``PLATFORM`` : name of the target "platform"  This is used to identify
    the toolchain used for building tests.  This has been deprecated.
-   Please use 'TOOLCHAIN' instead.
+   Please use ``TOOLCHAIN`` instead.
 
- * ``PREFIX:`` toolchain prefix
+ * ``PREFIX`` : toolchain prefix
 
    * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
-   * Sample: arm-linux-gnueabihf
+   * Example value: **arm-linux-gnueabihf**
    * *NOTE: see also CROSS_COMPILE*
 
 ==
 R
 ==
 
- * ``REP_DIR:`` directory where reports are stored
+ * ``REP_DIR`` : directory where reports are stored
 
-   * Sample: ``/home/jenkins/logs/logruns/``
+   * Example value: **/home/jenkins/logs/logruns/**
 
- * ``REP_GEN:`` report generator program
+ * ``REP_GEN`` : report generator program
 
-   * Sample: ``/home/jenkins/scripts/loggen/gentexml.py``
+   * Example value: **/home/jenkins/scripts/loggen/gentexml.py**
 
- * ``REP_LOGGEN:`` program used to generate report logs?
+ * ``REP_LOGGEN`` : program used to generate report logs?
 
-   * Sample: ``/home/jenkins/scripts/loggen/loggen.py``
+   * Example value: **/home/jenkins/scripts/loggen/loggen.py**
 
 ==
 S
 ==
 
- * ``SATA_DEV:`` device node filename for a SATA device on the target
+ * ``SATA_DEV`` : device node filename for a SATA device on the target
 
    * Defined in the board file
    * Used by filesystem tests
-   * Sample: ``/dev/sda1``
+   * Example value: **/dev/sda1**
 
- * ``SATA_MP:`` mount point for a filesystem on a SATA device on the target
+ * ``SATA_MP`` : mount point for a filesystem on a SATA device on the target
 
    * Used by filesystem tests
-   * Sample: ``/mnt/sata``
+   * Example value: **/mnt/sata**
 
- * ``SRV_IP:`` IP address of server machine (host machine where fuego runs)
+ * ``SRV_IP`` : IP address of server machine (host machine where fuego runs)
 
    * Defined in base-board.fuegoclass
 
@@ -298,86 +313,86 @@ S
    * Can be defined in a board file for a target, using an :command:`override`
      command
    * Used by networking tests (NetPIPE, iperf, netperf)
-   * Sample: 10.0.1.1
+   * Example value: **10.0.1.1**
 
- * ``SSH_PORT:`` port to use for ssh connections on the target
+ * ``SSH_PORT`` : port to use for ssh connections on the target
 
    * Defined in the board file for the target
    * The default port for sshd is 22
-   * Sample: 22
+   * Example value: **22**
 
- * ``SERIAL:`` port to use for serial connections on the target
+ * ``SERIAL`` : port to use for serial connections on the target
 
    * Defined in the board file for the target
    * The device file name as detected in Docker container
-   * Sample: ttyACM0
+   * Example value: **ttyACM0**
 
 ==
 T
 ==
 
- * ``TESTLOG:`` full path to log for a particular test
+ * ``TESTLOG`` : full path to log for a particular test
 
-   * Sample: ``/home/jenkins/logs/Functional.bzip2/
-     testlogs/bbb.2016-06-24_18-12-53.2.log``
+   * Example value: **/home/jenkins/logs/Functional.bzip2/
+     testlogs/bbb.2016-06-24_18-12-53.2.log**
 
- * ``TEST_RES:`` full path to JSON results file for a test
+ * ``TEST_RES`` : full path to JSON results file for a test
 
-   * Sample: ``/home/jenkins/logs/Functional.bzip2/testlogs/
-     bbb.2016-06-24_18-12-53.2.res.json``
-   * Sample contents:
+   * Example value: **/home/jenkins/logs/Functional.bzip2/testlogs/
+     bbb.2016-06-24_18-12-53.2.res.json**
 
- * ``TESTDIR:`` name of the directory for a particular test
+ * ``TESTDIR`` : name of the directory for a particular test
 
    * This is just the directory name, not the full path (see $TEST_HOME)
    * This is also used as the reference parse log prefix
-   * Sample: ``Functional.bzip2``
+   * Example value: **Functional.bzip2**
 
- * ``TEST_HOME:`` full path to the root of the test directory
+ * ``TEST_HOME`` : full path to the root of the test directory
 
-   * Sample: ``/home/jenkins/tests/Functional.bzip2``
+   * Example value: **/fuego-core/tests/Functional.bzip2**
 
- * ``TOOLCHAIN:`` name of the toolchain used to build test programs for a
+ * ``TOOLCHAIN`` : name of the toolchain used to build test programs for a
    board.
 
    * Defined in the board file
    * Used in ``tools.sh``
-   * Sample: qemu-armv7hf
+   * Example value: **debian-armhf**
    * *NOTE: this replaced 'PLATFORM', used in earlier versions of Fuego*
 
- * ``TRANSPORT:`` type of connection between the host system and the target
+ * ``TRANSPORT`` : type of connection between the host system and the target
    system
 
    * Defined in the board file for the target
-   * possible values: ssh, serial, ttc
+   * possible values: **ssh**, **serial**, **ttc**, **ssh2serial**,
+     **local**
 
-     * Others anticipated are: adb, lava
+     * Others anticipated are: **adb**, **lava**
 
    * Used by the transport functions
-   * Sample: ssh
+   * Example value: **ssh**
 
- * ``TTC_TARGET:`` target name used with 'ttc' command
+ * ``TTC_TARGET`` : target name used with ``ttc`` command
 
    * Defined in the board file for the target
-   * Used by the transport functions, for the 'ttc' transport only
-   * Sample: beaglebone
+   * Used by the transport functions, for the ``ttc`` transport only
+   * Example value: **beaglebone**
 
 ==
 U
 ==
 
- * ``USB_DEV:`` device filename for an block device provided by a USB
+ * ``USB_DEV`` : device filename for an block device provided by a USB
    device on the target
 
    * Defined in the board file
    * Used by filesystem test specs
-   * Sample: ``/dev/sdb1``
+   * Example value: **/dev/sdb1**
 
- * ``USB_MP:`` mount point for a filesystem on an USB device on the target
+ * ``USB_MP`` : mount point for a filesystem on an USB device on the target
 
    * Defined in the board file
    * Used by filesystem test specs
-   * Sample: ``/mnt/usb``
+   * Example value: **/mnt/usb**
 
 ====================
 UNDOCUMENTED (YET)
