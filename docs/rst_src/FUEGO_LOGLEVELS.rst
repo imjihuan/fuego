@@ -94,5 +94,5 @@ Deprecated FUEGO_DEBUG
 
 ``FUEGO_LOGLEVELS`` replaces the earlier :ref:`FUEGO_DEBUG <FUEGO DEBUG>`
 variable for controlling debug output of Fuego.  However, as of Fuego
-version 1.4, both ``FUEGO_DEBUG`` is still supported for backwards
+version 1.4, ``FUEGO_DEBUG`` is still supported for backwards
 compatibility.
