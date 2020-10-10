@@ -5,12 +5,12 @@ FUEGO DEBUG
 ###############
 
 .. note::
-  FUEGO_DEBUG is now deprecated.  Please used the newer
+  ``FUEGO_DEBUG`` is now deprecated.  Please used the newer
   :ref:`FUEGO_LOGLEVELS  <FUEGO LOGLEVELS>` feature instead of this.
   As of Fuego version 1.4,
-  FUEGO_DEBUG is still supported for backwards compatibility.
+  ``FUEGO_DEBUG`` is still supported for backwards compatibility.
 
-The environment variable FUEGO_DEBUG is used to control debug output
+The environment variable ``FUEGO_DEBUG`` is used to control debug output
 during execution of a Fuego test.
 
 If this variable is not set, no debugging messages (or less messages)
