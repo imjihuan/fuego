@@ -1,4 +1,4 @@
-.. _adding_or_cutomizing_a_distribution:
+.. _adding_or_customizing_a_distribution:
 
 ###########################################
 Adding or Customizing a Distribution

@@ -62,6 +62,7 @@ Index
    :caption: Developer resources
 
    Building_Documentation
+   Fuego_Developer_Notes
    License_And_Contribution_Policy
 
 .. _api_rex:
