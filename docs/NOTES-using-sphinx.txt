@@ -34,7 +34,7 @@ environment:
  $ pip3 install sphinx
 
  $ pip3 install sphinx-rtd-theme
-  
+
 You should be able to verify that sphinx is installed with:
  $ sphinx-build --version
 
@@ -53,7 +53,7 @@ the standard documentation build commands:
  $ make html
  $ make latexpdf
 
-You will need to activate the virtual environment every 
+You will need to activate the virtual environment every
 time you wish to build the documentation.
 
 To exit the virtual environment, just type 'deactivate'
