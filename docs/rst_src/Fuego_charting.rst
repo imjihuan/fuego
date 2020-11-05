@@ -12,8 +12,30 @@ Charts are produced during the "processing" phase of test execution.
 This is done after the test results have been parsed from the test log
 and the results placed in the unified output format (run.json) file.
 
-See :ref:`Jenkins Visualization` for information about charts that are
-produced for the Jenkins interface.  See :ref:`process <parser func
-process>`  and :ref:`chart_config.json <chart config.json>` for information about the variables
-and files used for chart creation, and
-how they can be customized.
+The chart output for a test is controlled via a file called
+``chart_config.json``, which is located in a test's home directory.
+If the ``chart_config.json`` file is missing, then Fuego produces a
+chart using a default configuration, depending on the type of the
+test.  For a Benchmark test Fuego will produce a measure plot by
+default, and for a Functional test Fuego will produce a testcase
+table.
+
+Use the following resources to find out more about Fuego's charting
+features.
+
+References
+==========
+
+See :ref:`Jenkins Visualization` for information about the different
+charts that are produced by Fuego for the Jenkins interface, and the
+relationship between Fuego and Jenkins elements used in results
+visualization.
+
+See the documentation for the :ref:`process <parser func process>`
+function (which is found in the parser library) for information about
+the files used during the ``processing`` phase, and how that relates to
+Fuego charting.
+
+Finally, for information about the different chart types and
+configuration options for charts supported by Fuego, see
+:ref:`chart_config.json <chart config.json>`.
