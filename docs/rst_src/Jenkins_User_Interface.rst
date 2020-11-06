@@ -247,4 +247,3 @@ management operations for Jenkins.
 
 .. image:: ../images/fuego-1.1-jenkins-management.png
    :width: 900
-

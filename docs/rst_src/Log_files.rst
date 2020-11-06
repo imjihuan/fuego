@@ -124,4 +124,3 @@ follows:
 
      * flat_plot_data.txt - has results data in "flat" ASCII text format
      * flot_chart_data.json - has chart data in json and HTML format
-
