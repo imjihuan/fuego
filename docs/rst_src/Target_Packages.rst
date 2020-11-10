@@ -2,18 +2,18 @@
 Target Packages
 ####################
 
-A 'target package' is a binary archive file that contains the
-materials that are needed on a board, to execute a test.  It is in
+A "target package" is a binary archive file that contains the
+materials that are needed on a board to execute a test.  It is in
 'tar' format, and contains the materials that would normally be
-deployed to the board during the 'deploy' phase of test execution.
+deployed to the board during the ``deploy`` phase of test execution.
 
 =============================
 Building a target package
 =============================
 
-To build a target package, use "ftc run-test" and specify a subset of
-phases to run.  Specifically, specify to run the 'pretest, 'build',
-'deploy' and 'makepkg' phases.
+To build a target package, use ``ftc run-test`` and specify a subset of
+phases to run that includes the ``makepkg`` phase.  Specifically, you should
+specify to run the ``pretest``, ``build``, ``deploy`` and ``makepkg`` phases.
 
 Example: ::
 
@@ -32,7 +32,7 @@ script ``make_cache.sh``.
 This script is located at ``fuego-core/engine/scripts/make_cache.sh``.  To
 use it, provide a board name as a command line argument.
 
-It will call 'ftc' to create all of the target package files that it
+It will call ``ftc`` to create all of the target package files that it
 can (ie that build successfully).
 
 ===================
@@ -41,14 +41,14 @@ Developer notes
 
 To support this features, a new test execution phase was added to
 Fuego.  The new phase is called 'makepkg', and the letter 'm' is used
-in the phase string used with the '-p' option to 'ftc run-test'. By
-default, the "makepkg" phase is not executed (that is, during a
+in the phase string used with the '-p' option to ``ftc run-test``. By
+default, the ``makepkg`` phase is not executed (that is, during a
 "normal" run of a test).  This phase must be specifically requested in
 order for Fuego to execute it during a test run.
 
-If the 'makepkg' phase is specified, then deploy is altered to put the
+If the ``makepkg`` phase is specified, then deploy is altered to put the
 materials into the directory ``/fuego-rw/stage/fuego.<testname>``.
-Then, after deployment the internal function 'makepkg' is called to
+Then, after deployment the internal function ``makepkg`` is called to
 create the target package file.  The file is called
 ``/fuego-rw/cache/$TOOLCHAIN-$TESTNAME-board-package.tar.gz``.
 
@@ -57,7 +57,7 @@ Outstanding work
 
 This system captures the materials that would be in
 ``$BOARD_TESTDIR/fuego.$TESTNAME`` after the deploy phase.  If a
-test's 'test_deploy' function manipulates items on the target board
+test's ``test_deploy`` function manipulates items on the target board
 that are outside this directory, those changes will not be captured in
 the target package.
 
