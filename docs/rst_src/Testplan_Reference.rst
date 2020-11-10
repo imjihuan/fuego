@@ -11,7 +11,7 @@ Filename and location
 
 A testplan is in json format, and can be located in two places:
 
- * As a file located in the directory ``fuego-core/engine/overlay/testplans``.
+ * As a file located in the directory ``fuego-core/overlay/testplans``.
  * As a here document embedded in a batch test script
    (``fuego_test.sh``)
 
@@ -38,9 +38,9 @@ The top level objects that may be defined in a testplan are:
 
 
 Each of these attributes, except for 'tests' has a value that is a string.
-Here are their meaninings and legal values:
+Here are their meanings and legal values:
 
-The testPlanName is the name of this testplan.  It must match the
+The ``testPlanName`` is the name of this testplan.  It must match the
 filename that holds this testplan (without the "testplan_" prefix or
 ".json" extension.  This object is required.
 
@@ -77,7 +77,7 @@ Note that if neither the individual test nor the testplan provide
 a default value is not provided, then a Fuego global default value
 for that setting will be used.
 
-Note that the default_spec specifies the name of the test spec to use
+Note that ``default_spec`` specifies the name of the test spec to use
 for the test (if one is not is specified for the individual test
 definition).  The name should match a spec that is defined for every
 test listed in the plan.  Usually this will be something like
@@ -185,7 +185,7 @@ Test setting precedence
 ============================
 
 Note that the test settings are used by the plan at job creation time,
-to set the command line arguments that will be passed to 'ftc run-test'
+to set the command line arguments that will be passed to ``ftc run-test``
 by the Jenkins job, when it is eventually run.
 
 A user can always edit a Jenkins job (for a Fuego test), to
