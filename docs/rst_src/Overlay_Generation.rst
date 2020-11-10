@@ -5,7 +5,7 @@ Overlay Generation
 Overlay generation refers to the process of converting overlay files
 into a test variable script.  This allows for board files and base
 test scripts to override functions and variables in the base fuego
-system with customized versions.  This implements a weak form of an
+system with customized versions.  This implements a weak form of
 object-orientated programming.
 
 At run time, the base test script is sourced.  This in turn sources
@@ -25,7 +25,7 @@ during test execution.
 
 The call to ``ovgen.py`` looks like this: ::
 
- * $OF_OVGEN $OF_CLASSDIR_ARGS $OF_OVFILES_ARGS $OF_TESTPLAN_ARGS $OF_SPECDIR_ARGS $OF_OUTPUT_FILE_ARGS
+ $OF_OVGEN $OF_CLASSDIR_ARGS $OF_OVFILES_ARGS $OF_TESTPLAN_ARGS $OF_SPECDIR_ARGS $OF_OUTPUT_FILE_ARGS
 
 Which expands to something like: ::
 
@@ -77,7 +77,7 @@ If you 'include' a class file, then the variables and functions in
 that file may NOT be overridden by local definitions in your shell
 script.
 
-It is presumed that these overrides will be specified is in the .board
+It is presumed that these overrides will be specified in the .board
 and .dist files.
 
 nologread.dist
@@ -216,7 +216,7 @@ Here is an outline of ovgen operation:
 .. note::
    testplans and testspecs are simple maps internally (in ovgen.py).
    However, parseBaseDir() and parseOverrideFile() return class objects
-   that are put in a list.
+   that are put into a list.
 
 For additional developer notes on the overlay system, see
 :ref:`ovgen feature notes`
