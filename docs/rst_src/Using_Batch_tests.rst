@@ -45,7 +45,7 @@ attributes (such as timeout, flags, and specs) for each test.  The
 testplan element is used by ``ftc add-jobs`` to create Jenkins jobs for
 each sub-test that is executed by this batch test.
 
-The ``BATCH_TESTPLAN`` variable must be defined in the fuego_test.sh file.
+The ``BATCH_TESTPLAN`` variable must be defined in the ``fuego_test.sh`` file.
 The definition must begin with a line starting with the string
 'BATCH_TESTPLAN=' and end with a line starting with the string
 'END_TESTPLAN'.  By convention this is defined as a shell "here

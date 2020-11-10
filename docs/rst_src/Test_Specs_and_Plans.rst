@@ -2,6 +2,16 @@
 Test Specs and Plans
 ########################
 
+.. note::
+   This page describes (among other things) the standalone test
+   plan feature, which is in process of being converted to a new
+   system.  The information is still accurate as of November 2020
+   (and Fuego version 1.5).  However, standalone testplans are
+   now deprecated.  The testplan system is being refactored and
+   testplan json data is being integrated into a new batch test
+   system introduced in Fuego version 1.5. See
+   :ref:`Using_Batch_Tests` for more information.
+
 ================
 Introduction
 ================
@@ -16,7 +26,8 @@ variable values (the spec) to use for each one.
 There are numerous cases where you might want to run the same test
 program, but in a different configuration (i.e. with different
 settings), in order to measure or test some different aspect of the
-system.  One of the simplest different type of test settings you might
+system.  This is often referred to as test "parameterization".
+One of the simplest different types of test settings you might
 choose is whether to run a quick test or a thorough (long) test.
 Selecting between quick and long is a high-level concept, and
 corresponds to the concept of a test plan. The test plan selects
@@ -34,9 +45,10 @@ results will likely not be comparable with the results for an
 MMC-based device. This is due to differences in how the devices
 operate at a hardware layer and how they are accessed by the system.
 Therefore, depending on what you are trying to measure, you may wish
-to measure only one or the other types of hardware.
+to measure only one or another type of hardware.
 
-The different settings for these different plans are stored in the
+The different settings for these different plans (the test variables
+or test parameters) are stored in the
 test spec file.  Each test in the system has a test spec file, which
 lists different specifications (or "specs") that can be incorporated
 into a plan.  The specs list a set of variables for each spec.  When a
@@ -47,16 +59,12 @@ In general, test plan files are global and have the names of
 categories of tests.
 
 .. note::
-    Note that a test plan may not apply to every test. In fact the
-    only one that does is the default test plan.  It is important
-    for the user to recognize which test plans may be suitably used
-    with which tests.
-
-::
-
-  FIXTHIS - the Fuego system should handle this, by examining the
-  test plans and specs, and only presenting to the user the plans that
-  apply to a particular test. (what?)
+    Note that a spec mentioned in a test plan may not be
+    available every test.  In fact the only spec that is
+    guaranteed to be available in every test is the 'default'
+    test spc.  It is important for the user to recognize which
+    test specs and plan arguments may be suitably used with which
+    tests.
 
 ===============
 Test plans
@@ -83,16 +91,16 @@ These plans select test specs named: 'usb', 'sata', and 'mmc'
 respectively.
 
 Fuego also includes some test-specific test plans (for the
-Functional.bc and Functional.hello_world tests), but these are there
-more as examples to show how the test plan and spec system works, than
-for any real utility.
+``Functional.bc`` and ``Functional.hello_world`` tests), but these are
+there more as examples to show how the test plan and spec system works,
+than for any real utility.
 
 A test plan is specified by a file in JSON format, that indicates the
-test plan name, and for each test to which it applies, the specs which
-should be used for that test, when run with this plan.  The test plan
-file should have a descriptive name starting with 'testplan_' and
-ending in the suffix '.json', and the file must be placed in the
-``engine/overlays/testplans`` directory.
+test plan name, and a list of tests. For each test, it also lists the
+specs which should be used for that test, when run with this plan.  The
+test plan file should have a descriptive name starting with 'testplan_'
+and ending in the suffix '.json', and the file must be placed in the
+``overlays/testplans`` directory.
 
 Example
 =============
@@ -118,7 +126,8 @@ Here is ``testplan_hello_world_random.json``
            {
                "testName": "Functional.hello_world",
                "spec": "hello-random"
-           }    ]
+           }
+       ]
    }
 
 
@@ -133,32 +142,45 @@ on the page:  :ref:`Testplan_Reference:Testplan Reference`
 Test Specs
 ==============
 
-Each test in the system should have a 'test spec' file, which lists
-different specifications, and the variables for each one that can be
-customized for that test.  Every test is required, at a minimum, to
-define the "default" test spec, which is the default set of test
-variables used when running the test.  Note that a test spec can
-define no test variables, if none are required.
+Fuego's "test spec" system is a mechanism for running Fuego tests
+in a "parameterized" fashion.  That is, you can run the same underlying
+test program, but with different values for variables that are passed
+to the test (the test "parameters", in testing nomenclature).
+Each 'spec' that is defined for a test may also be referred to
+as a test 'variant' - that is, a variation on the basic operation
+of the test.
+
+Each test in Fuego should have a 'test spec' file, which lists
+different specifications or variants for that test. For each 'spec'
+(or variant), the configuration declares the variables that are
+recognized by that test, and their values.  Every test is required to
+define a "default" test spec, which is the default set of test
+variables used when running the test.  Note that a test spec is
+not required to define any test variables, and this is the case for
+many 'default' test specs for tests which have no variants.
 
 The set of variables, and what they contain is highly test-specific.
+In some cases, a test variable is used to configure different command
+line options for the test program.  In other cases, the variable
+may be used by ``fuego_test.sh`` to change how test preparation
+is done, or to select different hardware devices or file systems
+for the test to operate on.
 
 The test spec file is in JSON format, and has the name "spec.json".
 
-The test_spec file is placed in the test's home directory, which is
-based on the test's name:
-
- *  ``/fuego-core/engine/tests/$TESTNAME/spec.json``
+The test spec file is placed in the test's home directory, which is
+based on the test's name: ``/fuego-core/tests/$TESTNAME/spec.json``
 
 Example
 =============
 
-The Functional.hello_world test has a test spec that provides options
-for executing the test normally (the 'default' spec), for succeeding
-or failing randomly (the 'hello-random' spec) or for always failing
-(the 'hello-fail' spec).
+The ``Functional.hello_world`` test has a test spec that provides
+options for executing the test normally (the 'default' spec), for
+always failing (the 'hello-fail' spec), or for succeeding or failing
+randomly (the 'hello-random' spec)
 
-This file is located in
-``engine/tests/Functional.hello_world/spec.json``
+This test spec file for the 'hello_world' test is
+``fuego-core/tests/Functional.hello_world/spec.json``
 
 Here is the complete spec for this test: ::
 
@@ -178,9 +200,16 @@ Here is the complete spec for this test: ::
    }
 
 
-During test execution, the variable FUNCTIONAL_HELLO_WORLD_ARG will be
-set to one of the three values shown, depending on which testplan is
-used to run the test.
+During test execution, the variable ``$FUNCTIONAL_HELLO_WORLD_ARG`` will be
+set to one of the three values shown (nothing, '-f' or '-r'), depending
+on which is spec used when the test is run.
+
+In Fuego, the spec to use with a test can be specified multiple
+different ways:
+
+ * as part of the Jenkins job definiton
+ * on the ``ftc run-test`` command line
+ * as part of a testplan definition
 
 ======================================
 Variable use during test execution
@@ -192,18 +221,20 @@ may reference other variables from the environment, such as from the
 board file, relating to the toolchain, or from the fuego system
 itself.
 
-The name of the argument is appended to the end of the test name to
-form the environment variable for the test.  This can then be used in
-the base script as arguments to the test program (or for any other
-use).
+The name of the variable is appended to the end of the test name to
+form the environment variable that is used by the test.  The environment
+variable name is converted to all uppercase.  This environment
+variable can be used in the ``fuego_test.sh`` as an argument to the
+test program, or in any other way desired.
 
 Example
 =============
 
-In this hello-world example, here is what the actual program
-invocation looks like.  This is an excerpt from the base script for
-this test
-(``/home/jenkins/tests/Functional.hello_world/hello_world.sh``).
+In this hello-world example, the program invocation (by
+``fuego_test.sh``) uses the variable ``$FUNCTIONAL_HELLO_WORLD_ARG``.
+Below is an excerpt from
+``/fuego-core/tests/Functional.hello_world/fuego_test.sh``.
+
 
 ::
 
@@ -215,16 +246,17 @@ this test
 Note that in the default spec for hello_world, the variable ('ARG' in
 the test spec) is left empty.  This means that during execution of
 this test with testplan_default, the program 'hello' is called with no
-arguments, which will cause it to perform it's default operation.  The
-default operation for 'hello' is a dummy test that always succeeds.
+arguments, which will cause it to perform its default operation.  The
+default operation for the 'hello' program is to write "Hello World" and
+a test result of "SUCCESS", and then exit successfully.
 
 ===============================
 Specifying failure cases
 ===============================
 
-The test spec file can also specify one or more failure cases.  These
-represent string patterns that are scanned for in the test log, to
-detect error conditions indicating the that test failed.  The syntax
+A test spec file can also specify one or more failure cases.  These
+represent string patterns that Fuego scans for in the test log, to
+detect error conditions indicating that the test failed.  The syntax
 for this is described next.
 
 Example of fail case
