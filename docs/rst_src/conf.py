@@ -55,8 +55,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Fuego'
-copyright = u'2017, Cogent Embedded Inc., Tim Bird'
-author = u'Cogent Embedded Inc., Tim Bird'
+copyright = u'2017-2020 Sony Corporation'
+author = u'Tim Bird, Sony Corporation'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
