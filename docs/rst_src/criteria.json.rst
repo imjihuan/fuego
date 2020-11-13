@@ -1,0 +1,492 @@
+##################
+criteria.json
+##################
+
+================
+Introduction
+================
+
+The ``criteria.json`` file is used to specify the criteria used to
+determine whether a test has passed or failed.
+
+For the purpose of this explanation, I'll group tests into roughly 3
+groups:
+
+ * Simple Functional tests
+ * Complex Functional tests
+ * Benchmarks
+
+I'll come back to these definitions in a moment.
+
+The ``criteria.json`` file contains data that allows Fuego to
+interpret the test results, and indicate overall PASS or FAIL status
+for a test.
+
+For functional tests, this includes things like counting the number of
+test_cases in the test that had "PASS" or "FAIL" status, as well as
+ignoring some specific test results.
+
+For benchmark tests, this includes specifying threshold values for
+measurements taken by the benchmark, as well as operations (e.g. 'less
+than' or 'greater than'), to use to determine if a specific measure
+passed or failed.
+
+Fuego uses the results of the test along with the criteria, to
+determine the final result of the test.
+
+If no criteria.json file is provided, then a default is constructed
+based on the test results, consisting of the following:
+
+::
+
+  {
+   'tguid': <test_set_name>
+   'max_fail': 0
+  }
+
+Types of tests and pass criteria
+======================================
+
+A simple functional test runs a short sequence of tests, and if any one of them
+fails, then the test is reported as a failure.  Since this corresponds to the
+default ``criteria.json``, then most simple Functional tests do not need to provide
+a ``criteria.json`` file.
+
+A complex functional test (such as LTP or glib) has hundreds or possibly
+thousands of individual test cases.  Such tests often have some number of
+individual test cases that fail, but which may be safely ignored (either
+temporarily or permamently).  For example, some test cases may fail
+sporadically due to problems with the test infrastructure or environment. Other
+tests may fail due to configuration choices for the software on the board. (For
+example, a choice of kernel config may cause some tests to fail - but this is
+expected and these fail results should be ignored).
+
+Functional tests that are complex require a ``criteria.json`` file, to avoid
+failing the entire test because of individual test_cases that should be
+ignored.
+
+Finally, a Benchmark test is one that produces one or more "measurements",
+which are test results with numeric values.  In order to determine whether
+a result indicates a PASS or a FAIL result, Fuego needs to compare the
+numeric result with some threshold value.  The ``criteria.json`` file holds
+the threshold value and operator used for making this comparison.
+
+Different boards, or boards with different software installations or
+configurations, may require different pass criteria for the same tests.
+Therefore, the pass criteria are broken out into a separate file that can be
+adjusted at each test site, and for each board.  Ultimately, we would like
+testers to be able to share their pass criteria, so that each Fuego user does
+not have to determine these on their own.
+
+
+=======================
+Evaluation criteria
+=======================
+
+The criteria file lists "pass criteria" for test suites, test sets, test cases
+and measures.  A single file may list one or more pass criteria for the test.
+
+The criteria file may include count-based pass criteria, specific testcase
+lists, and measure reference values (thresholds).
+
+The criteria file specifies the pass criteria for one or more test element
+results, by specifying the element's test id (or tguid), and the criterion
+used to evaluate that element.  Some results elements, such as test sets,
+are aggregates of other elements.  For these, the criteria specify
+attributes of their child elements (like required counts, or listing
+individual children that must pass or fail).
+
+The criteria file consists of a list of criterion objects (JSON objects),
+each of which specifies the tguid for the result element of the test,
+and additional data used to evaluate that element.  tguids are generated
+by Fuego during the processing phase, and consist of statically defined
+strings unique to each test.  You should look at a test's :ref:`run.json` file
+to see the test element names for a test.
+
+Here are the different operations that can be used for criteria:
+
+ * **max_fail** - specifies the maximum number of child elements that can
+   fail, before causing this element to fail
+
+   * by default, every aggregate element must have all it's children pass,
+     in order for it to pass (corresponding to a 'max_fail' of 0)
+
+ * **min_pass** - specifies the minimum number of child elements that must pass,
+   in order for this element to pass
+ * **must_pass_list** - specifies a list of child elements, by name, that must pass
+   for this element to pass
+ * **fail_ok_list** - specifies a list of child elements, by name, that may fail,
+   without causing this element to fail
+ * **reference** - specifies a reference value used as a threshold to evaluate where a
+   number value for this element represents pass or fail.
+
+   * the reference object has two sub-attributes:
+
+     * **value** - the reference value (threshold)
+     * **operator** - the test between the result and the reference value
+
+The operator can be one of the following strings:
+
+ * **gt** - result must be greater than the reference value
+ * **ge** - result must be greater than or equal to the reference value
+ * **lt** - result must be less than the reference value
+ * **le** - result must be less than or equal to the reference value
+ * **eq** - result must equal the reference value
+ * **ne** - result must not equal the reference value
+ * **bt** - result is between two reference values (or equal to one of them)
+
+In case the reference object has an operator of 'bt', the 'value' field should
+have a string consisting of two numbers separated by a ','.  For example, to
+indicate that the result value should be between 4 and 5, the 'value' field
+should have the string "4,5".  Note that the comparison for 'between' also
+succeeds for equality.  So in the example case of a reference value of "4,5",
+the test would pass if the test result was exactly 4, or exactly 5, or any
+number between 4 and 5.
+
+.. note::
+   The equality and inequality operators ('eq' and 'ne') are less likely
+   to be useful for numerical evaluations of most benchmark measures, but are
+   provided for completeness.  These are useful if a test reports numerical results
+   from within a small set of numbers (like 0 and 1).
+
+
+==================================================
+Customizing the criteria.json file for a board
+==================================================
+
+A Fuego user can customize the pass criteria for a board, by making a copy of
+the ``criteria.json`` file, manually editing the contents, and putting it in a
+specific directory with a specific filename, so Fuego can find it.
+
+Using an environment variable
+===================================
+
+A Fuego user can specify their own path to the criteria file to use for a test
+using the environment variable ``FUEGO_CRITERIA_JSON_PATH``.  This can be set in
+the environment variables block in the Jenkins job for a test, if running the
+Fuego test from Jenkins, or in the shell environment prior to running a Fuego
+test using 'ftc'.
+
+For example, the user could do the following:
+
+ * $ export FUEGO_CRITERIA_JSON_PATH=/tmp/my-criteria.json
+ * $ ftc run-test -b board1 -t Functional.foo
+
+
+Using a board-specific directory
+=====================================
+
+More commonly, a user can specify a board-specific criteria file, by placing
+the file under either ``/fuego-rw/boards`` or ``/fuego-ro/boards``
+
+When Fuego does test evaluation, it searches for the the criteria file to
+use, by looking for the following files in the indicated order:
+
+ * $FUEGO_CRITERIA_JSON_PATH
+ * /fuego-ro/boards/{board}-{testname}-criteria.json
+ * /fuego-rw/boards/{board}-{testname}-criteria.json
+ * /fuego-core/engine/tests/{testname}/criteria.json
+
+As an example, a user could customize the criteria file as follows:
+
+ * $ cp /fuego-core/engine/tests/Benchmark.Dhrystone/criteria.json /fuego-rw/boards/board1-Benchmark.Dhrystone-criteria.json
+ * $ edit /fuego-rw/boards/board1-Benchmark.Dhrystone-criteria.json
+
+    * Alter the reference value for the tguid 'default.Dhrystone.Score' to reflect a value
+      appropriate for their board ('board1' in this example)
+
+ * (execute the job 'board1.default.Benchmark.Dhrystone' in Jenkins)
+
+   * Fuego will use the criteria file for board1 in ``/fuego-rw`` instead of the
+     default ``criteria.json`` file in the test's home directory
+
+=============
+Examples
+=============
+
+Here are some example ``criteria.json`` files:
+
+Benchmark.dbench
+===================
+
+::
+
+  {
+      "schema_version":"1.0",
+      "criteria":[
+          {
+              "tguid":"default.dbench.Throughput",
+              "reference":{
+                  "value":100,
+                  "operator":"gt"
+              }
+          },
+          {
+              "tguid":"default.dbench",
+              "min_pass":1
+          }
+      ]
+  }
+
+
+The interpretation of this criteria file is that the measured value of
+dbench.Throughput (the result value) must have a value greater than 100.  Also,
+at least 1 measure under the 'default.dbench' test must pass, for the the
+entire test to pass.
+
+Simple count
+===================
+
+::
+
+  {
+      "schema_version":"1.0",
+      "criteria": [
+      {
+          "tguid": "default",
+          "max_fail": 2
+      },
+  }
+
+
+The interpretation of this criteria file is that the test may fail up to 2
+individual test cases, under the 'default' test set, and still pass.
+
+Child results
+===================
+
+::
+
+  {
+      "schema_version":"1.0",
+      "criteria": [
+      {
+          "tguid": "syscall",
+          "min_pass": 1000,
+          "max_fail": 5
+      },
+      {
+          "tguid": "timers",
+          "fail_ok_list": ["leapsec_timer"]
+      },
+      {
+          "tguid": "pty",
+          "must_pass_list": ["hangup01"]
+      }
+      ]
+  }
+
+
+The interpretation of this criteria file is that, within the 'syscall' test
+set, a minimum of 1000 testcases must pass, and no more than 5 fail, in order
+for that set to pass.  Also, in the test set 'timers', if the testcase
+'leapsec_timer' fails, it will not cause the entire test to fail.  However, in
+the test set 'pty', the testcase 'hangup01' must pass for the entire test to
+pass.
+
+===========
+Schema
+===========
+
+The schema for the criteria.json file is contained in the ``fuego-core`` repository
+at: ``engine/scripts/parser/fuego-criteria-schema.json``.
+
+Here it is (as of Fuego 1.2):
+
+::
+
+  {
+      "$schema":"http://json-schema.org/schema#",
+      "id":"http://www.fuegotest.org/download/fuego_criteria_schema_v1.0.json",
+      "title":"criteria",
+      "description":"Pass criteria for a test suite",
+      "definitions":{
+          "criterion":{
+              "title":"criterion ",
+              "description":"Criterion for deciding if a test (test_set, test_case or measure) passes",
+              "type":"object",
+              "properties":{
+                  "tguid":{
+                      "type":"string",
+                      "description":"unique identifier of a test (e.g.: Sequential_Output.CPU)"
+                  },
+                  "min_pass":{
+                      "type":"number",
+                      "description":"Minimum number of tests that must pass"
+                  },
+                  "max_fail":{
+                      "type":"number",
+                      "description":"Maximum number of tests that can fail"
+                  },
+                  "must_pass_list":{
+                      "type":"array",
+                      "description":"Detailed list of tests that must pass",
+                      "items":{
+                          "type":"string"
+                      }
+                  },
+                  "fail_ok_list":{
+                      "type":"array",
+                      "description":"Detailed list of tests that can fail",
+                      "items":{
+                          "type":"string"
+                      }
+                  },
+                  "reference":{
+                      "type":"object",
+                      "description":"Reference measure that is compared to a result measure to decide the status",
+                      "properties":{
+                          "value":{
+                              "type":[
+                                  "string",
+                                  "number",
+                                  "integer"
+                              ],
+                              "description":"A value (often a threshold) to compare against.  May be two numbers separated by a comma for the 'bt' operator."
+                          },
+                          "operator":{
+                              "type":"string",
+                              "description":"Type of operation to compare against",
+                              "enum":[
+                                  "eq",
+                                  "ne",
+                                  "gt",
+                                  "ge",
+                                  "lt",
+                                  "le",
+                                  "bt"
+                              ]
+                          }
+                      },
+                      "required":[
+                          "value",
+                          "operator"
+                      ]
+                  }
+              },
+              "required":[
+                  "tguid"
+              ]
+          }
+      },
+      "type":"object",
+      "properties":{
+          "schema_version":{
+              "type":"string",
+              "description":"The version number of this JSON schema",
+              "enum":[
+                  "1.0"
+              ]
+          },
+          "criteria":{
+              "type":"array",
+              "description":"A list of criterion items",
+              "items":{
+                  "$ref":"#/definitions/criterion"
+              }
+          }
+      },
+      "required":[
+          "schema_version",
+          "criteria"
+      ]
+  }
+
+=============================================
+Compatibility with previous Fuego versions
+=============================================
+
+The criteria.json file replaces the **reference.log** file that was used in
+versions of Fuego prior to 1.2.  If a test is missing a criteria.json file, and
+has a ``reference.log`` file, then Fuego will read the ``reference.log`` file and use
+it's data as the the pass criteria for the test.
+
+Previously, Fuego (and it's predecessor JTA) supported pass criteria
+functionality in two different ways:
+
+ * Functional test pass/fail counts
+ * Benchmark measure evaluations
+
+Functional test pass/fail counts
+======================================
+
+For functional tests counts of positive and negative results were either
+hard-coded into the base scripts for the test, as arguments to the
+log_compare() in each test's test_processing() function, or they were specified
+as variables, read from the board file, and applied in the test_processing()
+function.
+
+For example, the Functional.OpenSSL test used values of 176 pass
+and 86 fails (see ``fuego-core/engine/tests/Functional.OpenSSL/OpenSSL.sh`` in
+fuego-1.1) to evaluate the result of this test.
+
+::
+
+    log_compare "$TESTDIR" "176" "${P_CRIT}" "p"
+    log_compare "$TESTDIR" "86" "${N_CRIT}" "n"
+
+But tests in JTA, such as ``Functional.LTP.Open_Posix`` expected
+the variables ``LTP_OPEN_POSIX_SUBTEST_COUNT_POS`` and
+``LTP_OPEN_POSIX_SUBTEST_COUNT_NEG`` to be defined in a the board
+file for the device under test.
+
+For example, the board file might have lines like the following:
+
+::
+
+  LTP_OPEN_POSIX_SUBTEST_COUNT_POS="1232"
+  LTP_OPEN_POSIX_SUBTEST_COUNT_NEG="158"
+
+
+These were used in the log_compare function of the base script of the test
+like so:
+
+::
+
+   log_compare "$TESTDIR" $LTP_OPEN_POSIX_SUBTEST_COUNT_POS "${P_CRIT}" "p"
+   log_compare "$TESTDIR" $LTP_OPEN_POSIX_SUBTEST_COUNT_NEG "${N_CRIT}" "n"
+
+
+Starting with Fuego version 1.2, these would be replaced with ``criteria.json``
+files like the following:
+
+For Functional.OpenSSL:
+
+::
+
+  {
+      "schema_version":"1.0",
+      "criteria":[
+          'tguid': 'OpenSSL',
+          'min_pass': 176,
+          'max_fail': 86
+      ]
+  }
+
+
+For Functional.LTP.Open_Posix:
+
+::
+
+  {
+      "schema_version":"1.0",
+      "criteria":[
+          'tguid': 'LTP.Open_Posix',
+          'min_pass': 1232,
+          'max_fail': 158
+      ]
+  }
+
+::
+
+ FIXTHIS - should there be 'default' somewhere in the preceding tguids?
+
+
+Benchmark measure evaluations
+===================================
+
+For Benchmark programs, the pass criteria consists of one or more measurement
+thresholds that are compared with the results produced by the Benchmark, along
+with the operator to be used for the comparison.
+
+In JTA and Fuego 1.1 this data was contained in the :ref:`reference.log` file.
