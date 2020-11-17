@@ -398,7 +398,7 @@ Compatibility with previous Fuego versions
 The ``criteria.json`` file replaces the ``reference.log`` file that was
 used in versions of Fuego prior to 1.2.  If a test is missing a
 ``criteria.json`` file, and has a ``reference.log`` file, then Fuego will
-read the ``reference.log`` file and use it's data as the the pass
+read the ``reference.log`` file and use its data as the the pass
 criteria for the test.
 
 Previously, Fuego (and it's predecessor JTA) supported pass criteria
