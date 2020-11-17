@@ -8,7 +8,7 @@ Fuego consists of a continuous integration system, along
 with some pre-packaged test programs and a shell-based
 test harness, running in a Docker container.::
 
-   Fuego = (Jenkins + abstraction scripts + pre-packed tests)
+   Fuego = (Jenkins + core scripts + pre-packaged tests)
           inside a container
 
 Here's a diagram with an overview of Fuego elements:

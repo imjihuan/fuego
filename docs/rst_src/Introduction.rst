@@ -20,7 +20,3 @@ testing of your embedded Linux project.
 
 The ideas is that in the simplest case, you just add your board,
 a toolchain, and go!
-
-This documentation provides instructions (or it will, when it is finished).
-(This documentation is a placeholder for the moment.)
-
