@@ -17,22 +17,23 @@ test log for a test run, check the threshold(s) for success or
 failure, and store the data used to generate charts.
 
 Each benchmark should include an executable file called 'parser.py' in
-the test directory (/fuego-core/engine/tests/Benchmark.<testname>).
-Functional tests may also provide a ``parser.py``, when they return more
-than a single testcase result from the test.  However, this is
-optional.  If a Functional test does not have a parser.py script, then
-a generic one is used (called ``generic_parser.py``), that just sets the
-result for the test based on the return code from the test program and
-the single result from running executing
-function_log_compare in the function_test_processing portion of the test
-script.
+its test home directory
+(``/fuego-core/tests/Benchmark.<testname>``).  Functional tests
+may also provide a ``parser.py``, when they return more than a single
+testcase result from the test.  However, this is optional.  If a
+Functional test does not have a ``parser.py`` script, then a generic one
+is used (called ``generic_parser.py``), that just sets the result for
+the test based on the return code from the test program and the single
+result from running ``log_compare`` in the ``test_processing`` portion
+of the test script.
 
-The test log for the current run is parsed by parser.py, and one or
-more testcase results (measures or pass/fail results) are extracted,
-and then provided via a dictionary to the results processing engine.
-Normally this is done by scanning the log using simple regular
+The overall operation of ``parser.py`` is as follows: ``parser.py``
+reads the test log for the current run and parses it, extracting one or
+more testcase or measure results.  These are stored in a python
+dictionary which is passed to the results processing engine.  Normally
+the parsing is done by scanning the log using simple regular
 expressions. However, since this is a python program, an arbitrarily
-complex parser can be written to extract result data from the test
+complex parser can be written to extract the result data from the test
 log.
 
 Outline
@@ -43,26 +44,30 @@ The program usually has the following steps:
  * Import the parser library
  * Specify a search pattern for finding one or more measurements (or
    testcases) from the test log
- * Call the parser_func_parse_log function, to get a list of
+ * Call the ``parse_log`` function, to get a list of
    matches for the search pattern
  * Build a dictionary of result values
- * Call the parser_func_process function, to save the information
-   to the aggregate results files, and to re-generate the chart data for the test
+ * Call the ``process`` function.
 
-   * The process() function evaluates the results from the test, and determines
-     the overall pass/fail status of a test, based on a :ref:`criteria.json` file
+   * The ``process`` function evaluates the results from the test, and
+     determines the overall pass/fail status of a test, based on a
+     :ref:`criteria.json` file
+   * The ``process`` function also saves the information
+     to the aggregate results file for this test (``flat_plot_data.txt``),
+     and re-generates the chart data for the test
+     (``flot_chart_data.json``).
 
 
 Testcase and measure names
 ==============================
 
-The parser.py program provides the name for the measures and testcases
-read from the test log file.  It also provides the result values for
-these items, and passes the parsed data values to the processing
-routine.
+The ``parser.py`` program provides the name for the measures and
+testcases read from the test log file.  It also provides the result
+values for these items, and passes the parsed data values to the
+processing routine.
 
-These test names must be consistent in the parser.py program,
-reference.json file and the criteria.json file.
+These test names must be consistent in the ``parser.py`` program,
+``reference.json`` file and the ``criteria.json`` file.
 
 Please see :ref:`Fuego naming rules` for rules and guidelines
 for test names in the Fuego system.
@@ -73,9 +78,10 @@ SAMPLES
 ===========
 
 Here is a sample ``parser.py`` that does simple processing of a single
-metric.  This is for Benchmark.Dhrystone.
+metric.  This is for ``Benchmark.Dhrystone``.
 
-Note the two calls to parser library functions: parse_log() and process().
+Note the two calls to parser library functions: ``parse_log()`` and
+``process()``.
 
 ::
 
@@ -83,7 +89,7 @@ Note the two calls to parser library functions: parse_log() and process().
 
   import os, re, sys
 
-  sys.path.insert(0, os.environ['FUEGO_CORE'] + '/engine/scripts/parser')
+  sys.path.insert(0, os.environ['FUEGO_CORE'] + '/scripts/parser')
   import common as plib
 
   regex_string = "^(Dhrystones.per.Second:)(\ *)([\d]{1,8}.?[\d]{1,3})(.*)$"
@@ -104,9 +110,9 @@ ENVIRONMENT and ARGUMENTS
 
 ``parser.py`` uses the following environment variable:
 
- * FUEGO_CORE
+ * ``FUEGO_CORE``
 
-This is used to add ``/fuego-core/engine/scripts/parser`` to the python
+This is used to add ``/fuego-core/scripts/parser`` to the python
 system path, for importing the ``common.py`` module (usually as
 internal module name 'plib').
 
@@ -137,7 +143,7 @@ function_processing:
 
 ::
 
-  run_python $PYTHON_ARGS $FUEGO_CORE/engine/tests/${TESTDIR}/parser.py
+  run_python $PYTHON_ARGS $FUEGO_CORE/tests/${TESTDIR}/parser.py
 
 
 
@@ -145,11 +151,11 @@ function_processing:
 SOURCE
 ============
 
-Located in ``fuego-core/engine/tests/$TESTDIR/parser.py``.
+Located in ``fuego-core/tests/$TESTDIR/parser.py``.
 
 =============
 SEE ALSO
 =============
 
- * parser_func_parse_log, parser_func_process
+ * :ref:`parser_func_parse_log`, :ref:`parser_func_process`
  * function_processing, :ref:`Parser module API`, Benchmark_parser_notes.
