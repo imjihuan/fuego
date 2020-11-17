@@ -1,18 +1,18 @@
-#####################
+####################
 chart config.json
 #####################
 
-The ``file chart_config.json`` is defined for each test.  This file
-controls how charts are drawn, in the Jenkins interface for the test
+A ``chart_config.json`` file should be defined for each test.  This file
+controls what charts are drawn in the Jenkins interface for the test
 it is associated with.
 
 ==========
 Schema
 ==========
 
-``chart_config.json`` holds a single object, with attribute pairs
+``chart_config.json`` holds a single object, with attributes
 describing values for the configuration of the charts for a test.  The
-following pairs are supported:
+following attributes are supported:
 
  * **chart_type** - this indicates the type of chart to
    present in the Jenkins interface for a test job
@@ -63,7 +63,8 @@ Here is an example, from the test Benchmark.cyclictest: ::
 Defaults
 ============
 
-If a test has no chart_config.json, then default values are used, as follows:
+If a test has no ``chart_config.json``, then default values are used, as
+follows:
 
  * For Benchmark tests, create a measure_plot for all measures found in
    any run of that test.
