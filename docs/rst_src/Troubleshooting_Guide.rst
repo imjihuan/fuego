@@ -116,41 +116,6 @@ any side effects for the second.
 This may be related to this docker bug:
 `<https://github.com/docker/docker/issues/5899>`_
 
-Problem with bad port on ssh connection
-=============================================
-
-``ovgen.py`` doesn't parse SSH_PORT from:
-
- * ``/home/jenkins/fuego/engine/scripts/overlays/base/base-board.fuegoclass``
-
-because it is missing double quotes.
-
-The symptom is the following:
-
-You see the following in the test log for some test you tried to run:
-
-::
-
-  +++ sshpass -e ssh -o ServerAliveInterval=30 -o
-  StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o
-  ConnectTimeout=15 -p root@10.0.0.1 true
-  Bad port 'root@10.0.0.1'
-  +++ abort_job 'Cannot connect to 10.0.0.1 via ssh'
-  +++ set +
-
-The error string here is "Bad port 'root@10.0.0.1'"
-
-This occurs because the port is empty.  It should have been passed to
-the ssh command after the '-p' command line option, but since it is
-empty, it uses the account-name@address combination as the argument.
-
-The reason it is empty is that a bug in the ``base-board.fuegoclass`` is
-missing the double-quotes.
-
-This is fixed in the fuegotest repository with the following commit:
-
- * `<https://bitbucket.org/fuegotest/fuego-core/commits/abb2e7161ba66017a267c09897e5db4d938ab214>`_
-
 
 ===========
 General
@@ -166,7 +131,7 @@ repository.
 
 The timeout for ssh commands is specified in the file
 
- * ``/home/jenkins/fuego/engine/scripts/overlays/base/base-params.fuegoclass``
+ * ``/fuego-core/scripts/overlays/base/base-params.fuegoclass``
 
 You can change ConnectTimeout to something longer by editing the file.
 

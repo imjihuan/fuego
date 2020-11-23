@@ -54,10 +54,6 @@ edit the following line in ``docker-create-usb-privileged-container.sh``:
 With above, only "ttyUSBx" and "ttyACM0" will be detected and accessible inside
 the docker container.
 
-.. note::
-
-   As of February, 2017, this script was in the next branch of the fuego repository.
-
 
 ============================
 Operations while running
@@ -97,7 +93,7 @@ Exiting
 ===========
 
 To exit the docker container, just exit the primary shell that started
-with the container was started.
+with the container when it was started.
 
 ==============
 Persistence
@@ -136,9 +132,9 @@ Cleaning up old images
 I build lots of docker images, and they leave lots of data around.
 
  * **docker ps -a**  - show docker containers on your system, and their images
+ * **docker rm <id>** - remove a container
  * **docker images** - show images on your system, and their age and size
  * **docker rmi <id>** - remove an image (you must remove any containers using this image first)
- * **docker rm <id>** - remove a container
 
 ====================================================
 Copy/Replace a file into a non-running container
