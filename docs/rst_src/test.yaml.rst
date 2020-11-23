@@ -2,18 +2,18 @@
 test.yaml
 ############
 
-The ``test.yaml`` file is used to hold meta-information about a test.  This is
-used by the :ref:`Test package system`  for packaging a test and providing
-information for viewing and searching for tests in a proposed "test store".
-The ``test.yaml`` file can also can be used by human maintainers to preserve
-information (in a structured format) about a test, that is not included in the
-other test materials.
+The ``test.yaml`` file is used to hold meta-information about a test.
+This is used by the :ref:`Test package system`  for packaging a test and
+providing information for viewing and searching for tests in a proposed
+"test store".  The ``test.yaml`` file can also can be used by human
+maintainers to preserve information (in a structured format) about a
+test, that is not included in the other test materials.
 
-As an overview, the ``test.yaml`` file indicates where the source for the
-test comes from, it's license, the name of the test maintainer, a
-description of the test and tags for categorizing the test, and a
-formal list of parameters that are used by the test (what they mean
-and how to use them).
+As an overview, the ``test.yaml`` file indicates where the source for
+the test comes from, its license, the name of the test maintainer, a
+description of the test and tags for categorizing the test, and a formal
+list of parameters that are used by the test (what they mean and how to
+use them).
 
 =====================
 test.yaml fields
@@ -105,7 +105,7 @@ Here are the fields supported in a ``test.yaml`` file:
 More on params
 ===================
 
-The 'params' field in the test.yaml file is a list of dictionaries
+The ``params`` field in the ``test.yaml`` file is a list of dictionaries
 with one item per test variable used by the test.
 
 The name of the parameter is the short name of the parameter, without
@@ -115,9 +115,9 @@ key for the dictionary with that parameters attributes.
 Each parameter has a dictionary with attributes describing it.  The
 dictionary has the following fields (keys):
 
- - 'description' - text description of the parameter
- - 'example' - an example of the parameter
- - 'optional' - indicates whether the test requires this parameter
+ - **description** - text description of the parameter
+ - **example** - an example of the parameter
+ - **optional** - indicates whether the test requires this parameter
    (test variable) to be set or not.  The value of the 'optional'
    field must be one of 'yes' or 'no'.
 
@@ -175,3 +175,7 @@ Here is an example ``test.yaml`` file, for the package ``Benchmark.iperf3``:
       - iperf-3.1.3-source.tar.gz
       - reference.json
       - test.yaml
+
+Note that the ``params`` section of this ``test.yaml`` file shows
+information for two test parameters: one called "server_ip", and one
+called "client_params".

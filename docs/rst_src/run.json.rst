@@ -91,7 +91,7 @@ Field details
 Examples
 ============
 
-Here are some sample run.json files, from Fuego 1.2
+Here are some sample ``run.json`` files, from Fuego 1.2
 
 
 Functional test results
@@ -183,7 +183,7 @@ This example only has a single test_case.
 Benchmark results
 =======================
 
-Here is the run.json file for a run of the test ``Benchmark.netperf``
+Here is the ``run.json`` file for a run of the test ``Benchmark.netperf``
 on the board 'ren1' (which is a Renesas board in my lab).
 
 ::

@@ -21,15 +21,17 @@ converted to all upper-case.
 
 So, for example, for a test called Functional.mytest, if the spec
 declared a variable called 'loops', with a value of "10", the
-following test variable would be defined: FUNCTIONAL_MYTEST_LOOPS=10
+following shell environment variable would be defined during
+the test: FUNCTIONAL_MYTEST_LOOPS=10
 
-The intent is allow for a test author or some other party to declare a
-set of parameters to run the test in a different configuration.
+The intent is allow for a test author or some other party to declare
+sets of parameters to run the test in different configurations. A
+different test configuration is sometimes called a "test variant".
 
-Fuego is often used to wrap existing test programs and benchmarks,
+Fuego tests often wrap existing test programs and benchmarks,
 which have command line options for controlling various test execution
 parameters.  Setting these command line options is one of the primary
-purposes of specs, and the spec.json file.
+purposes of specs, and the ``spec.json`` file.
 
 ==========
 Schema
@@ -67,9 +69,11 @@ One of these is:
 
  * **PER_JOB_BUILD** - if this variable is defined, then Fuego will create
    a separate build area for each job that this test is included in, even if
-   a board or another job uses the same toolchain.  This is used when the test
-   variables are used in the ''build'' phase, and can affect the binary that is
-   compiled during this phase.
+   a board or another job uses the same toolchain.  This is used during the
+   the ''build'' phase of test execution. If the variables defined in a
+   spec are using during the build phase, and affect the binary that is
+   compiled during this phase, then this special variable should be used
+   and set to 'true'.
 
 ============
 Examples
@@ -119,10 +123,10 @@ Here is an example, from the test ``Functional.bc``:
   }
 
 In this example, the EXPR variable is used as input to the program
-'bc' and the RESULT gives the expected output from bc.
+``bc`` and the RESULT gives the expected output from ``bc``.
 
-This particular ``spec.json`` file is this complex for instructional
-purposes, and this particular test is somewhat overly parameterized.
+For instructional purposes, this particular ``spec.json`` file is
+overly complex and this particular test is overly parameterized.
 
 
 Here is an example, from the test ``Functional.synctest``:
@@ -171,13 +175,13 @@ When a test defines variables, they should be documented in the test's
 Defaults
 ============
 
-If a test has no ``spec.json``, then default set of values is used, which
-is a single spec with the name "default", and no values defined.
+If a test has no ``spec.json`` file, then default set of values is used,
+which is a single spec with the name "default", and no values defined.
 
 ============
 See also
 ============
 
- * See :ref:`Test Spec and Plans` for more information about
+ * See :ref:`Test Specs and Plans` for more information about
    Fuego's test spec and testplan system.
 
