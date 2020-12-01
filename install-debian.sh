@@ -90,8 +90,10 @@ fi
 # ==============================================================================
 
 if [ $nojenkins -eq 0 ]; then
-	JENKINS_VERSION=2.164.2
-	JENKINS_SHA=4536f43f61b1fca6c58bd91040fa09304eea96ab
+	#JENKINS_VERSION=2.164.2
+	#JENKINS_SHA=4536f43f61b1fca6c58bd91040fa09304eea96ab
+	JENKINS_VERSION=2.249.3
+	JENKINS_SHA=534014c007edbb533a1833fe6f2dc115faf3faa2
 	JENKINS_URL=https://pkg.jenkins.io/debian-stable/binary/jenkins_${JENKINS_VERSION}_all.deb
 	JENKINS_UC=https://updates.jenkins.io
 	REF=/var/lib/jenkins/plugins
@@ -149,39 +151,63 @@ if [ $nojenkins -eq 0 ]; then
 	sed -i -e "s#8080#$JENKINS_PORT#g" $JENKINS_HOME/jenkins.model.JenkinsLocationConfiguration.xml
 	chown -R jenkins:jenkins $JENKINS_HOME/
 
-	# install flot.hpi manually from local file
+	# start and stop jenkins to pre-populate some settings
 	service jenkins start && \
 		sleep 30 && \
-		sudo -u jenkins java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar \
-			-remoting -s http://localhost:$JENKINS_PORT/fuego install-plugin \
-			/fuego/frontend-install/plugins/flot-plotter-plugin/flot.hpi && \
-		sleep 10 && \
 		service jenkins stop
 
 	# install other plugins from Jenkins update center
 	# NOTE: not sure all of these are needed, but keep list
 	# compatible with 1.2.1 release for now
-	/usr/local/bin/install-plugins.sh \
-		ant:1.9 \
-		antisamy-markup-formatter:1.5 \
-		bouncycastle-api:2.17 \
-		command-launcher:1.3 \
-		description-setter:1.10 \
-		display-url-api:2.3.1 \
-		external-monitor-job:1.7 \
-		greenballs:1.15 \
-		icon-shim:2.0.3 \
-		javadoc:1.5 \
-		jdk-tool:1.2 \
-		junit:1.27 \
-		ldap:1.20 \
-		mailer:1.23 \
-		matrix-auth:2.3 \
-		matrix-project:1.14 \
-		pam-auth:1.4 \
-		pegdown-formatter:1.3 \
-		structs:1.17 \
-		windows-slaves:1.4
+	#/usr/local/bin/install-plugins.sh \
+	#	ant:1.9 \
+	#	antisamy-markup-formatter:1.5 \
+	#	bouncycastle-api:2.17 \
+	#	command-launcher:1.3 \
+	#	description-setter:1.10 \
+	#	display-url-api:2.3.1 \
+	#	external-monitor-job:1.7 \
+	#	greenballs:1.15 \
+	#	icon-shim:2.0.3 \
+	#	javadoc:1.5 \
+	#	jdk-tool:1.2 \
+	#	junit:1.27 \
+	#	ldap:1.20 \
+	#	mailer:1.23 \
+	#	matrix-auth:2.3 \
+	#	matrix-project:1.14 \
+	#	pam-auth:1.4 \
+	#	pegdown-formatter:1.3 \
+	#	structs:1.17 \
+	#	windows-slaves:1.4
+
+    # install plugins for latest LTS Jenkins (currently 2.249.3)
+    /usr/local/bin/install-plugins.sh \
+        script-security \
+        structs \
+        workflow-step-api \
+        workflow-api \
+        junit \
+        scm-api \
+        ant \
+        antisamy-markup-formatter \
+        bouncycastle-api \
+        command-launcher \
+        description-setter \
+        display-url-api \
+        external-monitor-job \
+        greenballs \
+        icon-shim \
+        javadoc \
+        jdk-tool \
+        mailer \
+        matrix-auth \
+        matrix-project \
+        pam-auth \
+        pegdown-formatter \
+        windows-slaves
+
+    cp frontend-install/plugins/flot-plotter-plugin/flot.hpi $JENKINS_HOME/plugins/flot.jpi
 
 	# make the mod.js symlink well after flot is installed
 	service jenkins start && sleep 30 && \
