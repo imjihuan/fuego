@@ -91,7 +91,6 @@ RUN apt-get -q=2 -V --no-install-recommends install \
 #	at minicom lzop bsdmainutils \
 #	mc netcat openssh-server
 
-
 RUN /bin/bash -c 'echo "dash dash/sh boolean false" | debconf-set-selections ; dpkg-reconfigure dash'
 RUN if [ -n "$HTTP_PROXY" ]; then echo "use_proxy = on" >> /etc/wgetrc; fi
 RUN if [ -n "$HTTP_PROXY" ]; then echo -e "http_proxy=$HTTP_PROXY\nhttps_proxy=$HTTP_PROXY" >> /etc/environment; fi
@@ -105,8 +104,14 @@ ARG group=jenkins
 ARG uid=1000
 ARG gid=${uid}
 ARG JENKINS_PORT=8090
-ARG JENKINS_VERSION=2.164.2
-ARG JENKINS_SHA=4536f43f61b1fca6c58bd91040fa09304eea96ab
+# see https://updates.jenkins.io/download/war/ for latest Jenkins versions
+#ARG JENKINS_VERSION=2.164.2
+#ARG JENKINS_SHA=4536f43f61b1fca6c58bd91040fa09304eea96ab
+#ARG JENKINS_VERSION=2.235.3
+#ARG JENKINS_SHA=89a37ed1b3c8c14ff94cc66c3f2254f281b60794
+ARG JENKINS_VERSION=2.249.3
+ARG JENKINS_SHA=534014c007edbb533a1833fe6f2dc115faf3faa2
+
 ARG JENKINS_URL=https://pkg.jenkins.io/debian-stable/binary/jenkins_${JENKINS_VERSION}_all.deb
 ARG JENKINS_UC=https://updates.jenkins.io
 ARG REF=/var/lib/jenkins/plugins
@@ -136,6 +141,14 @@ RUN /usr/local/src/ttc/install.sh /usr/local/bin
 RUN perl -p -i -e "s#config_dir = \"/etc\"#config_dir = \"/fuego-ro/conf\"#" /usr/local/bin/ttc
 
 # ==============================================================================
+# get ebf script and helpers
+# ==============================================================================
+RUN apt-get -q=2 -V --no-install-recommends install jq
+RUN git clone https://github.com/TimesysGit/board-farm-rest-api.git /usr/local/src/board-farm-rest-api ; \
+  cp /usr/local/src/board-farm-rest-api/cli/ebf /usr/local/bin/ebf ; \
+  chmod a+x /usr/local/bin/ebf
+
+# ==============================================================================
 # Serial Config
 # ==============================================================================
 
@@ -156,7 +169,8 @@ RUN /bin/bash -c 'git clone https://github.com/tbird20d/serlogin.git /usr/local/
 # fserver
 # ==============================================================================
 
-RUN /bin/bash -c 'git clone https://github.com/tbird20d/fserver.git /usr/local/lib/fserver ; ln -s /usr/local/lib/fserver/start_local_bg_server /usr/local/bin/start_local_bg_server'
+RUN /bin/bash -c 'git clone https://github.com/tbird20d/fserver.git /usr/local/lib/fserver ; \
+  ln -s /usr/local/lib/fserver/start_local_bg_server /usr/local/bin/start_local_bg_server'
 
 # ==============================================================================
 # Jenkins post installation
@@ -177,20 +191,18 @@ RUN source /etc/default/jenkins && \
 
 RUN sed -i -e "s#8080#$JENKINS_PORT#g" /etc/default/jenkins
 
-COPY frontend-install/plugins/flot-plotter-plugin/flot.hpi /tmp
-
+# set up Jenkins plugins
 COPY frontend-install/install-plugins.sh \
     frontend-install/jenkins-support \
     frontend-install/clitest \
     /usr/local/bin/
 
-# install flot.hpi manually from local file
+# start Jenkins onces to initialize directories?
 RUN service jenkins start && \
 	sleep 30 && \
-    sudo -u jenkins java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -remoting -s http://localhost:$JENKINS_PORT/fuego install-plugin /tmp/flot.hpi && \
-    sleep 10 && \
     service jenkins stop
 
+# install plugins - these versions are for Jenkins version 2.164.2
 # Explicitly install script-security v1.68, otherwise
 # v1.74 will automatically be installed as a dependency of
 # the junit plugin. Make sure to install before junit plugin.
@@ -203,33 +215,63 @@ RUN service jenkins start && \
 # you are doing.  Otherwise, the install-plugins.sh script will
 # install the wrong versions of other plugins based on dependency
 # information in the plugin files.
-RUN /usr/local/bin/install-plugins.sh \
-    script-security:1.68 \
-    structs:1.20 \
-    workflow-step-api:2.22 \
-    workflow-api:2.40 \
-    junit:1.27 \
-    scm-api:2.6.3 \
-    ant:1.9 \
-    antisamy-markup-formatter:1.5 \
-    bouncycastle-api:2.17 \
-    command-launcher:1.3 \
-    description-setter:1.10 \
-    display-url-api:2.3.1 \
-    external-monitor-job:1.7 \
-    greenballs:1.15 \
-    icon-shim:2.0.3 \
-    javadoc:1.5 \
-    jdk-tool:1.2 \
-    ldap:1.20 \
-    mailer:1.23 \
-    matrix-auth:2.3 \
-    matrix-project:1.14 \
-    pam-auth:1.5 \
-    pegdown-formatter:1.3 \
-    windows-slaves:1.4
 
-# make the mod.js symlink well after flot is installed
+#RUN /usr/local/bin/install-plugins.sh \
+#    script-security:1.68 \
+#    structs:1.20 \
+#    workflow-step-api:2.22 \
+#    workflow-api:2.40 \
+#    junit:1.27 \
+#    scm-api:2.6.3 \
+#    ant:1.9 \
+#    antisamy-markup-formatter:1.5 \
+#    bouncycastle-api:2.17 \
+#    command-launcher:1.3 \
+#    description-setter:1.10 \
+#    display-url-api:2.3.1 \
+#    external-monitor-job:1.7 \
+#    greenballs:1.15 \
+#    icon-shim:2.0.3 \
+#    javadoc:1.5 \
+#    jdk-tool:1.2 \
+#    ldap:1.20 \
+#    mailer:1.23 \
+#    matrix-auth:2.3 \
+#    matrix-project:1.14 \
+#    pam-auth:1.5 \
+#    pegdown-formatter:1.3 \
+#    windows-slaves:1.4
+
+# install plugins for latest LTS Jenkins (currently 2.249.3)
+RUN /usr/local/bin/install-plugins.sh \
+    script-security \
+    structs \
+    workflow-step-api \
+    workflow-api \
+    junit \
+    scm-api \
+    ant \
+    antisamy-markup-formatter \
+    bouncycastle-api \
+    command-launcher \
+    description-setter \
+    display-url-api \
+    external-monitor-job \
+    greenballs \
+    icon-shim \
+    javadoc \
+    jdk-tool \
+    mailer \
+    matrix-auth \
+    matrix-project \
+    pam-auth \
+    pegdown-formatter \
+    windows-slaves
+
+COPY frontend-install/plugins/flot-plotter-plugin/flot.hpi $JENKINS_HOME/plugins/flot.jpi
+
+# jenkins should automatically unzip any plugins in the plugin dir
+# make a symlink for mod.js well after flot is installed
 RUN service jenkins start && sleep 30 && \
     rm $JENKINS_HOME/plugins/flot/flot/mod.js && \
     ln -s /fuego-core/scripts/mod.js $JENKINS_HOME/plugins/flot/flot/mod.js
