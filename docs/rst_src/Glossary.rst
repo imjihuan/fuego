@@ -6,30 +6,31 @@ Here is a glossary of terms used in this wiki:
 
 Here is a short table that relates a few Jenkins terms to Fuego terms:
 
-show_sort_link=0
-
-show_edit_links=0
-
-Table:
-
-+--------------+------------------+------------------------------------------------------------------------------------------------+
-| Jenkins term |Fuego term        |Description                                                                                     |
-+==============+==================+================================================================================================+
-|slave         |''none''          |this is a long-running jenkins process, that executes jobs.  It is usually (?) assigned to a    |
-|              |                  |particular node                                                                                 |
-+--------------+------------------+------------------------------------------------------------------------------------------------+
-|node          |board             |item being tested (Fuego defines a Jenkins node for each board in the system)                   |
-+--------------+------------------+------------------------------------------------------------------------------------------------+
-|job           |test              |a collection of information needed to perform a single test                                     |
-+--------------+------------------+------------------------------------------------------------------------------------------------+
-|''none''      |request           |a request to run a particular test on a board                                                   |
-+--------------+------------------+------------------------------------------------------------------------------------------------+
-|build         |run(or 'test run')|the results from executing the job or test                                                      |
-+--------------+------------------+------------------------------------------------------------------------------------------------+
-|''none''      |plan              |the plan has the list of tests and how to run them (which variation, or 'spec' to use)          |
-+--------------+------------------+------------------------------------------------------------------------------------------------+
-|''none''      |spec              |the spec indicates a particular variation of a test                                             |
-+--------------+------------------+------------------------------------------------------------------------------------------------+
++--------------+------------------+------------------------------------------+
+| Jenkins term |Fuego term        |Description                               |
++==============+==================+==========================================+
+|slave         |''none''          |this is a long-running jenkins process,   |
+|              |                  |that executes jobs.  It is usually (?)    |
+|              |                  |assigned to a particular node             |
++--------------+------------------+------------------------------------------+
+|node          |board             |item being tested (Fuego defines          |
+|              |                  |Jenkins node for each board in the system)|
++--------------+------------------+------------------------------------------+
+|job           |test              |a collection of information needed to     |
+|              |                  |perform a single test                     |
++--------------+------------------+------------------------------------------+
+|''none''      |request           |a request to run a particular test on a   |
+|              |                  |board                                     |
++--------------+------------------+------------------------------------------+
+|build         |run(or 'test run')|the results from executing the job or test|
++--------------+------------------+------------------------------------------+
+|''none''      |plan              |the plan has the list of tests and how to |
+|              |                  |run them (which variation, or 'spec' to   |
+|              |                  |use)                                      |
++--------------+------------------+------------------------------------------+
+|''none''      |spec              |the spec indicates a particular variation |
+|              |                  |of a test                                 |
++--------------+------------------+------------------------------------------+
 
 =====
 B
@@ -37,9 +38,7 @@ B
 
 ``base test script``
 
-  This is a small script associated with a particular test.  It
-  provides a set of test functions that are executed on the host (in the
-  container) when a test is run.
+  See ``test script``.
 
 ``benchmark``
 
@@ -58,6 +57,11 @@ B
   a target board.  This has the extension .board and is kept in the
   directory ``/fuego-ro/boards``.
 
+``build``
+
+  In Jenkins terminology, a "build" is an execution of a test, and the
+  resulting artifacts associated with it.  In Fuego, this is also
+  referred to as a test "run".
 
 ====
 C
@@ -67,6 +71,13 @@ C
 
   The full output of execution of a test from Jenkins.
   See :ref:`Log files` for details.
+
+``criteria``
+
+  This is an expression which indicates whether how a test result
+  should be interpreted.  This is also referred to as a "pass criteria".
+  Criteria files are stored in ``criteria.json`` files.  See
+  :ref:`criteria.json` for details.
 
 =====
 D
@@ -85,7 +96,8 @@ D
 ``device under test``
 
   In test terminology, this refers to the item being tested.
-  In Fuego, this may also be called the ''Device'', ''target'', or ''node''.
+  In Fuego, this may also be called the ''Device'', ''board'',
+  ''node'', or ``target``
 
 ``distribution``
 
@@ -113,14 +125,18 @@ J
   An advanced continuous integration system, used as the default
   front-end for the Fuego test framework. see :ref:`Jenkins`
 
+``job``
+
+  In Jenkins terminology, a job is a test
+
+====
+L
+====
+
 ``log file``
 
   Several log files are created during execution of a test.  For details
   about all the different log files, see :ref:`Log files`.
-
-``job``
-
-  In Jenkins terminology, a job is a test
 
 ====
 M
@@ -137,6 +153,12 @@ M
 O
 =====
 
+``overlay``
+
+  This is a set of variables and functions stored in a fuegoclass file,
+  which are used to customize test execution for a particular board.
+  See :ref:`Overlay Generation` for details.
+
 ``ovgen.py``
 
   Program to collect "overlay" data from various scripts and data
@@ -146,6 +168,10 @@ O
 =====
 P
 =====
+
+``package``
+
+  See ``test package``.
 
 ``parsed log``
 
@@ -175,6 +201,10 @@ R
   This file (called "reference.log") defines the regression threshhold
   (and operation) for each metric of a benchmark test.  See
   :ref:`reference.log` and :ref:`Benchmark parser notes`
+
+``run``
+
+  See ``test run``.
 
 ====
 S
@@ -241,8 +271,13 @@ T
 
 ``test script``
 
-  The shell script that interfaces between the fuego core system and a
-  test program.  The script declares a tarfile, and functions to build,
+  The shell script that interfaces between the Fuego core system and a
+  test program.  This is a small script associated with each test.
+  It is called ``fuego_test.sh``, and it provides a set of test
+  functions that are executed on the host (in the container) when a
+  test is run.
+
+  The script declares a tarfile, and functions to build,
   deploy and run the test.  The test script runs on the host.  This is
   also called the 'base test script'.  For details about the environment
   that a script runs in or the functions it may call, see :ref:`Variables`,
@@ -252,15 +287,6 @@ T
 
   This is the name of a variable available to the a test during it's
   execution.  See :ref:`Test variables`.
-
-``test variable script``
-
-  the shell script that interfaces between the fuego core system and a
-  test program. The script declares a tarfile, and functions to build,
-  deploy and run the test. The test script runs on the host. This is
-  also called the 'base test script'. For details about the environment
-  that a script runs in or the functions it may call, see :ref:`Variables`,
-  :ref:`Core interfaces`, and :ref:`Test Script APIs`.
 
 
 ``TOOLCHAIN``
@@ -275,3 +301,10 @@ T
   different platforms installed in the container (and supported by the
   test environment)  See :ref:`tools.sh` for details.
 
+====
+V
+====
+
+``variable``
+
+  See ``test variable``
