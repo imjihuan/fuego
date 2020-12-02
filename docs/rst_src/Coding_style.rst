@@ -68,8 +68,8 @@ SHOULD restrict themselves to POSIX shell features only.  Do not
 assume you have any shell features on the target board outside of
 those supported by 'busybox ash'.
 
-Try running 'checkbashisms' on your target-side code, to check for any
-non-POSIX constructs in the code.
+Try running the program ``checkbashisms`` on your target-side code, to
+check for any non-POSIX constructs in the code.
 
 The code in ``fuego_test.sh`` is guaranteed to run in bash, and may
 contain bashisms, if needed.  If equivalent functionality is available
@@ -77,15 +77,15 @@ using POSIX features, please use those instead. Please avoid esoteric
 or little-known bash features. (Or, if you use such features, please
 comment them.)
 
-Another useful tool for checking your shell code is 'ShellCheck'.  See
-`<https://github.com/koalaman/shellcheck>`_.  Note that most
-distributions have a package for shellcheck.
+Another useful tool for checking your shell code is a program called
+'ShellCheck'.  See `<https://github.com/koalaman/shellcheck>`_.
+Most distributions have a package for ``shellcheck``.
 
 There are a few conventions for avoiding using too many external
 commands in shell scripts that execute on the DUT. To check for a
-process, use 'ps' and 'grep', but to avoid having grep find itself,
-use a wildcard in the search pattern.  Like so: 'ps | grep [f]oo'
-(rather than 'ps | grep foo | grep -v grep').
+process, use ``ps`` and ``grep``, but to avoid having ``grep`` find
+itself, use a wildcard in the search pattern.  Like so: 'ps | grep
+[f]oo' (rather than 'ps | grep foo | grep -v grep').
 
 
 ================
