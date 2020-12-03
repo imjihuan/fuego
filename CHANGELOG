@@ -11,6 +11,10 @@ Note that Fuego is distributed as two repositories, one with docker
 and Jenkins stuff, and one with the fuego tests and script system.
 This file serves as the common changelog for both repositories.
 
+== [1.5.8] 2020-12-03 ==
+ * Upgrade version of Jenkins to 2.249.3
+   See commit message for extra notes about this point release
+
 == 2020-07-26 ==
  * Added support for short test names to 'ftc run-test'
 
