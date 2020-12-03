@@ -98,6 +98,10 @@ RUN apt-get -q=2 -V --no-install-recommends install \
 #	at minicom lzop bsdmainutils \
 #	mc netcat openssh-server
 
+# bsdmainutils provides hexdump, which is needed for netperf test
+RUN apt-get -q=2 -V --no-install-recommends install \
+	bsdmainutils
+
 RUN /bin/bash -c 'echo "dash dash/sh boolean false" | debconf-set-selections ; dpkg-reconfigure dash'
 RUN if [ -n "$HTTP_PROXY" ]; then echo "use_proxy = on" >> /etc/wgetrc; fi
 RUN if [ -n "$HTTP_PROXY" ]; then echo -e "http_proxy=$HTTP_PROXY\nhttps_proxy=$HTTP_PROXY" >> /etc/environment; fi

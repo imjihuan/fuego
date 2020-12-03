@@ -63,7 +63,7 @@ apt-get -q=2 -V --no-install-recommends install \
 # Default test host dependencies
 apt-get -q=2 -V --no-install-recommends install \
 	iperf iperf3 netperf bzip2 bc python-matplotlib python-xmltodict
-pip install flake8
+pip install flake8 bsdmainutils
 
 echo "dash dash/sh boolean false" | debconf-set-selections
 DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
