@@ -78,12 +78,10 @@ Status
 Notes
 =========
 
-.. note::
-
-  If a test executes too quickly, bonnie does not report the
-  result, and instead produces '+++++'s in the entries for those tests.
-  Specifically, bonnie will emit this if a test result was less than .5
-  (MinTime in the source code).  If this happens for you, consider using
-  or writing a spec that increases the size of the files, or the number
-  of files used for tests.
+If a test executes too quickly, bonnie does not report the result, and
+instead produces '+++++'s in the entries for those tests.  Specifically,
+bonnie will emit this if a test result was less than .5 seconds (MinTime
+in the source code).  If this happens for you, consider using or writing
+a spec that increases the size of the files, or the number of files used
+for tests.
 
