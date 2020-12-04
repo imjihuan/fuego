@@ -133,7 +133,8 @@ Here are the 2 main scenarios:
    * If the variable FUNCTIONAL_LTP_HOMEDIR is set in the board file, then
      ``Functional.LTP`` will skip deploying LTP to the target
    * Fuego will still install a few custom scripts and files for each test
-   * LTP tests will run relatively quickly (because build and deploy are omitted)
+   * LTP tests will run relatively quickly (because build and deploy
+     are omitted)
 
      * However, LTP test data will take up a lot of space on the target
        (on my system, about 500M)
@@ -163,7 +164,8 @@ Here are exact steps to follow, to build Fuego's LTP, and install it on target
 
  * set the ``FUNCTIONAL_LTP_HOMEDIR`` variable in your board file
 
-   * It should have quotes (like other board variables) and look something like this:
+   * It should have quotes (like other board variables) and look
+     something like this:
 
 ::
 
