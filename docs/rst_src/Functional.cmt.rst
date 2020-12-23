@@ -3,7 +3,8 @@ Test Functional.cmt
 ######################
 
 This test appears to check that a target has an interrupt named
-"sh_cmt.0", and that it is running (``/proc/interrupts`` increments over a
+"sh_cmt.0", and that it is running (by checking that its entry
+in ``/proc/interrupts`` increments over a
 5-second period), and is assigned IRQ number 174.
 
 This looks like something very specific to some Renesas lager board.

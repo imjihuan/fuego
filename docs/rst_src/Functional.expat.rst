@@ -6,12 +6,6 @@ This test conducts a test of XML processing performed by the
 libexpat.so library.  Specifically, it runs the xmlts (XML Test Suite)
 to test the library.
 
-You can find information about crashme here:
-`<http://www.linuxcertif.com/man/1/crashme/>`_
-
-crashme creates some random data, and tries to execute it to see if
-the system or environment will crash.
-
 ============
 Details
 ============
@@ -32,6 +26,6 @@ program called ``xmltest.sh``.
 
 The test_processing phase checks for ``EXPAT_SUBTEST_COUNT_POS`` and
 ``EXPAT_SUBTEST_COUNT_NEG``.  The positive test looks for the string
-"100%%: Checks: 48|passed".  (This is a bit of a weird string to check
+"100%: Checks: 48|passed".  (This is a bit of a weird string to check
 for multiple times.)
 
