@@ -49,12 +49,12 @@ Setup
 Here are some notes on setting up for this test:
 
 The test definitions only support running on a board via ssh without
-using a password.  Therefore, you must provide an SSH_KEY for the
+using a password. Therefore, you must provide an SSH_KEY for the
 board.
 
 
 These instructions use the Fuego board 'bbb' as the board for this
-s Project source on etup.
+Project source on setup.
 
 
 Enter the docker container
@@ -112,7 +112,7 @@ SSH_KEY
        * Adjust or add a Host section
 
          * Put the Host line:  Host 10.0.1.2 <- replace with your
-           boards ip address ($IPADDR)
+           board's ip address ($IPADDR)
          * Put an indented line for the IdentityFile: IdentityFile ``~/.ssh/bbb_id_rsa``
 
 
@@ -142,6 +142,6 @@ Execute the job
 
     - Expected results
 
-    	- Table with each test case and the results (PASS/FAIL/SKIP)
-    	- ``run.json``
-    	- csv
+       - Table with each test case and the results (PASS/FAIL/SKIP)
+       - ``run.json``
+       - csv file for the run
