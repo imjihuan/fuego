@@ -3,8 +3,9 @@ Test Functional.arch timer
 ############################
 
 This test appears to check that a target has an interrupt named
-"arch_timer", and that it is running (``/proc/interrupts`` increments
-over a 5-second period), and is assigned IRQ number 27.
+"arch_timer", and that it is running (by checking that its entry in
+``/proc/interrupts`` increments over a 5-second period),
+and is assigned IRQ number 27.
 
 This looks like something very specific to a Renesas lager board.
 
