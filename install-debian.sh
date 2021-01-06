@@ -56,7 +56,7 @@ apt-get -q=2 -V --no-install-recommends install \
 
 # Default SDK for testing locally or on an x86 board
 apt-get -q=2 -V --no-install-recommends install \
-	build-essential cmake bison flex automake libtool \
+	build-essential cmake bison flex automake kmod libtool \
 	libelf-dev libssl-dev libsdl1.2-dev libcairo2-dev libxmu-dev \
 	libxmuu-dev libglib2.0-dev libaio-dev u-boot-tools pkg-config
 
