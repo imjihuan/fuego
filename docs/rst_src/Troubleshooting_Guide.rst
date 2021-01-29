@@ -167,3 +167,28 @@ and add the line:
 This line can be added anywhere in the file, but I recommend adding
 it right after the UsePrivilegeSeparation line (if that's there).
 
+
+========================================
+Handling different Fuego Error messages
+========================================
+
+Here are some Fuego error messages, their meaning, and how to fix them.
+
+"Fuego error: Could not read 'before' syslog from board"
+========================================================
+
+This message is found in ``syslog.before.txt`` in the log directory for
+a test run.  This indicates that Fuego could not find the 'before'
+syslog during test execution.  This can happen if a board reboots during
+a test, and the 'before' syslog was stored in a temp directory on the
+board that is cleared on board reboot.  This is not a fatal error.
+
+To avoid this problem, specify a different, non-ephemeral, tmp directory
+in the board file for the board, using the variable ``FUEGO_TARGET_TMP``
+
+Here is an example:
+
+::
+
+  FUEGO_TARGET_TMP="/home/fuego/tmp"
+
