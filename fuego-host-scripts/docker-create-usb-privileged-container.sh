@@ -16,6 +16,7 @@ sudo docker create -it --name ${DOCKERCONTAINER} \
     --privileged \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /boot:/boot:ro \
+    -v /usr/test:/usr/test:ro \
     -v /dev/bus/usb:/dev/bus/usb \
     -v /dev/ttyACM0:/dev/ttyACM0 \
     -v /dev/ttyACM1:/dev/ttyACM1 \

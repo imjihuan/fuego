@@ -25,6 +25,7 @@ fi
 sudo docker create -it --name ${DOCKERCONTAINER} \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /boot:/boot:ro \
+    -v /usr/test:/usr/test:ro \
     -v $DIR/../fuego-rw:/fuego-rw \
     -v $DIR/../fuego-ro:/fuego-ro:ro \
     -v $DIR/../fuego-core:/fuego-core:ro \
