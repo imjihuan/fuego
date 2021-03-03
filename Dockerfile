@@ -142,7 +142,8 @@ RUN rm jenkins_${JENKINS_VERSION}_all.deb
 # ==============================================================================
 RUN git clone https://github.com/tbird20d/ttc.git /usr/local/src/ttc
 RUN /usr/local/src/ttc/install.sh /usr/local/bin
-RUN perl -p -i -e "s#config_dir = \"/etc\"#config_dir = \"/fuego-ro/conf\"#" /usr/local/bin/ttc
+# as of ttc version 2.0.2, this should not be needed
+#RUN perl -p -i -e "s#config_dir = \"/etc\"#config_dir = \"/fuego-ro/conf\"#" /usr/local/bin/ttc
 
 # ==============================================================================
 # get ebf script and helpers
