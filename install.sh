@@ -1,13 +1,13 @@
 #!/bin/bash
 #
-# install.sh [--help] [--priv] [--no-cache] [--nojenkins] [<image_name>] [<port>]
+# install.sh [--help] [--priv] [--no-cache] [--nojenkins] [<image_name>] [<port>] [<debian version>]
 #
 
 # $1 is the exit code after usage is shown
 usage() {
     exit_code="$1"
     cat <<HERE
-Usage: install.sh [--help] [--priv] [--no-cache] [--nojenkins] [<image_name>] [<port>]
+Usage: install.sh [--help] [--priv] [--no-cache] [--nojenkins] [<image_name>] [<port>] [<debian version>]
 
 Create the docker image and container with the Fuego test distribution.
 If no <image_name> is provided, the image will be named 'fuego'.
@@ -34,7 +34,7 @@ fi
 
 priv=0
 NOCACHE=""
-dockerfile="Dockerfile"
+nojenkins=""
 
 POSITIONAL=()
 while [[ $# -gt 0 ]] ; do
@@ -48,7 +48,7 @@ while [[ $# -gt 0 ]] ; do
       shift
       ;;
     --nojenkins)
-      dockerfile="Dockerfile.nojenkins"
+      nojenkins="--nojenkins"
       shift
       ;;
     *)
@@ -60,6 +60,7 @@ set -- "${POSITIONAL[@]}" # restore positional arguments
 
 image_name=${1:-fuego}
 jenkins_port=${2:-8090}
+debian_version=${3:-stretch}
 
 container_name="${image_name}-container"
 
@@ -79,12 +80,15 @@ fi
 
 set -e
 
-source fuego-host-scripts/docker-build-image.sh $NOCACHE ${image_name} ${jenkins_port} ${dockerfile}
+source fuego-host-scripts/docker-build-image.sh $NOCACHE ${image_name} ${jenkins_port} ${debian_version} ${nojenkins}
 if [ "$priv" == "0" ]; then
     fuego-host-scripts/docker-create-container.sh ${image_name} ${container_name}
 else
     fuego-host-scripts/docker-create-usb-privileged-container.sh ${image_name} ${container_name}
 fi
+
+[ "$nojenkins" == "--nojenkins" ] && val=0 || val=1
+sed -i "s/\(^jenkins_enabled=\).*/\1$val/" fuego-ro/conf/fuego.conf
 
 # copy host's ttc.conf file (if present) into the fuego configuration directory
 sudo /bin/sh -c "if [ -f /etc/ttc.conf -a ! -f fuego-ro/conf/ttc.conf ] ; then cp /etc/ttc.conf fuego-ro/conf/ttc.conf ; fi"

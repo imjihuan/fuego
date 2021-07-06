@@ -44,6 +44,20 @@ You can change the name of the docker image and the port used by Jenkins
 by passing the corresponding parameters to install.sh.
   ./install.sh fuego-8082 8082
 
+You can also install fuego on other debian distribution by passing additional
+argument to the install.sh.
+  ./install.sh fuego-buster-8083 8083 buster
+
+Installing Fuego on native system
+-------------------------------------------------------------------------------
+Run install-native.sh from the top directory. This installs the fuego on local
+system instead on docker.
+  ./install-native.sh
+
+This takes the default values for installation as stretch for debin version,
+8090 for jenkins port, you can change the value by passing them in arguements.
+  ./install-native.sh -s <debian version> -p <jenkins port>
+
 Running
 -------------------------------------------------------------------------------
 To start your Fuego container, issue the following command top directory:
