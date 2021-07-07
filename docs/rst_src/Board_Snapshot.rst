@@ -15,6 +15,7 @@ test execution.
 
 The default snapshot operation saves a few different key pieces of
 information including:
+
  * the board's "Firmware revision", which is usually the version of
    the kernel running on the board, if the board is running Linux.
  * the shell environment variables (on the host) during test execution

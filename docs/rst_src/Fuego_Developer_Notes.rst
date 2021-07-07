@@ -126,7 +126,7 @@ fashion).
 Jenkins home has (from 2007 docs):
 
   * config.xml - has stuff for the main user interface
-  * *.xml
+  * \*.xml
   * fingerprints - directory for artifact fingerprints
   * jobs
 

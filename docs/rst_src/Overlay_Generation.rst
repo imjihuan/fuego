@@ -69,7 +69,7 @@ If you 'inherit' a class file, then the variables and functions in the
 file may be overridden by local definitions in your shell script.
 
 The functions which are intended to be overridable start with the
-prefix ov_ (usually), and reside in the 'class' files in the classdir.
+prefix ov\_ (usually), and reside in the 'class' files in the classdir.
 Variables can also be overridden.  These have no special identifying
 prefix.
 

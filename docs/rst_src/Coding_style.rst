@@ -31,10 +31,10 @@ continuation lines.
 Trailing whitespace
 =======================
 
-Lines should not end in trailing whitespace.  That is: 'grep " $" *'
+Lines should not end in trailing whitespace.  That is: 'grep " $" \*'
 should always be empty.
 
-You can do this with: 'grep -R " $" *' in the directory you're working
+You can do this with: 'grep -R " $" \*' in the directory you're working
 in, and fix the lines manually.
 
 Or, another method, if you're using vim, is to add an autocmd to your
