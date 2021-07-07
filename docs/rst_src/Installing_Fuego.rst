@@ -342,7 +342,7 @@ These steps are described in subsequent sections of this documentation.
 
 See:
  * :ref:`Adding a Board <adding_board>`
- * :ref:`Adding a Toolchain <addtoolchain>`
+ * :ref:`Adding a Toolchain <add_toolchain>`
  * :ref:`Adding Test Jobs to Jenkins <addtestjob>`
 
 ================================================

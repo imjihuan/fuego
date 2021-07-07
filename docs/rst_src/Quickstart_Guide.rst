@@ -162,7 +162,7 @@ different root filesystem layout, or different shared library set), you
 will need to install a toolchain for your board  inside the docker container.
 
 Please follow the instructions at:
-:ref:`Adding a toolchain <addtoolchain>` to do this.
+:ref:`Adding a toolchain <add_toolchain>` to do this.
 
 ======================
 Now select some tests

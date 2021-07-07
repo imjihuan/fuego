@@ -1,4 +1,4 @@
-.. _addtoolchain:
+.. _add_toolchain:
 
 
 ###################

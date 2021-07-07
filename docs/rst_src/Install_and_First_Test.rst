@@ -194,5 +194,5 @@ distribution), and then triggers Fuego jobs, after the new software is
 installed on the board.
 
 See further instructions see the Fuego :ref:`Quickstart Guide <quickstart_guide>`,
-:ref:`Adding a Board <adding_board>`, :ref:`Adding a toolchain <addtoolchain>`
+:ref:`Adding a Board <adding_board>`, :ref:`Adding a toolchain <add_toolchain>`
 or the :ref:`Installing Fuego <installfuego>` page.

@@ -243,9 +243,9 @@ docker container, and should work for most ARM boards.
 If you are not using ARM, or for some reason the pre-installed arm
 toolchains don't work for the Linux distribution installed on your
 board, then you will need to install your own SDK or toolchain.  In
-this case, follow the steps in [[Adding a toolchain]], then come back
-to this step and set the TOOLCHAIN variable to the name you used for
-that operation.
+this case, follow the steps in :ref:`Adding a toolchain <add_toolchain>`,
+then come back to this step and set the TOOLCHAIN variable to the
+name you used for that operation.
 
 For other variables in the board file, see the section below.
 
