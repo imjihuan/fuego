@@ -79,7 +79,7 @@ in:``/var/lib/jenkins/nodes/config.xml``
 
 Jenkins calls:
 
-  * java -jar /fuego-core/engine/slave.jar
+  * java -jar /fuego-core/slave.jar
 
      * with variables:
 
@@ -165,9 +165,9 @@ Specifically:
 
  * Launch method: Fuego uses the Jenkins option "Launch slave via
    execution of command on the Master"
-   The command is "java -jar /fuego-core/engine/slave.jar"
+   The command is "java -jar /fuego-core/slave.jar"
 
-     * NOTE: slave.jar comes from jta-core git repository, under engine/slave.jar
+     * NOTE: slave.jar comes from fuego-core git repository, under slave.jar
 
 
 The fuego-core directory structure is: ::

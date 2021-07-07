@@ -46,12 +46,12 @@ Create the directory for the test
 ======================================
 
 The main test directory is located in
-/fuego-core/engine/tests/*<test_name>*
+/fuego-core/tests/*<test_name>*
 
 So if you just created a new Functional test called 'foo', you would
 create the directory:
 
- * /fuego-core/engine/tests/Functional.foo
+ * /fuego-core/tests/Functional.foo
 
 ================================
 Get the source for a test
@@ -261,7 +261,7 @@ defines three specs: ::
 
 Next, you may want to add an entry to one of the testplan files.
 These files are located in the directory
-``/fuego-core/engine/overlays/testplans``.
+``/fuego-core/overlays/testplans``.
 
 Choose a testplan you would like to include this test, and edit the
 corresponding file. For example, to add your test to the list of tests
@@ -416,57 +416,30 @@ A test consists of the following files or items:
 File or item    format          location                              description                                                                     test type
 ==============  ==============  ====================================  =============================================================================== =========
 config.xml      Jenkins XML     /var/lib/jenkins/jobs/{test_name}     Has the Jenkins (front-end) configuration for the test                            all
-tarfile         tar format      /fuego-core/engine/tests/{test_name}  Has the source code for the test program                                          all
-patches         patch format    /fuego-core/engine/tests/{test_name}  Zero or more patches to customize the test program (applied during the unpack     all
+tarfile         tar format      /fuego-core/tests/{test_name}         Has the source code for the test program                                          all
+patches         patch format    /fuego-core/tests/{test_name}         Zero or more patches to customize the test program (applied during the unpack     all
                                                                       phase
-base script     shell script    /fuego-core/engine/tests/{test_name}  Is the shell script that implements the different test phases in Fuego            all
+base script     shell script    /fuego-core/tests/{test_name}         Is the shell script that implements the different test phases in Fuego            all
                                 /fuego_test.sh
-test spec       JSON            /fuego-core/engine/tests/{test_name}  Has groups of variables (and their values) that can be used with this test        all
+test spec       JSON            /fuego-core/tests/{test_name}         Has groups of variables (and their values) that can be used with this test        all
                                 /spec.json
-test plan(s)    JSON            /fuego-core/engine/overlays/testplan  Has the testplans for the entire system                                           all
-parser.py       python          /fuego-core/engine/tests/{test_name}  Python program to parse benchmark metrics out of the log, and provide a           all
-                                                                      dictionary to the Fuego plotter all,                                              but
-                                                                                                                                                        can be
+test plan(s)    JSON            /fuego-core/overlays/testplan         Has the testplans for the entire system                                           all
+parser          python          /fuego-core/tests/{test_name}         Python program to parse benchmark metrics out of the log, and provide a           all, but
+                                /parser.py                            dictionary to the Fuego plotter                                                   can be
                                                                                                                                                         missing
                                                                                                                                                         for
-                                                                                                                                                        functi-
-                                                                                                                                                        onal
+                                                                                                                                                        functional
                                                                                                                                                         tests
 
-pass criteria   JSON            /fuego-core/engine/tests/{test_name}   Has the "pass" criteria for the test                                             all
+pass criteria   JSON            /fuego-core/tests/{test_name}          Has the "pass" criteria for the test                                             all
                                 /criteria.json
-reference info  JSON            /fuego-core/engine/tests/{test_name}   Has additional information about test results,such                               bench-
-                                /reference.json                        as the units for benchmark measurements                                          mark 																																																																											    only
+reference info  JSON            /fuego-core/tests/{test_name}          Has additional information about test results,such                               benchmark
+                                /reference.json                        as the units for benchmark measurements                                          only
 
- reference.log  Fuego-          /fuego-core/engine/tests/{test_name}   Has the threshold values and comparison operators for                            bench-
-                specific                                               benchmark metrics measured by the test                                           mark
-                                                                                                                                                        only
+reference.log   Fuego-          /fuego-core/tests/{test_name}          Has the threshold values and comparison operators for                            benchmark
+                specific        /reference.log                         benchmark metrics measured by the test                                           only
 
-(deprecated)    p/n logstext    /fuego-core/engine/tests/{test_name}   Are logs with the results (positive or negative) parsed out,                    func-
-                                                                       for determination of test pass/fail                                             tional
-                                                                                                                                                       only
+p/n logs        text            (deprecated)                           Are logs with the results (positive or negative) parsed out,                    functional
+                                                                       for determination of test pass/fail                                             only
 ==============  ==============  ====================================  =============================================================================== =========
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

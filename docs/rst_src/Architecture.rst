@@ -524,7 +524,8 @@ the host). That is, tests that involve actions on both the host and
 target.
 
 To add a new test, the user defines several files and puts them into
-``/fuego-core/engine/tests``
+a sub-directory with the test name, under
+``/fuego-core/tests``
 
 The ``ftc`` command uses this directory and the directory
 ``/fuego-ro/boards`` to show available boards and tests on the command

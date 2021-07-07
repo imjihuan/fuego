@@ -48,7 +48,7 @@ use the command 'ftc list-plans'.
 A plan lists a set of tests to execute.  You can examine the
 list of tests that a testplan includes, by examining the testplan
 file. The testplan files are in JSON format, and are in the
-directory ``fuego-core/engine/overlays/testplans``.
+directory ``fuego-core/overlays/testplans``.
 
 ============================
 Adding individual tests

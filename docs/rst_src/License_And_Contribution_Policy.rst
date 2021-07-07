@@ -41,7 +41,7 @@ External test materials
 ----------------------------
 
 Individual tests in Fuego consist of files in the directory:
-engine/tests/<test_name> (which is known as the test home directory),
+fuego-core/tests/<test_name> (which is known as the test home directory),
 and may include two types of materials:
 
  1. Fuego-specific files

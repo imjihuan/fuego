@@ -29,7 +29,7 @@ The call to ``ovgen.py`` looks like this: ::
 
 Which expands to something like: ::
 
- /fuego-core/engine/scripts/ovgen/ovgen.py \
+ /fuego-core/scripts/ovgen/ovgen.py \
    --classdir /fuego-core/engine/overlays//base \
    --ovfiles /fuego-core/engine/overlays//distribs/nologger.dist \
              /fuego-core/engine/overlays//boards/qemu-arm.board \
