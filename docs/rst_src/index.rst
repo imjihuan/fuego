@@ -81,11 +81,9 @@ Index
    :maxdepth: 2
    :caption: Reference Material:
 
-   devref
-   FAQ
-   Other_Test_Systems
    Fuego_naming_rules
    Artwork
+   FAQ
    Glossary
 
 .. toctree::
@@ -93,11 +91,6 @@ Index
 
    Raspberry_Pi_Fuego_Setup
    Using_the_qemuarm_target
-
-.. toctree::
-   :hidden:
-
-   Fuego_Outline
 
 .. toctree::
    :hidden:
