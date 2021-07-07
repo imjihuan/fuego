@@ -441,7 +441,7 @@ of ``parser.py`` (from each test), ``dataload.py`` and utility functions in
 ``fuego-core/engine/scripts/parser``
 
 See :ref:`Benchmark parser notes <benchmark_parser_notes>`,
-:ref:`parser.py <parser.py>`, :ref:`reference.log <reference.log>` and
+:ref:`parser.py <parser_py>`, :ref:`reference.log <reference.log>` and
 :ref:`Parser module API <Parser_module_API>`.
 
 Postbuild action

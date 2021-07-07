@@ -29,11 +29,11 @@ A
 
    * Example value: **arm**
 
-   * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
+   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
 
  * ``AS`` : name of the assembler
 
-   * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
+   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
    * Commonly used during the build phase
      (in the function :ref:`test_build <function_test_build>`)
 
@@ -59,34 +59,34 @@ C
 
  * ``CC`` : name of the C compiler
 
-   * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
+   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
    * Commonly used during the build phase
      (in the function :ref:`test_build <function_test_build>`)
    * Example value: **arm-linux-gnueabihf-gcc**
 
  * ``CONFIGURE_FLAGS`` : flags used with the 'configure' program
 
-   * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
+   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
    * Commonly used during the build phase
      (in the function :ref:`test_build <function_test_build>`)
 
  * ``CROSS_COMPILE`` : cross-compile prefix used for kernel builds
 
-   * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
+   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
    * Example value: **arm-linux-gnueabihf-**
    * *NOTE: this is often $PREFIX followed by a single dash*
 
  * ``CPP`` : name of the C pre-processor
 
-   * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
+   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
 
  * ``CXX`` : name of the C++ compiler
 
-   * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
+   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
 
  * ``CXXCPP`` : name of the C++ pre-processor
 
-   * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
+   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
 
 ==
 F
@@ -179,7 +179,7 @@ L
 
  * ``LD`` : name of the linker
 
-   * Set by :ref:`tools.sh  <tools.sh>` based on TOOLCHAIN
+   * Set by :ref:`tools.sh  <tools_sh>` based on TOOLCHAIN
    * Example value: **arm-linux-gnueabihf-ld**
 
  * ``LOGIN`` : login account name for the target
@@ -270,7 +270,7 @@ P
 
  * ``PREFIX`` : toolchain prefix
 
-   * Set by :ref:`tools.sh <tools.sh>` based on TOOLCHAIN
+   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
    * Example value: **arm-linux-gnueabihf**
    * *NOTE: see also CROSS_COMPILE*
 

@@ -1,7 +1,8 @@
+.. _log_files:
+
 ##################
 Log files
 ##################
-
 
 During test execution, Fuego collects several different logs.
 

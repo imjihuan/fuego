@@ -73,7 +73,7 @@ scripts that comprise the core of the system) written in shell script
 language.
 
 The interface between Jenkins and these core scripts is documented at
-:ref:`Core interfaces <coreinterface>`.
+:ref:`Core interfaces <core_interfaces>`.
 
 This overall architecture means that when items are added into the
 system (for example boards, toolchains, or tests), information has to

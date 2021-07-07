@@ -135,6 +135,7 @@ Index
    parser.py
    criteria.json
    reference.json
+   tools.sh
    Coding_style.rst
 
 

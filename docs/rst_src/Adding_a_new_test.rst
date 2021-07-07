@@ -307,7 +307,7 @@ produce numerical results, you must add a python program called
 'parser.py', which scans the test log and produces a data structure
 used by other parts of the Fuego system.
 
-See :ref:`parser.py <parser>` for information about this program.
+See :ref:`parser.py <parser_py>` for information about this program.
 
 
 

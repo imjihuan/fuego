@@ -1,3 +1,5 @@
+.. _overlay_generation:
+
 ####################
 Overlay Generation
 ####################

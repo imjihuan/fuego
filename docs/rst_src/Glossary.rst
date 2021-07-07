@@ -70,7 +70,7 @@ C
 ``console log``
 
   The full output of execution of a test from Jenkins.
-  See :ref:`Log files` for details.
+  See :ref:`Log files <log_files>` for details.
 
 ``criteria``
 
@@ -87,7 +87,7 @@ D
 ``devlog``
 
   The developer log for a test.
-  See :ref:`Log files` for details.
+  See :ref:`Log files <log_files>` for details.
 
 ``Device``
 
@@ -136,7 +136,7 @@ L
 ``log file``
 
   Several log files are created during execution of a test.  For details
-  about all the different log files, see :ref:`Log files`.
+  about all the different log files, see :ref:`Log files <log_files>`.
 
 ====
 M
@@ -157,13 +157,13 @@ O
 
   This is a set of variables and functions stored in a fuegoclass file,
   which are used to customize test execution for a particular board.
-  See :ref:`Overlay Generation` for details.
+  See :ref:`Overlay Generation <overlay_generation>` for details.
 
 ``ovgen.py``
 
   Program to collect "overlay" data from various scripts and data
   files, and produce the final test script to run.
-  see :ref:`Overlay Generation`.
+  see :ref:`Overlay Generation <overlay_generation>`.
 
 =====
 P
@@ -176,13 +176,13 @@ P
 ``parsed log``
 
   The test log file after it has been filtered by log_compare.
-  See :ref:`Log files` for details.
+  See :ref:`Log files <log_files>` for details.
 
 ``parser.py``
 
   A python program, included with each Benchmark test, to scan the test
   log for benchmark metrics, check each against a reference threshold,
-  and produce a plot.png file for the test.  See :ref:`parser.py` and
+  and produce a plot.png file for the test.  See :ref:`parser.py <parser_py>` and
   :ref:`Benchmark parser notes` for more information.
 
 ``provision``
@@ -213,18 +213,18 @@ S
 ``spec variable``
 
   A test variable that comes from a spec file. See
-  :ref:`Test variables`
+  :ref:`Test variables <test_variables>`
 
 ``stored variable``
 
   A test variable that is stored in a read/write file, and can be
   updated manually or programmatically.  See
-  :ref:`Test variables`
+  :ref:`Test variables <test_variables>`
 
 ``syslog``
 
   The system log for a test.  This is the system log collected during
-  execution of a test.  See :ref:`Log files` for details.
+  execution of a test.  See :ref:`Log files <log_files>` for details.
 
 
 ====
@@ -243,7 +243,7 @@ T
   There are multiple logs created during the execution of a test, and
   some might casually also be called "test logs".  However, in this
   documentation, the term "test log" should be used only to refer to the
-  test program output.  See :ref:`Log files` for details.
+  test program output.  See :ref:`Log files <log_files>` for details.
 
 ``test package``
 
@@ -281,12 +281,12 @@ T
   deploy and run the test.  The test script runs on the host.  This is
   also called the 'base test script'.  For details about the environment
   that a script runs in or the functions it may call, see :ref:`Variables`,
-  :ref:`Core interfaces`, and :ref:`Test Script APIs`.
+  :ref:`Core interfaces <core_interfaces>`, and :ref:`Test Script APIs <test_script_apis>`.
 
 ``test variable``
 
   This is the name of a variable available to the a test during it's
-  execution.  See :ref:`Test variables`.
+  execution.  See :ref:`Test variables <test_variables>`.
 
 
 ``TOOLCHAIN``
@@ -299,7 +299,7 @@ T
 
   File containing the definition of toolchain variables for the
   different platforms installed in the container (and supported by the
-  test environment)  See :ref:`tools.sh` for details.
+  test environment)  See :ref:`tools.sh <tools_sh>` for details.
 
 ====
 V

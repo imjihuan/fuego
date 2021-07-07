@@ -102,8 +102,8 @@ test plan file should have a descriptive name starting with 'testplan_'
 and ending in the suffix '.json', and the file must be placed in the
 ``overlays/testplans`` directory.
 
-Example
-=============
+Example hello world testplan
+============================
 
 The test program from the hello_world test allows for selecting
 whether the test succeeds, always fails, or fails randomly.  It does
@@ -227,8 +227,8 @@ variable name is converted to all uppercase.  This environment
 variable can be used in the ``fuego_test.sh`` as an argument to the
 test program, or in any other way desired.
 
-Example
-=============
+Example of variable use
+=======================
 
 In this hello-world example, the program invocation (by
 ``fuego_test.sh``) uses the variable ``$FUNCTIONAL_HELLO_WORLD_ARG``.
