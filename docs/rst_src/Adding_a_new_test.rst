@@ -329,7 +329,7 @@ Also, for very complicated Functional tests, there may be complicated
 results, where, for example, some results should be ignored.
 
 You can specify the criteria used to evaluate the test results, by
-creating a ':ref:`criteria.json <criteria.json>`' file for the test.
+creating a ':ref:`criteria.json <criteria_json>`' file for the test.
 
 Finally, you may wish to add a file that indicates certain information
 about the test results.  This information is placed in the

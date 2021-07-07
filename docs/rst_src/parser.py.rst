@@ -51,7 +51,7 @@ The program usually has the following steps:
 
    * The ``process`` function evaluates the results from the test, and
      determines the overall pass/fail status of a test, based on a
-     :ref:`criteria.json` file
+     :ref:`criteria.json <criteria_json>` file
    * The ``process`` function also saves the information
      to the aggregate results file for this test (``flat_plot_data.txt``),
      and re-generates the chart data for the test

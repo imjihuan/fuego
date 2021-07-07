@@ -77,7 +77,7 @@ C
   This is an expression which indicates whether how a test result
   should be interpreted.  This is also referred to as a "pass criteria".
   Criteria files are stored in ``criteria.json`` files.  See
-  :ref:`criteria.json` for details.
+  :ref:`criteria.json <criteria_json>` for details.
 
 =====
 D
