@@ -114,29 +114,35 @@ service jenkins start && \
 
 # install plugins for latest LTS Jenkins (currently 2.249.3)
 /usr/local/bin/install-plugins.sh \
-    script-security \
-    structs \
-    workflow-step-api \
-    workflow-api \
-    junit \
-    scm-api \
-    ant \
-    antisamy-markup-formatter \
-    bouncycastle-api \
-    command-launcher \
-    description-setter \
-    display-url-api \
-    external-monitor-job \
-    greenballs \
-    icon-shim \
-    javadoc \
-    jdk-tool \
-    mailer \
-    matrix-auth \
-    matrix-project \
-    pam-auth \
-    pegdown-formatter \
-    windows-slaves
+    popper-api:1.16.0-7 \
+    jquery3-api:3.5.1-2 \
+    font-awesome-api:5.15.1-1 \
+    bootstrap4-api:4.5.3-1 \
+    script-security:1.75 \
+    structs:1.20 \
+    workflow-step-api:2.23 \
+    workflow-api:2.40 \
+    junit:1.45 \
+    scm-api:2.6.4 \
+    ant:1.11 \
+    antisamy-markup-formatter:2.1 \
+    bouncycastle-api:2.18 \
+    echarts-api:4.9.0-2 \
+    plugin-util-api:1.5.0 \
+    command-launcher:1.5 \
+    checks-api:1.1.1 \
+    description-setter:1.10 \
+    display-url-api:2.3.4 \
+    external-monitor-job:1.7 \
+    greenballs:1.15 \
+    javadoc:1.6 \
+    jdk-tool:1.4 \
+    mailer:1.32.1 \
+    matrix-auth:2.6.4 \
+    matrix-project:1.18 \
+    pam-auth:1.6 \
+    pegdown-formatter:1.3 \
+    windows-slaves:1.7
 
 cp frontend-install/plugins/flot-plotter-plugin/flot.hpi $JENKINS_HOME/plugins/flot.jpi
 
