@@ -1,3 +1,16 @@
+In April of 2022, I was using Ubuntu 20.04 (Fossa), and
+couldn't build.
+
+I did the following:
+  sudo apt install sphinx-doc
+  sudo apt install sphinx-rtd-theme-common
+  sudo apt install python3-sphinx-rtd-theme
+
+After that, 'make html' worked fine on Ubuntu 20.04
+(That is, there was no need to set up a python virtual environment.
+Hurray!)
+
+--------
 In Sept. of 2020, I was using Ubuntu 16.04 (Xenial),
 and had some issues with the default versions of packages
 for Sphinx and sphinx-rtd-theme for that distribution of Linux.
