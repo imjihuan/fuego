@@ -240,6 +240,13 @@ M
 N
 ==
 
+  * ``NO_BOARD_TESTLOG`` : indicates that the test does not produce testlog output on the board
+
+    * Set 'NO_BOARD_TESTLOG=1' in your **fuego_test.sh** file to tell
+      Fuego that this test does not produce test output on the board.
+      This will suppress a message about a missing log file, after
+      test execution.
+
   * ``NODE_NAME`` : the name of the board
 
     * This is set by Jenkins, and is the first part of the
