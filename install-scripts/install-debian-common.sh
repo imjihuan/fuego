@@ -28,6 +28,13 @@ apt-get update -q=2 && apt-get -q=2 -V --no-install-recommends install \
 	python-pexpect python-pip python-setuptools python-wheel
 pip install filelock
 
+# get them for python3 also
+apt-get update -q=2 && apt-get -q=2 -V --no-install-recommends install \
+	python3-lxml python3-yaml python3-openpyxl \
+	python3-requests python3-reportlab python3-parsedatetime \
+	python3-pexpect python3-pip python3-setuptools python3-wheel \
+	python3-filelock
+
 # Fuego command dependencies
 apt-get -q=2 -V --no-install-recommends install \
 	git sshpass openssh-client sudo net-tools wget curl lava-tool \
