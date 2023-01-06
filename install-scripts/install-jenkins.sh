@@ -120,6 +120,8 @@ service jenkins start && \
     bootstrap4-api:4.5.3-1 \
     script-security:1.75 \
     structs:1.20 \
+    snakeyaml-api:1.29.1 \
+    jackson2-api:2.13.1-246.va8a9f3eaf46a \
     workflow-step-api:2.23 \
     workflow-api:2.40 \
     junit:1.45 \
