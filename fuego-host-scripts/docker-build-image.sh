@@ -29,7 +29,7 @@ fi
 
 echo "Using Port $JENKINS_PORT"
 
-sudo docker build ${NO_CACHE} -t ${DOCKERIMAGE} --build-arg HTTP_PROXY=$http_proxy \
+sudo docker build --network host ${NO_CACHE} -t ${DOCKERIMAGE} --build-arg HTTP_PROXY=$http_proxy \
 	--build-arg uid=$JENKINS_UID --build-arg gid=$JENKINS_GID \
 	--build-arg DEBIAN_VERSION=$DEBIAN_VERSION \
 	--build-arg NO_JENKINS=$NO_JENKINS \
