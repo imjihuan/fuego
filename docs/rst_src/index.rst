@@ -97,62 +97,26 @@ Index
 
    Variables
    Dynamic_Variables
-   Metrics
 
 .. toctree::
    :hidden:
 
-   funtionalltp
    Troubleshooting_Guide
-   Presentations
    OSS_Test_Vision
    Test_Specs_and_Plans
 
 .. toctree::
    :hidden:
 
-   Help
-   Function_Unpack
-
-.. toctree::
-   :hidden:
-
-   function_test_pre_check
-   function_test_build
-   function_test_deploy
-   function_test_run
-   function_test_processing
-
-.. toctree::
-   :hidden:
-
-   function_log_compare
-
-
-.. toctree::
-   :hidden:
-
    parser.py
    criteria.json
-   reference.json
    tools.sh
    Coding_style.rst
-
 
 .. toctree::
    :hidden:
 
    Testplan_Reference
-   function_run_test
-   function_allocate_next_batch_id
-
-.. toctree::
-   :hidden:
-
-   parser_func_parse_log
-   parser_func_process
-   parser_func_split_output_per_testcase
-
 
 
 ===================
@@ -165,12 +129,10 @@ Indices and tables
 
 
 ..
-   The following is to hide a warning.
-   FrontPage.rst is included rather than referenced using toctree
+   The following is to hide warning from Sphinx.
 
 .. toctree::
   :hidden:
 
-  FrontPage
   Sandbox
   Sandbox2
