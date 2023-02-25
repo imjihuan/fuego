@@ -182,12 +182,6 @@ Historical information
 `<http://elinux.org/Fuego>`_ has some historical information about
 Fuego.
 
-Related systems
----------------
-
-See :ref:`Other test systems <ots>` for notes about other test
-frameworks and comparisons between Fuego and those other systems.
-
 Things to do
 ------------
 

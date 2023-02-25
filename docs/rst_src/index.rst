@@ -4,7 +4,7 @@
    Fuego wiki (at fuegotest.org).  Please be patient while this work is
    in progress.
 
-.. include:: FrontPage.rst
+#.. include:: FrontPage.rst
 
 ################
 Index
