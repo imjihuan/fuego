@@ -209,24 +209,17 @@ testcase_table
 A testcase_table is a table of testcases (usually for a functional
 test), with the following attributes: ::
 
-This shows the result of only one run (the latest)
-
-Tim's testcase table has:
-(one table per board-testname-testset) ::
-
-   overall title=<test>
+   overall title=<board>-<test>-<spec>
    header:
      board
+     test set
      kernel version
-     spec?
-     filesystem
-     test directory?
-     command line?
    --------------------------------------------
-   tguid | results
-         | build_number |
-         | b1 | b2 | bn |
-   <tguid1>|result1|result2|resultn|
+   test case | results               |
+             | build_number          |
+             | b1    | b2    | bn    |
+   <tguid1>  |result1|result2|resultn|
+   <tguid2>  |result1|result2|resultn|
         totals
    pass: |    |    |    |
    fail: |    |    |    |
