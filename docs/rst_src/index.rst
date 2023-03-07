@@ -46,14 +46,18 @@ Index
    :caption: User Guides:
 
    Jenkins_User_Interface
+   Command_Line_Tool_-_ftc
+   Log_files
+   Generating_Reports
+
+.. _developer_guides:
 
 .. toctree::
    :maxdepth: 2
-   :caption: Advanced Topics:
+   :caption: Developer Guides:
 
    Adding_or_Customizing_a_Distribution
-   integration_with_ttc
-   Working_with_remote_boards
+
 
 .. _dev_res:
 
@@ -65,17 +69,25 @@ Index
    Fuego_Developer_Notes
    License_And_Contribution_Policy
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Advanced Topics:
+
+   Adding_or_Customizing_a_Distribution
+   integration_with_ttc
+   Working_with_remote_boards
+
 .. _api_rex:
 
 .. toctree::
    :maxdepth: 2
    :caption: API Reference
 
+   API_Reference
+   Parser_module_API
    Core_interfaces
    Adding_a_new_test
    Using_Batch_tests
-   Parser_module_API
-
 
 .. toctree::
    :maxdepth: 2
@@ -111,7 +123,7 @@ Index
    parser.py
    criteria.json
    tools.sh
-   Coding_style.rst
+   Coding_style
 
 .. toctree::
    :hidden:
@@ -136,3 +148,4 @@ Indices and tables
 
   Sandbox
   Sandbox2
+  cmd
