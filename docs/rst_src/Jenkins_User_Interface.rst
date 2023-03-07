@@ -1,3 +1,5 @@
+.. _jenkins_ui:
+
 #######################
 Jenkins User interface
 #######################

@@ -70,7 +70,7 @@ C
 ``console log``
 
   The full output of execution of a test from Jenkins.
-  See :ref:`Log files <log_files>` for details.
+  See :ref:`Log files <logfiles>` for details.
 
 ``criteria``
 
@@ -87,7 +87,7 @@ D
 ``devlog``
 
   The developer log for a test.
-  See :ref:`Log files <log_files>` for details.
+  See :ref:`Log files <logfiles>` for details.
 
 ``Device``
 
@@ -136,7 +136,7 @@ L
 ``log file``
 
   Several log files are created during execution of a test.  For details
-  about all the different log files, see :ref:`Log files <log_files>`.
+  about all the different log files, see :ref:`Log files <logfiles>`.
 
 ====
 M
@@ -176,7 +176,7 @@ P
 ``parsed log``
 
   The test log file after it has been filtered by log_compare.
-  See :ref:`Log files <log_files>` for details.
+  See :ref:`Log files <logfiles>` for details.
 
 ``parser.py``
 
@@ -224,7 +224,7 @@ S
 ``syslog``
 
   The system log for a test.  This is the system log collected during
-  execution of a test.  See :ref:`Log files <log_files>` for details.
+  execution of a test.  See :ref:`Log files <logfiles>` for details.
 
 
 ====
@@ -243,7 +243,7 @@ T
   There are multiple logs created during the execution of a test, and
   some might casually also be called "test logs".  However, in this
   documentation, the term "test log" should be used only to refer to the
-  test program output.  See :ref:`Log files <log_files>` for details.
+  test program output.  See :ref:`Log files <logfiles>` for details.
 
 ``test package``
 

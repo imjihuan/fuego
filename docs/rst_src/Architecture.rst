@@ -222,8 +222,6 @@ Test execution
  * The base script (with the test variable script sourced into it)
    runs on the host, and uses Fuego functions to perform different
    phases of the test
- * For a flow graph of normal test execution see:
-   :ref:`test execution flow outline <Outline>`
 
 ================================
 Test variable file generation
@@ -356,10 +354,13 @@ This phase is split into multiple parts:
  * pre_build - build workspace is created, a build lock is acquired
    and the tarball is unpacked
 
-   * :ref:`unpack <unpack>` is called during pre_build
+   * The ``unpack`` function is called during pre_build.  This function
+     unpacks the source tar file, if one is associated with this test
+
  * test_build - the test_build function from fuego_test.sh is called
 
    * usually this consists of 'make', or 'configure ; make'
+
  * post_build - (empty for now)
 
 deploy

@@ -1,7 +1,10 @@
+.. _run_json:
+
 ###########
 run.json
 ###########
 
+===========
 Summary
 ===========
 
@@ -16,6 +19,7 @@ contain arrays of test_case objects, which themselves may contain
 measurement objects.
 
 
+===================
 Field details
 ===================
 
@@ -286,38 +290,4 @@ on the board 'ren1' (which is a Renesas board in my lab).
           }
       ]
   }
-
-
-==========
-Ideas
-==========
-
-Some changes to the fields might be useful:
-
- * We don't have anything that records the 'cause', from Jenkins
-
-   * This is supposed to indicate what triggered the test
-   * The Jenkins strings are somewhat indecipherable:
-
-     * Here is a Jenkins cause: <hudson.model.Cause_-UserIdCause/><int>1</int>
-
- * It might be worthwhile to add some fields from the board or target:
-
-   * Architecture
-   * Transport - not sure about this one
-   * Distrib
-   * File system
-
- * If we add monitors or side-processes (stressors), it would be good to add
-   information about those as well
-
-Use of flat data
-======================
-
-Parsing the tree-structured data has turned out to be a real pain, and
-it might be better to do most of the work in a flat format.  The
-charting code uses a mixture of both structured (nested objects) and
-flat testcase names, and I think there's a lot of duplicate code lying
-around that handles the conversion back and forth, that could probably
-be coalesced into a single set of library routines.
 

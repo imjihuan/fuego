@@ -15,8 +15,7 @@ as its primary method of test execution.
 Fuego consists of a host/target script engine, and over 100 pre-packages
 tests.  These are installed in a docker container along with a Jenkins
 web interface and job control system, ready for out-of-the-box
-Continuous Integration testing of your embedded Linux project., and over
-100 pre-packaged
+Continuous Integration testing of your embedded Linux project.
 
 The idea is that in the simplest case, you just add your board, select
 or install a toolchain, and go!

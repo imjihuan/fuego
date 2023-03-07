@@ -28,29 +28,30 @@ Note that these steps are for Ubuntu.
 
  * Make sure you have required packages for building the software ::
 
-   $ sudo apt-get install gawk wget git-core diffstat unzip texinfo
-   gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
+     $ sudo apt-get install gawk wget git-core diffstat unzip texinfo \
+        gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
 
  * Install the qemu software ::
 
-   $ sudo apt-get install qemu-user
+     $ sudo apt-get install qemu-user
 
  * Download the latest stable release of the Yocto Project ::
 
-   $ git clone git://git.yoctoproject.org/poky
+     $ git clone git://git.yoctoproject.org/poky
 
  * Configure Yocto Project for building the qemuarm target ::
 
-   $ cd poky
-   $ source oe-init-build-env build-qemuarm build-qemuarm
-   $ edit conf/local.conf
+     $ cd poky
+     $ source oe-init-build-env build-qemuarm build-qemuarm
+     $ edit conf/local.conf
 
- * Under the comment about "Machine Selection", uncomment the line
-    'MACHINE ?= "qemuarm"'
+ * Under the comment about "Machine Selection", uncomment the line ::
+
+     MACHINE ?= "qemuarm"
 
  * Build a minimal image (this will take a while) ::
 
-   $ bitbake core-image-minimal
+     $ bitbake core-image-minimal
 
 ============================
 Running the qemuarm image
@@ -60,7 +61,7 @@ You can run the emulator, using the image you just built:
 
  * Run the emulator ::
 
-   $ runqemu qemuarm
+     $ runqemu qemuarm
 
  * Find the address and ssh port for the image
 

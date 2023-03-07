@@ -372,7 +372,3 @@ LTP may also use these other test variables defined in the board file:
  * FUNCTIONAL_LTP_BOARD_SKIPLIST - This variable has a list of
    individual LTP test programs to skip.
 
-See :ref:`Functional.LTP <functionalLTP>` for more information about
-the LTP test, and test variables used by it.
-
-

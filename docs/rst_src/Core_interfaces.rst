@@ -4,7 +4,6 @@
 Core interfaces
 ################
 
-
 This page documents the interface between the Jenkins front end and
 the Fuego core engine.  See also :ref:`Variables <variables>`
 
