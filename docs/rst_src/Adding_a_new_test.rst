@@ -182,10 +182,10 @@ elements of a test script.::
 	}
 
 
-Description of base test functions
+Description of test functions
 =========================================
 
-The base test functions (test_build, test_deploy, test_run, and
+The test functions (test_build, test_deploy, test_run, and
 test_processing) are fairly simple.  Each one contains a few
 statements to accomplish that phase of the test execution.
 
@@ -199,13 +199,14 @@ following links:
  * :ref:`test_processing <func_test_processing>`
 
 
-=======================
-Test spec and plan
-=======================
+===========
+Test spec
+===========
 
 Another element of every test is the *test spec*.  A file is used
 to define a set of parameters that are used to customize the test
-for a particular use case.
+for a particular use case.  Each "spec" defines a variant of
+the test, that can be executed.
 
 You must define the test spec(s) for this test, and add an entry to
 the appropriate testplan for it.
@@ -259,22 +260,6 @@ defines three specs: ::
 	}
 
 
-Next, you may want to add an entry to one of the testplan files.
-These files are located in the directory
-``/fuego-core/overlays/testplans``.
-
-Choose a testplan you would like to include this test, and edit the
-corresponding file. For example, to add your test to the list of tests
-executed when the 'default' testplan is used, add an entry ``default``
-to the 'testplan_default.json' file.
-
-Note that you should add a comma after your entry, if it is not the
-last one in the list of *tests*.
-
-Please read :ref:`Test Specs and Plans <test_specs_and_plans>` for
-more details.
-
-
 ========================
 Test results parser
 ========================
@@ -308,7 +293,6 @@ produce numerical results, you must add a python program called
 used by other parts of the Fuego system.
 
 See :ref:`parser.py <parser_py>` for information about this program.
-
 
 
 ====================================
@@ -370,10 +354,6 @@ This results in the creation of a file called config.xml, in the
 /var/lib/jenkins/jobs/<job_name> directory.
 
 
-
-
-
-
 =========================
 Publishing the test
 =========================
@@ -382,7 +362,7 @@ Tests that are of general interest should be
 submitted for inclusion into fuego-core.
 
 Right now, the method of doing this is to create a commit and send
-that commit to the fuego mailing list, for review, and hopefully
+that commit to the Fuego mailing list, for review, and hopefully
 acceptance and integration by the fuego maintainers.
 
 In the future, a server will be provided where test developers can
