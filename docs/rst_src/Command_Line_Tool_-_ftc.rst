@@ -36,16 +36,16 @@ for the operation.
 
 Here are options that are commonly used with ftc commands:
 
- * -v = verbose mode - this means to report more information than usual
- * -q = quiet mode - this means to report less information than usual,
+ * **-v** = verbose mode - this means to report more information than usual
+ * **-q** = quiet mode - this means to report less information than usual,
    sometimes making the command completely silent.  Quiet mode is often
    used to omit header data and make the output suitable for parsing by
    other tools.
- * -h = help - show help for the specified sub-command
- * --debug = run in debug mode - this make ``ftc`` produce a log of debug
+ * **-h** = help - show help for the specified sub-command
+ * **--debug** = run in debug mode - this make ``ftc`` produce a log of debug
    information while it runs
- * -b = specify the board - used when a command takes a board argument
- * -t = specify the test - used when a command test a test argument.
+ * **-b** = specify the board - used when a command takes a board argument
+ * **-t** = specify the test - used when a command test a test argument.
 
 .. note:: A test name is specified using either its full name, which
    includes the test type, or its shortened name, which is the portion
@@ -148,22 +148,24 @@ in the ``fuego-ro/boards`` directory.
 You can use ``ftc list-boards`` to see a list of the currently configured
 boards in the Fuego system.
 
-Board attributes
-----------------
+Board attributes (or variables)
+--------------------------------
 Usually, to change the configuration
 of a board, you manually edit the file for that board and adjust its base
-settings directly.  However, Fuego also allows for viewing board attributes,
-and for setting and removing attributes of a board independent of manually
-accessing or manipulating the board configuration file.
+settings directly.  However, Fuego also allows for viewing board attributes
+(also referred to as board 'variables'), and for setting and removing
+attributes of a board using ``ftc`` (that is, without having to manually
+read or edting the board configuration file).
 
 The variables defined in the board configuration file are considered
 its 'base' settings or base attributes. These attributes are considered
-statically defined for a board.  Fuego also allows you to store some information
+statically defined for a board.  Fuego also allows you to store information
 about a board that is considered dyanmic.  This information
 is stored in a board configuration file in the ``fuego-rw/boards`` directory.
 
-Also, Fuego automatically assigns functions to a board based on the board's
-DISTRIB setting.  These functions are called overlay functions, because they can be
+Also, Fuego automatically assigns certain functions to a board based on
+the value of the DISTRIB variable for the the board.  These functions are called
+overlay functions, because they can be
 overridden (or "overlayed") with functions from the board configuration
 file.
 
@@ -189,10 +191,9 @@ the attribute name: ::
   ftc query-board -b beaglebone -n TOOLCHAIN
 
 The ``set-var`` and ``delete-var`` commands are used to set or delete an individual
-dynamic variable for a board.  (A board 'variable' is the same thing as a board 'attribute'
-referenced above.)  These commands are intended for programs that automatically
-configure attributes of a board, and are not usually used by users directly.  See the online
-usage help for these commands for the syntax for setting or deleting a board variable.
+dynamic variable for a board.
+These ``ftc`` commands are intended for programs that automatically
+configure attributes of a board, and are not usually used by users directly.
 
 ftc set-var and delete-var
 --------------------------
@@ -207,8 +208,7 @@ or remove FOO_COUNT from the beaglebone board attributes, respectively.
 
 Finally, ``ftc`` includes commands for performing power control of a board.
 When Fuego detects that a board is not responding, it tries to automatically restart
-the board by doing a power reset.  This will only work if a compatible board control
-system is specified in the board's configuration file.
+the board by doing a power reset.
 
 ftc power commands
 ------------------
@@ -225,7 +225,7 @@ Here is an example of a power-related command for a board: ::
 
 Jenkins-related commands
 ========================
-These commands are used for interacting with Jenkins.
+These commands are used for interacting with Jenkins, from the command line.
 
  * add-job(s)
  * add-node(s)
@@ -238,11 +238,11 @@ These commands are used for interacting with Jenkins.
 
 By default, Fuego is installed with the Jenkins CI system.  Fuego supports
 integration with many Jenkins operations.  This includes ``ftc`` commands
-for adding Fuego board and tests to Jenkins, and manipulating those items - 
-listing them, removing them, and in the case of jobs, running them.
+for adding Fuego board and tests to Jenkins, and manipulating those
+items - listing them, removing them, and in the case of jobs, running them.
 
 Of course, if you are using Fuego in an installation without the Jenkins
-user interface, none of these commands are relevant, and they may safely
+CI system, none of these commands are relevant, and they may safely
 be ignored.
 
 .. important: Jenkins uses different names for boards and tests than Fuego
@@ -337,7 +337,7 @@ ftc add-view
 Finally, Fuego provides a convenience command for easily creating a Jenkins
 'view'.  Jenkins supports the ability to organize test jobs by creating
 views in the user interface.  However, it is often convenient to create
-a view for a set of Fuego jobs, based on their name.
+a view for a small set of Fuego jobs, based on their name.
 
 ``ftc add-view`` creates a new 'view' in Jenkins, with a filter based on the
 parameter provided.
@@ -356,12 +356,11 @@ You can select individual jobs by name, or use a regular expression
 If the job specification starts with "=", it is a comma-separated
 list of job names.  If not, then it is used as a regular expression.
 
-As a special case, when the command is used without a job_spec argument
+As a special case, when the command is used without a 'job_spec' argument
 then the view is created with a job_spec consisting of the view-name
 with wildcards added to the beginning and ending of it.
 
-The job specification can also consist of specifying a testplan and
-one or more boards. Here are some examples: ::
+Here are some examples: ::
 
    Example 1: ftc add-view batch ".*.batch"
 
@@ -377,10 +376,12 @@ job names.
 
 Commands for working with a Fuego (or other) server
 ===================================================
+The Fuego server feature supports executing tests, and sharing
+test definitions and test run results, between multiple test sites.
+This feature is currently under construction.
 
 The following commands are related to using Fuego in conjunction with
-a Fuego server (or other remote server, that can receive Fuego
-data):
+a Fuego server:
 
  * get-board
  * get-run
@@ -407,8 +408,22 @@ The following commands support remote operations (using the '-r' or
 These commands are used for performing operations with a Fuego server.
 A Fuego server supports registering boards, and storing test packages, binary
 test packages, run data, and test execution requests.  the
-``package-test`` and ``package-run`` allow for creating
+``package-test`` and ``package-run`` allow for creating packages
+for a test and a run, respectively.  These can be uploaded to the server,
+or sent directly to another developer, who can install them on their system.
 
+Users can download tests, binary-packaged tests, and runs from a server.
+
+A Fuego server allows a collection of Fuego sites to share tests and test
+results (runs) with each other.  It also allows users to request tests
+to be executed on boards at another site.  These test 'requests' can
+be submitted, viewed, and processed by users interacting with the
+central server.
+
+.. caution:: The Fuego server feature is currently under construction.
+   You may experiment with it if you would like, but the features
+   are not robust and the documentation is not finished for it yet.
+   Proceed at your own risk with this feature (and these commands).
 
 
 Miscellaneous commands
@@ -428,10 +443,17 @@ will not use this, as they can inspect the file manually.  The
 ``config`` command is intended for use for external tools that
 want to determine the value for a specific Fuego configuration item.
 
-The ``ftc help`` command is used to get online use help for ``ftc``
+The ``ftc help`` command is used to get online usage help for ``ftc``
 and for individual ``ftc`` commands.
 
-The ``ftc version`` command shows the current version of ``ftc``.
+Examples: ::
+
+  ftc help - will show a list of all available ftc commands
+
+  ftc help list-boards - will show the help for the 'list-boards' command
+
+
+``ftc version`` shows the current version of ``ftc``.
 
 
 ============
@@ -454,9 +476,13 @@ foo bar
 Here is the ``ftc run-test`` usage: ::
 
   Usage: ftc run-test -b <board> -t <test> [-s <spec>] [-p <phases>]
-    [--timeout <timeout>] [--rebuild <true|false>] [--reboot <true|false>]
-    [--precleanup <true|false>] [--postcleanup <true|false>] [--batch]
-    [--dynamic-vars variable assignments or python_dict]
+    [--timeout <timeout>]
+    [--rebuild <true|false>]
+    [--reboot <true|false>]
+    [--precleanup <true|false>]
+    [--postcleanup <true|false>]
+    [--batch]
+    [--dynamic-vars <variable assignments or python_dict>]
 
 
 Choosing a test spec
@@ -471,17 +497,17 @@ Test control options
 ====================
 Various other flags control aspects of test execution:
 
- * timeout: specify the maximum time the test is allowed to run
+ * **timeout**: specify the maximum time the test is allowed to run
    (default: 30m = 30 minutes)
- * rebuild: if 'true' rebuild the test source even if it was already built.
+ * **rebuild**: if 'true' rebuild the test source even if it was already built.
    (default: 'false')
- * reboot: if 'true' reboot the board before the test.
+ * **reboot**: if 'true' reboot the board before the test.
    (default: 'false')
- * precleanup: if 'false', do not clean up the board's test folder before the test.
+ * **precleanup**: if 'false', do not clean up the board's test folder before the test.
    (default: 'true')
- * postcleanup: if 'false' do not clean up the board's test folder after the test.
+ * **postcleanup**: if 'false' do not clean up the board's test folder after the test.
    (default: 'true')
- * batch: generate a batch id for this test
+ * **batch**: generate a batch id for this test
 
 Each of the boolean test control flags can set be 'true' or 'false'.
 
@@ -489,20 +515,21 @@ The control flags are used to pre-reboot the board being tested,
 or to prevent or force cleaning up the test directory.  Usually,
 Fuego removes all traces of the test upon test completion.
 When debugging a test, it is often useful to set ``--postcleanup`` to
-false, so that you can inspect the test materials on the board,
-and/or run the test manually.  Setting ``--precleanup`` to false is
-sometimes useful when you want to avoid the deploy phase. (See
-`phases`_ below.)
+'false', so that Fuego won't remove the test directory on the board
+at the end of the test.  This allows you to inspect the test
+materials on the board, or run the test manually.
+Setting ``--precleanup`` to 'false' is sometimes useful when
+you want to avoid the deploy phase. (See `phases`_ below.)
 
 The timeout value is specified as an integer and a suffix
-(one of s, m, h, or d).  The suffix correspond to one of:
+(one of s, m, h, or d).  The suffix corresponds to one of:
 seconds, minutes, hours, days.  For example, a 10-minute
 timeout would be specified as ``--timeout 10m``.
 
 The batch id is a number used to group tests together for reporting purposes.
-if --batch is specified, Fuego will select a new batch id for the test, and
-set the FUEGO_BATCH_ID environment variable.  This will be recorded for this
-test and any additional sub-tests called during execution of the test).
+if ``--batch`` is specified, Fuego will select a new batch id for the test, and
+set the ``FUEGO_BATCH_ID`` environment variable.  This will be recorded for this
+test and any sub-tests called during execution of the test).
 You can filter tests using the batch id in a ``--where`` clause, in
 the ``ftc gen-report`` command.
 
@@ -516,7 +543,7 @@ It is possible to override one or more test variables on the ``ftc run-test``
 command line, using the ``--dynamic-vars`` option.
 
 This allows overriding the variables in a test spec from the ftc command line.
-For example, the Benchmark.Dhrystone test uses a test variable
+For example, the ``Benchmark.Dhrystone`` test uses a test variable
 of ``LOOPS`` to indicated the number of times to execute the
 Dhrystone operations.  The value of this variable in the default
 spec for this test is 10000000 (10 million).  You could override
@@ -573,6 +600,7 @@ This is useful during development of a test (ie. for testing tests).
 Use caution running later phases of a test without their normal
 precursors (e.g. specifying to execute the ``run`` phase, without
 also specify to execute the ``pre_test``, ``build`` or ``deploy`` phases).
+This can lead to undefined behavior.
 
 .. warning:: It is almost always desirable to run the ``pre_test`` phase
    ('-p'), so use caution omitting that phase from your list.
