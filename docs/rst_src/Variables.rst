@@ -28,14 +28,13 @@ A
  * ``ARCH`` : architecture used by the toolchain
 
    * Example value: **arm**
-
-   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
+   * Set by :doc:`tools.sh` based on TOOLCHAIN
 
  * ``AS`` : name of the assembler
 
-   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
+   * Set by :doc:`tools.sh` based on TOOLCHAIN
    * Commonly used during the build phase
-     (in the function :ref:`test_build <function_test_build>`)
+     (in the function :doc:`test_build`)
 
 ==
 B
@@ -59,34 +58,34 @@ C
 
  * ``CC`` : name of the C compiler
 
-   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
+   * Set by :doc:`tools.sh` based on TOOLCHAIN
    * Commonly used during the build phase
-     (in the function :ref:`test_build <function_test_build>`)
+     (in the function :doc:`test_build`)
    * Example value: **arm-linux-gnueabihf-gcc**
 
  * ``CONFIGURE_FLAGS`` : flags used with the 'configure' program
 
-   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
+   * Set by :doc:`tools.sh` based on TOOLCHAIN
    * Commonly used during the build phase
-     (in the function :ref:`test_build <function_test_build>`)
+     (in the function :doc:`test_build`)
 
  * ``CROSS_COMPILE`` : cross-compile prefix used for kernel builds
 
-   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
+   * Set by :doc:`tools.sh` based on TOOLCHAIN
    * Example value: **arm-linux-gnueabihf-**
    * *NOTE: this is often $PREFIX followed by a single dash*
 
  * ``CPP`` : name of the C pre-processor
 
-   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
+   * Set by :doc:`tools.sh` based on TOOLCHAIN
 
  * ``CXX`` : name of the C++ compiler
 
-   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
+   * Set by :doc:`tools.sh` based on TOOLCHAIN
 
  * ``CXXCPP`` : name of the C++ pre-processor
 
-   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
+   * Set by :doc:`tools.sh` based on TOOLCHAIN
 
 ==
 F
@@ -95,7 +94,7 @@ F
  * ``FUEGO_BUILD_FLAGS`` : has special flags used to control builds
    (for some tests)
 
-    * See :ref:`FUEGO_BUILD_FLAGS <fuego_build_flags>`
+    * See :doc:`FUEGO_BUILD_FLAGS`
 
  * ``FUEGO_CORE`` : directory for Fuego core scripts and tests
 
@@ -108,12 +107,12 @@ F
    test execution.  This variables is now deprecated in favor of
    ``FUEGO_LOGLEVELS``
 
-    * See :ref:`FUEGO_DEBUG  <fuego_debug>`
+    * See :doc:`FUEGO_DEBUG`
 
  * ``FUEGO_LOGLEVELS`` : controls what level of messages Fuego emits
    during test execution
 
-    * See :ref:`FUEGO_LOGLEVELS  <fuego_loglevels>`
+    * See :doc:`FUEGO_LOGLEVELS`
 
  * ``FUEGO_RO`` : directory for Fuego read-only data
 
@@ -179,7 +178,7 @@ L
 
  * ``LD`` : name of the linker
 
-   * Set by :ref:`tools.sh  <tools_sh>` based on TOOLCHAIN
+   * Set by :doc:`tools.sh` based on TOOLCHAIN
    * Example value: **arm-linux-gnueabihf-ld**
 
  * ``LOGIN`` : login account name for the target
@@ -195,7 +194,7 @@ M
 ==
 
  * ``MAX_BOOT_RETRIES`` : Number of times to retry connecting to target
-   during a :ref:`target_reboot <function_target_reboot>` operation.
+   during a :doc:`target_reboot` operation.
 
    * Defined in the board file
    * Example value: **20**
@@ -277,7 +276,7 @@ P
 
  * ``PREFIX`` : toolchain prefix
 
-   * Set by :ref:`tools.sh <tools_sh>` based on TOOLCHAIN
+   * Set by :doc:`tools.sh` based on TOOLCHAIN
    * Example value: **arm-linux-gnueabihf**
    * *NOTE: see also CROSS_COMPILE*
 
