@@ -65,10 +65,9 @@ Here is an attempt to refer to a page: `Sandbox2`_
 
 Result:
 
- * cover text of \`Sandbox2\`\_
- * URL of .../_build/html/Sandbox.html#id1 - FAIL
+ * cover text of \`Sandbox2\`\_ - Fail, it includes the tics and underscore
+ * URL of .../_build/html/Sandbox.html#id1 - FAIL, it's not to Sandbox2.html
 
-cover text of
 
 
 test 2
@@ -82,8 +81,8 @@ Try to refer to a section on a page, with cover text:
 
 Result:
 
- * cover text of Pointer to slandbox page1
- * URL of .../_build/html/sand1 - FAIL
+ * cover text of Pointer to slandbox page1 - OK
+ * URL of .../_build/html/sand1 - FAIL, it's not to sand1.html
 
 test 3
 ~~~~~~~~
@@ -147,11 +146,82 @@ Result:
  * cover text of Pointer to slandbox test6
  * URL = .../_build/html/Sandbox2.html#chapheader2 - PASS
 
+test 7
+~~~~~~~~
+
+Reference \`Sandbox2\`
+
+Here is a way to refer to a whole page:
+:doc:`Sandbox2`
+
+Result:
+ * cover text: Sndbx2 - FAIL - this is the name in the first section on the page
+ * URL = .../_build/html/Sandbox2.html - PASS
+
+test 8
+~~~~~~~~
+
+Reference \`Sandbox2 <Sandbox2>\`
+
+Here is a way to refer to a whole page:
+:doc:`Sandbox2 <Sandbox2>`
+
+Result:
+ * cover text: Sandbox2 - PASS
+ * URL = .../_build/html/Sandbox2.html - PASS
+
+\:doc\: items support cover text
+
+test 9
+~~~~~~~~
+
+Reference \`Cover text for Sandbox2 <Sandbox2>\`
+
+Here is a way to refer to a whole page:
+:doc:`Cover text for Sandbox2 <Sandbox2>`
+
+Result:
+ * cover text: Sandbox2 - PASS
+ * URL = .../_build/html/Sandbox2.html - PASS
+
+\:doc\: items support cover text
+
+test 10
+~~~~~~~~
+
+Reference \`Cover text for Sandbox2 heading  <test_header>\`
+
+Here is a way to refer to a whole page:
+:ref:`Cover text for Sandbox2:test header <test_header>`
+
+Result:
+ * cover text: "Cover text for Sandbox2:test header" - PASS
+ * URL = no link - FAIL
+
+
+===================
+reference analysis
+===================
+
+Sphinx is altogether too tricky when it comes to labels and cover text.
+It sometimes uses the section heading text for cover text for a label,
+rather than the label text itself, even when no cover text is specified.
+
+This is true for :doc: items.
+
 Which ways worked?
 
- * Test 3 - worked it should have
  * Test 5 -  but it's gross
- * Test 6 - is preferred.
+ * Test 6 - is ugly, for works for internal references
+ * Test 7 - works, but cover text is unpredictable
+ * Test 8,9 - are preferred for reference a whole page
+
+==============
+Other tests
+==============
+
+Stub heading
+=============
 
 Toctree test
 ------------
@@ -182,4 +252,16 @@ Following this is a hidden toctree
    Installing_Fuego
    Introduction
 
+That's the end of the hiddent toctree.
+
 I can keep doing this all day!!
+
+Here's a literal block, with messed up indenting: ::
+
+  this is a test
+  this line should be next to that one
+     this one should be indented
+        even further indented
+
+now we're done with the literal block
+

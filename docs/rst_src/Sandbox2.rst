@@ -13,9 +13,14 @@ in the Fuego documentation.  This is intended to be used during the
 conversion from wiki pages, to make sure all important formatting is
 preserved.
 
-##################
-Page Level Header2
-##################
+===========
+test header
+===========
+Here is some material under the first header
+
+########################
+Page Level Header2 (H1)
+########################
 
 Here is some text
 
@@ -25,11 +30,14 @@ Here is some text
 Chapter Level Header2
 =====================
 
+Stub header (h3)
+=================
+
 Reference test
 --------------
 
-Test 1
-~~~~~~
+Test2 1
+~~~~~~~
 
 Reference: \`Sandbox\`_
 
@@ -37,8 +45,8 @@ Here is how you refer to a page: `Sandbox`_
 
 Result: .../_build/html/Sandbox2.html#id4 - FAIL
 
-Test 2
-~~~~~~
+Test2 2
+~~~~~~~
 
 Reference: \`Sandbox2\`_
 
@@ -46,8 +54,8 @@ Here is another way to refer to a page: `Sandbox2`_
 
 Result: .../_build/html/Sandbox2.html#id6 - FAIL
 
-Test 3
-~~~~~~
+Test2 3
+~~~~~~~
 
 Reference: Sandbox2\_
 
@@ -57,7 +65,7 @@ Result:
  * cover = ???
  * URL = .../_build/html/Sandbox2.html#id8 - FAIL
 
-Test 4
+Test2 4
 ~~~~~~~
 Description: anchor reference using underscore
 
@@ -70,8 +78,8 @@ Result:
  * cover - Pointer to slandbox page1
  * URL - .../_build/html/sand1 - FAIL
 
-Test 4
-~~~~~~~
+Test2 5 
+~~~~~~~~
 Here is another way to refer to a section on a page, with cover text:
 
 This uses a ref:
@@ -89,8 +97,8 @@ Conclusion:
  * only a :ref: gives you the page name (Sandbox.html) and the anchor
    ref (sand1)
 
-Test 3
-~~~~~~
+Test2 more
+~~~~~~~~~~~~
 
 Here is one way to refer to a section on a page, with cover text:
 This one uses trailing _ and the page name:
@@ -110,33 +118,3 @@ This one uses a ref and the section name:
 
 Which ways worked?
 
-Toctree test
-------------
-
-toctrees apparently refer to file (page) names.
-The items put into the tree are the section headings from those pages
-
-.. toctree::
-   :maxdepth: 2
-
-   Installing_Fuego
-   Introduction
-
-Here's another toctree - this time with a caption
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Important Pages2!!
-
-   Installing_Fuego
-   Introduction
-
-Following this is a hidden toctree
-
-.. toctree::
-   :hidden:
-
-   Installing_Fuego
-   Introduction
-
-I can keep doing this all day!!

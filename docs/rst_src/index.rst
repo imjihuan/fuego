@@ -149,3 +149,8 @@ Indices and tables
   Sandbox
   Sandbox2
   cmd
+  run.json
+  FrontPage
+  FUEGO_BUILD_FLAGS
+  FUEGO_DEBUG
+  FUEGO_LOGLEVELS
