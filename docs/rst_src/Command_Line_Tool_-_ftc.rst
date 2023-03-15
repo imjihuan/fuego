@@ -47,6 +47,24 @@ Here are options that are commonly used with ftc commands:
  * **-b** = specify the board - used when a command takes a board argument
  * **-t** = specify the test - used when a command test a test argument.
 
+.. note:: For commands that require a board, you can specify the board
+   a few different ways.  The most common is to use the '-b' option followed
+   by the board name.  You can omit this if you have a board name specified
+   in the environment variable ``FUEGO_BOARD``.  Also, you can set a default
+   board name in your fuego configuration, which is found in
+   ``fuego-ro/conf/fuego.conf``.
+
+   Some commands (such as ``add-board``, ``add-job``, or ``run-test``) can
+   operate on multiple boards.  In this case, use the '-b' option and
+   specify multiple board names separated by commas after the '-b', like
+   this:  ``ftc add-board -b board1,board2``
+
+   In some cases, you don't need to specify the full board name, but can
+   provide a short string, as long as the string is sufficient to identify
+   the desired board uniquely.  For example, if you had only a single board
+   name that started with a 'q' (like 'qemu-arm'), you could use something
+   like this: ``ftc add-board -b q``
+
 .. note:: A test name is specified using either its full name, which
    includes the test type, or its shortened name, which is the portion
    of the name after the type.  For example, for the test
