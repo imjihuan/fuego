@@ -209,6 +209,7 @@ outside the scope of this documentation.  Please see documentation and
 online resources for the Docker system for information about this.
 
 The script currently creates bind mounts for:
+
  * ``/dev/bus/usb`` - USB ports, and newly created ports
  * ``/dev/ttyACM0`` - serial port 0
  * ``/dev/ttyACM1`` - serial port 1
@@ -340,7 +341,8 @@ steps remain in order to use it with your hardware.  You need to:
 
 These steps are described in subsequent sections of this documentation.
 
-See:
+See the following sections for more information:
+
  * :ref:`Adding a Board <adding_board>`
  * :ref:`Adding a Toolchain <add_toolchain>`
  * :ref:`Adding Test Jobs to Jenkins <addtestjob>`
@@ -355,6 +357,7 @@ on a host system, which Jenkins running on port 8090.  However, it is
 possible to install Fuego in other configurations.
 
 The configuration alternatives that are supported are:
+
  * Install using a different TCP/IP port for Jenkins
  * Install without the Jenkins server
  * Install directly to your host (not inside a container)
