@@ -375,16 +375,17 @@ Here is an example: ::
   ftc gen-report --where "start_time>last week" --where tguid:result!=PASS
 
 This would generate a report with a list of all failing tests and
-testcase results.
+testcase results, in the last week.
 
 If you are not interested in ERROR or SKIP results, you might use
-a more explicity result filter, looking only at FAIL results. ::
+a more specific result filter, looking only at FAIL results. ::
 
   ftc gen-report --where "start_time>last week" --where tguid:result=FAIL
 
 Or, you might only want a summary of tests
-that failed in the last week (ignoring individual testcases within those
-tests): ::
+that failed in the last week, ignoring individual testcase results
+within those tests.  To do that, you need to specify a custom
+field list that does not include ``tguid:result``::
 
   ftc gen-report --where "start_time>last week" --where status=FAIL \
     --fields test,spec,board,build_number,timestamp,status
@@ -504,8 +505,8 @@ report directory is specified (using the ``-o`` option).
 The 'csv', 'excel', and 'pdf' formats are
 written to a file in the Fuego reports directory.  By default the
 report directory is ``/fuego-rw/reports``, inside the docker container.
-This directory is visible on the host in the fuego-rw/reports directory where
-you installed Fuego.
+This directory is visible on the host in the ``fuego-rw/reports``
+directory where you installed Fuego.
 
 You can use "-o -" to use the default report directory for 'txt',
 'html' and 'rst' formats.  Instead of writing the report to stdout,
