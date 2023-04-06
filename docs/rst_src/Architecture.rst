@@ -13,7 +13,7 @@ test harness, running in a Docker container.::
 
 Here's a diagram with an overview of Fuego elements:
 
-.. image:: ../images/Fuego-architecture.png
+.. image:: ../images/fuego-architecture.png
    :width: 600
 
 =================
@@ -24,61 +24,72 @@ The major elements in the Fuego architecture are:
 
  * Host system
 
-   * Container build system
    * Fuego container instance
 
      * Jenkins continuous integration system
 
        * Web-based user interface (web server on port 8090)
-       * Plugins
+       * Jenkins Plugins
 
-     * Test programs
-     * Build environment (not shown in the diagram above)
      * Fuego core system
+     * Fuego tests
+     * Build environment
+     * Test results directory
 
- * Target system
- * Web client, for interaction with the system
+ * Target board(s)
+ * Fuego command line tool (not shown in the diagram above)
+ * Web client, for interacting with the system (not provided and not shown)
+
+==========================
+Container
+==========================
+
+By default, Fuego runs inside a Docker container, which is created when
+Fuego is installed.  Using a container makes it is easier to install and
+use Fuego on a variety of different Linux distributions.  The libraries
+and packages that Fuego needs are included in the docker container, and
+don't need to be installed separately.  These packages have fixed
+versions, and don't interfere with versions of the same packages that
+may already be present on the host system where Fuego is installed.
+
 
 ==============
 Jenkins
 ==============
 
-The main interface for Fuego is provided by the Jenkins continuous
+The main user interface for Fuego is provided by the Jenkins continuous
 integration system.
 
-The basic function of Jenkins is to automatically launch test jobs,
-usually in response to changes in the software.  However, it can
-launch test jobs based on a variety of triggers, including when a user
-manually schedules a test to run.
+Jenkins is used in Fuego to launch test jobs and view test results.
+Usually, Fuego tests are started by Jenkins automatically, in response
+to changes in the software.  However, Jenkins can be configured to launch
+test jobs based on a variety of triggers, including when a user manually
+schedules a test to run, or at periodic intervals.
 
 Jenkins is too big a system to describe in detail here, but it has
 many features and is very popular.  It has an ecosystem of plugins for
-all kinds of extended functionality, such as integration with
+many kinds of extended functionality, such as integration with
 different source code management systems, results plotting, e-mail
 notifications of regressions, and more.
 
 Fuego installs several plugins that are used by various aspects of the
-system.
+system.  You can install additional plugins to Jenkins to suit
+your own requirements.
 
-Jenkins is used to:
+In Fuego, Jenkins is used to:
 
  * Start tests
  * Schedule tests for automatic execution
  * Shows test results (particularly over time)
  * Flag regressions in test results
 
-Note that the interface between Jenkins and the test programs is
-provided by a set of scripts (one per test, along with a set of
-scripts that comprise the core of the system) written in shell script
-language.
+When using Jenkins with Fuego, the Fuego administrator will add Jenkins
+objects (nodes and jobs) that are representative of Fuego objects.  Once
+these objects are defined, Jenkins can then start a Fuego job.  It does
+this by calling Fuego's ``ftc`` command.
 
-The interface between Jenkins and these core scripts is documented at
+The interface between Jenkins and the Fuego system is documented at
 :ref:`Core interfaces <core_interfaces>`.
-
-This overall architecture means that when items are added into the
-system (for example boards, toolchains, or tests), information has to
-be supplied to both systems (the Jenkins system and the core script
-system).
 
 =========================
 Pre-packaged tests
@@ -93,76 +104,174 @@ Finally, Fuego includes a set of selftests, to validate board
 operation or core Fuego functionality.
 
 =========================
-Abstraction scripts
+Fuego test definition
 =========================
 
-Fuego uses a set of shell script fragments to support abstractions for
+Fuego defines a test using a collection of files, which handle
+different aspects of test definition and execution.
 
- * Building test programs from source,
- * Deploying them to target (installing them)
- * Executing the tests
- * Copying files to and from the target
+The major elements of a Fuego test are:
+
+ * a test definition file, which has information about the test
+ * a "base script", which manages test execution (``fuego_test.sh``)
+ * a "spec" file, that contains information about test variants
+ * a test program, to perform the actual test
+ * a parser, to convert test program output to individual testcase
+   results
+
+Some other files that a test might include are:
+
+ * a criteria file, for evaluating test results
+ * a chart config file, that controls which test results are output
+   and in what format, in the Jenkins user interface
+
+Base script vs test program
+=============================
+Fuego tests often provide a build sytem and host/target wrapper
+for existing test programs (such as Dhrystone, dbench or cyclictest).
+
+In cases like this, part of the Fuego code runs on the host system,
+and part runs on the device under test.  More specifically, the
+base script (``fuego_test.sh``) is run on the host machine, inside
+the Fuego docker container.  The test program (e.g. the actual
+dhrystone executable) is run on the target board.
+
+Because of this setup, it can be confusing what the words "test",
+or "test script", "test program", or the name of the test
+(e.g. Dhrystone) refers to.
+
+In order to avoid confusion, this documentation refers to the software
+that runs on the target board (or "device under test") as the "test
+program" (always including the word 'program').  The documentation uses
+the full name of the test (such as 'Benchmark.Drhystone'), to refer to
+the full set of materials used by Fuego to define a test.  And it
+use the term "base script", to refer specifically to
+the 'fuego_test.sh' script inside a test.
+
+As an example, for Fuego's ``Benchmark.Dhrystone`` test, the following
+nomenclature would be used:
+
+ * 'test' or 'dhrystone test', or 'Benchmark.Dhrystone' = the full set
+   of files that comprise the Fuego Dhrystone test.
+ * 'base script' = ``fuego_test.sh``
+ * 'test program', or 'dhrystone program' = the dhrystone executable
+
+.. note:: This documentation uses the terminology "test program"
+   to refer to the software that is executed on the target board.
+   However, it should be noted that while the test program is often
+   a compiled program, it could be an interpreted script (such as
+   a shell script).  The phrase "test program" in this
+   documentation does not imply that the program is always a
+   binary object.
+
+   Not every Fuego test includes a 'test program'.  Some Fuego tests
+   execute commands on the target board directly from the base script
+   (running on the host) without placing any separate or additional
+   program on the board.
+
+===========================
+ Board
+===========================
+
+Fuego performs testing using a host/target
+configuration for building, deploying and executing tests.
+
+Fuego executes tests on physical hardware that is accessible
+from the host on which Fuego is installed.  The physical hardware
+being tested is referred to as the "target board", or the "device under
+test".
+
+During Fuego installation, the Fuego administer configures how Fuego
+accesses and controls the board by creating a board configuration file.
+Fuego can be configured with an arbitrary number of boards on which
+to run tests.  As a special case, the administrator can also configure
+Fuego to treat the host system as a board (for self-testing).
+
+Board requirements
+===========================
+
+The board might be physically connected to the host (e.g. by a serial or
+USB cable) or not.  Fuego requires very little on the target board.  It
+only requires that the target board have a POSIX shell and a few system
+utilities, as well as the capability to copy files to and from the
+board, and the ability to remotely execute commands on the board.
+
+Many
+embedded Linux devices can satisfy these requirements with just the
+'busybox' program and a serial or ssh connection.
+
+Many Linux test systems assume that the system-under-test is a full
+desktop or server system, with sufficient horsepower to build tests and
+run them locally.  Fuego assumes the opposite - that embedded targets
+may be underpowered and may not have the utilities and tools needed for
+building and executing tests.
+
+
+=========================
+ Fuego core
+=========================
+
+The Fuego core consists of shell scripts (including
+``main.sh``) and python code that loads the data and functions
+for the test.  Fuego also provides a command line tool, called ``ftc``
+that is used to perform administration and management functions.
+
+Test Functions
+==============
+
+Fuego provides a library of functions (in the form of shell script code),
+that are used by a Fuego test to perform test operations in a way that is
+independent of the architecture, physical connection, or
+Linux distribution of the device under test.
+
+Some of the operations that can be performed by these functions are:
+
+ * Building test programs from source
+ * Copying files to and from the target board
+ * Deploying test programs to the target board (installing them)
+ * Executing the test programs
  * Reading the test log
  * Parsing the log to determine pass or fail conditions for tests
  * Parsing the log for results to display in charts
 
-==========================
-Container
-==========================
+By using this library of functions, Fuego tests are insulated
+from the different hardware and access methods used to manage a board in
+a particular test lab.  For example, the Fuego core and the base script
+for a Fuego test do not have to "know" whether a board is controlled via
+serial console, ssh, or some other target agent.  These are configured
+via the board configuration file and Fuego overlay system, such that the
+tests themselves are independent of these details.
 
-By default, Fuego runs inside a Docker container.  This provides two
-benefits:
-
- * It makes it easy to run the system on a variety of different Linux
-   distributions
- * It makes the build environment for the test programs consistent
-
-===========================
- Hardware configuration
-===========================
-
-Fuego supports testing of embedded Linux by fully supporting a
-host/target configuration for building, deploying and executing tests.
-
-Many Linux test systems assume that the system-under-test is a full
-desktop or server system, with sufficient horsepower to build tests
-and run them locally.  Fuego assumes the opposite - that embedded
-targets will be underpowered and may not have the normal complement of
-utilities and tools available for performing tests
 
 ============================
-Different objects in Fuego
+ Different objects in Fuego
 ============================
 
 It is useful to give an overview of the major objects used in Fuego,
-as they will be referenced many times:
+as they will be referenced in this documentation:
 
 Fuego core objects:
 
  * board - a description of the device under test
- * test - materials forconducting a test
+ * test - materials for conducting a test
  * spec - one or more sets of variables for describing a test variant
- * plan - a collection of tests, with additional test settings for
-   their execution
- * run - the results from
-   a individual execution of a test on a board
+ * run - the results from a individual execution of a test on a board
 
 Jenkins objects:
 
  * node - the Jenkins object corresponding to a Fuego board
  * job - a Jenkins object corresponding to a combination of board,
    spec, and test
- * build - the test results, from Jenkins perspective - corresponding
+ * build - the test results, from Jenkins perspective. This corresponds
    to a Fuego 'run'
 
-There are both a front-end and a back-end to the system, and different
-names are used to describe the front-end and back-end objects used by
-the system, to avoid confusion.  In general, Jenkins objects have
-rough counterparts in
-the Fuego system:
+Fuego consists of both a front-end and a back-end.  To avoid confusion,
+different names are used to describe the front-end and back-end objects
+used by the system.  Jenkins is the front-end, and the Jenkins objects
+have rough counterparts in the Fuego core, as follows:
 
    +------------------+-------------------------------+
-   | Jenkins object   | corresponds to fuego object   |
+   | Jenkins object   | Corresponding Fuego object    |
    +==================+===============================+
    | node             | board                         |
    +------------------+-------------------------------+
@@ -176,151 +285,120 @@ the Fuego system:
 =======================
 This section explains how Jenkins works as part of Fuego.
 
- * When the a job is initiated, Jenkins starts a slave process to run
+ * When a test job is initiated, Jenkins starts a slave process to run
    the test that corresponds to that job
- * Jenkins records stdout from slave process
- * The slave (slave.jar) runs a script specified in the config.xml for
-   the job
+ * The slave (slave.jar) runs a small shell script fragment, that is
+   specified in the configuration (config.xml) for the job
 
-   * This script sources functions from the scripts and overlays
-     directory of Fuego, and does the actual building, deploying and
-     test executing
-   * Also, the script does results analysis on the test logs, and
-     calls the post_test operation to collect additional information
-     and clean up after the test
+   * This script runs the ``ftc run-test`` command.
+
+     * ``ftc`` executes the Fuego core that does the actual
+       building, deploying and execution of a test.
+
+     * Details of the core execution of the test are described below
+       in the `Test execution`_ section.
 
  * While a test is running, Jenkins accumulates the log output from
-   the generated test script and displays it to the user (if they are
+   the test execution, and displays it to the user (if they are
    watching the console log)
 
  * Jenkins provides a web UI for browsing the nodes, jobs, and test
-   results (builds), and displaying graphs for benchmark data
+   results (builds), and displaying graphs for benchmark data.
+
+By default, Jenkins is installed as part of the Fuego system.  However,
+it is possible to use Fuego without using Jenkins, by calling
+the Fuego command line tool (``ftc``) directly from your own
+testing infrastructure or CI system (e.g. gitlab).
 
 ======================
- Fuego operations
+ Test execution
 ======================
 
-This section explains how the Fuego core system works to execute
-tests and analyze results.
+This section describes the major elements and operations of the Fuego
+core when a test is executed.
 
-======================
-Test execution
-======================
+When a test is started, Fuego generates a test environment,
+consisting of variables and funtions from the core system, using
+something called the overlay generator.  The test environment
+is placed into a file called ``prolog.sh``
+and loaded into the currently running shell environment.
 
- * Each test has a base script, that defines a few functions specific
-   to that test (see below)
- * Upon execution, this base script loads additional test variables
-   and function definitions from other files using something called
-   the overlay generator
- * The overlay generator creates a script containing test variables
-   for this test run
+Details of the test environment generation are described below.
 
-   * The script is created in the log directory for the test
-   * The script is called prolog.sh
-   * The overlay generator is called ovgen.py
+Each Fuego test has a base script, called ``fuego_test.sh``, that
+defines a few functions with operations that are specific to that test
+The base script is also loaded into the currently running shell
+environment.
 
- * The base script (with the test variable script sourced into it)
-   runs on the host, and uses Fuego functions to perform different
-   phases of the test
+The Fuego core performs the test using variables
+and calling functions from: 1) the Fuego core, 2) ``prolog.sh``
+(the test environment), and 3) ``fuego_test.sh`` (the base script).
 
-================================
-Test variable file generation
-================================
+A Fuego test is executed in a series of phases which perform different
+operations during the test.  The most critical operation is running the
+actual test program on the board.  Specifically, the Fuego core calls
+the base script's ``test_run`` function, which executes the test program
+on the board and collects its output.
 
- * The generator takes the following as input:
+The Fuego core also collects additional information from the board, and
+cleans up after the test. Finally, the Fuego core analyzes the test output,
+by parsing the test logs, and generates data files containing test
+results.
 
-   * environment variables passed by Jenkins
-   * board file for the target (specified with NODE_NAME)
-   * tools.sh (vars from tools.sh are selected with TOOLCHAIN, from
-     the board file)
-   * the distribution file, and (selected with DISTRIB)
-   * test specs for the test
+=================================
+Test environment file generation
+=================================
+At the start of test execution, Fuego gathers information from the
+Fuego system and creates a test environment file.
 
-The generator creates a file containing test variables,
-called ``prolog.sh`` and it is placed in
-the the log directory for the test (also referred to as
-the "run" directory).  This generation happens on the
-host, inside the docker container.  Besides variable definitions,
-the test variable file has functions which are called by the
-test during test execution.
+Information from the board configuration file (and other sources) is
+used to create variables and functions that are specific to the current
+test invocation and the board under test.  These are placed into the
+test environment file, which is called ``prolog.sh`` and located in the
+test's log directory.  These items are them used during text execution.
 
-.. image:: ../images/fuego-script-generation.png
+This operation is referred to as "overlay generation", because some of
+the variables and functions come from class files that can have their
+values overridden (or "overlay"ed) by elements of the board
+configuration file.
+
+ * The overlay generator takes the following as input:
+
+   * Environment variables passed by Jenkins and ftc
+   * The board configuration file
+   * The toolchain configuration file
+   * The test spec for the test
+   * The overlay class files
+
+Fuego uses the variables TOOLCHAIN, DISTRIB, TRANSPORT, and BOARD_CONTROL
+in the board configuration file to determine the
+variables and functions to include in the test environment file.
+
+.. image:: ../images/fuego-prolog-generation.png
    :width: 600
 
-Input
-======
-
- * input descriptions:
-
-   * the board file has variables defining attributes of the board,
-     like the toolchain, network address, method of accessing the
-     board, etc.
-   * tools.sh has variables which are used for identifying the
-     toolchain used to build binary test programs
-
-     * it uses the TOOLCHAIN variable to determine the set of
-       variables to define
-
-   * a testplan lists multiple tests to run
-
-     * it specifies a test name and spec for each one
-
-     * a spec files hold the a set of variable declarations which are
-       used by the tests themselves.
-       These are put into environment variables on the target.
-
- * ovgen.py reads the plans, board files, distrib files and specs,
-   and produces
-   a single prolog.sh file that has all the information for the test
-
- * Each test in the system has a Fuego shell script, called
-   ``fuego_test.sh``
-
- * Most (but not all) tests have an additional test program
-
-   * this program is executed on the board (the device under test)
-   * it is often a compiled program, or set of programs
-   * it can be a simple shell script
-   * it is optional - sometime the base script can execute the needed
-     commands for a test without an additional program placed on the
-     board
-
- * the base script declares the tarfile for the test, and has
-   functions for: test_build(), test_deploy() and test_run()
-
-   * the test script is run on host (in the container)
-
-     * but it can include commands that will run on the board
-
-   * tarball has the tarfile
-   * test_build() has commands (which run in the container) to compile
-     the test program
-   * test_deploy() has commands to put the test programs on the target
-   * test_run() has commands to define variables, execute the actual
-     test, and log the results.
-
- * the test program is run on the target
-
-   * this is the actual test program that runs and produces a result
 
 ====================
 Fuego test phases
 ====================
 
-A test execution in fuego runs through several phases, some of which
-are optional, depending on the test.
+Fuego runs through a series of well-defined phases during test
+execution.  The reason for having distinct phases is that it allows for
+easier debugging of test execution, during the development of a test.
+Some of the test phases are optional, and a user can manually control
+which individual phases of a test are executed. Also, the user can control
+which phases show extra debug information during a test.
 
-The test phases are:
+The major test phases are:
 
  * pre_test
  * build
  * deploy
  * run
- * fetch
- * processing
  * post_test
+ * processing
 
-Each of these are described below the diagram.
+Each of these are described in the sections after this diagram.
 
 .. image:: ../images/fuego-test-phases.png
     :width: 600
@@ -328,10 +406,10 @@ Each of these are described below the diagram.
 pre_test
 ============
 
-The pre_test phase consists of making sure the target is alive, and
-preparing the workspace for the test.  In this phase test directories
-are created, and the firmware (a string describing the software on the
-target) are collected.
+The pre_test phase consists of making sure the target is booted and
+running, and preparing the workspace for the test.  In this phase test
+directories are created, and the kernel version on the target board is
+recorded.
 
 The 'before' syslog is created, and filesystems are synced and buffer
 caches dropped, in preparation for any filesystem tests.
@@ -341,13 +419,20 @@ called to do any pre_test operations, including checking to see if
 required variables are set, programs or features are available on the
 host or target board, or whether any other test dependencies are met.
 
+If the dependencies are not met, the test is aborted at this phase,
+with a result of ERROR and messages indicating the reason for the
+failure.
+
 build
 ==========
 
 During this phase, the test program source is installed on the host
-(inside the container), and the software for the test is actually
-built.  The toolchain specified by PLATFORM is used to build the
-software.
+(inside a build area in the container), and the software for the test is
+actually built.  The toolchain specified by TOOLCHAIN is used to build
+the software.
+
+The source code may be provided in the form of a tarball file, or
+it may be specified by the test as a reference to a git repository.
 
 This phase is split into multiple parts:
 
@@ -377,25 +462,25 @@ This consists of 3 sub-phases:
    * Usually this consists of tarring up needed files, copying them to
      the target with 'put', and then extracting them there
    * Items should be placed in the directory
-     $BOARD_TESTDIR/fuego.$TESTDIR/ directory on the target
+     ``$BOARD_TESTDIR/fuego.$TESTDIR`` directory on the target
  * post_deploy - removes the build lock
 
 run
 =======
 
-In this phase the test program on the target is actually executed.
+In this phase the test program on the target board is actually executed.
 
 This executes the 'test_run' function defined in the base script for
-the test, which can consist of anything.  Usually, however, it runs
-the test program with any needed parameters (as specified by the test
-specs and test plans).
+the test, which usually consists of one or more calls to the
+``report`` function, which executes the test program on the target
+board and collects the standard out from the program.
+This output is saved as the testlog for the test.
+Note that the ``report`` function saves the testlog on the target.
+It is collected from the target later, for post-processing.
 
-The test execution is usually performed by calling the 'report'
-function, which collects the standard out from the command execution
-on the target, and saves that as the testlog for the test.  Note that
-the testlog is saved on the target, but not yet transferred to the
-host, yet.
-
+The run phase may include additional commands to prepare the system
+for test operation and clean up after the execution of the
+test program.
 
 post_test
 ==================
@@ -429,7 +514,6 @@ Also, a final analysis is done on the system logs is done in this step
 (to detect things like Kernel Oopses that occurred during the test).
 
 
-
 phase relation to base script functions
 ============================================================
 
@@ -443,25 +527,23 @@ It also shows the most common commands utilized by base script
 functions for this phase.
 
 
-  +------------+-------------------------------+-----------------------------+
-  | phase      | relationship to base script   | common operations           |
-  +============+===============================+=============================+
-  | pre_test   | calls 'test_pre_check'        |assert_define, is_on_target, |
-  |            |                               |check_process_is_running     |
-  +------------+-------------------------------+-----------------------------+
-  | build      | uses the 'tarfile' definition,| patch, configure, make      |
-  |            | calls'test_build'             |                             |
-  +------------+-------------------------------+-----------------------------+
-  | deploy     | Calls 'test_deploy'           | put                         |
-  +------------+-------------------------------+-----------------------------+
-  | run        | calls 'test_run'              | cmd, report, report_append  |
-  +------------+-------------------------------+-----------------------------+
-  |get_testlog | (none)                        |                             |
-  +------------+-------------------------------+-----------------------------+
-  |processing  | calls 'test_processing'       | log_compare                 |
-  +------------+-------------------------------+-----------------------------+
-  |post_test   | calls 'test_cleanup'          | kill_procs                  |
-  +------------+-------------------------------+-----------------------------+
+  +------------+-------------------------------+------------------------------+
+  | phase      | relationship to base script   | common operations            |
+  +============+===============================+==============================+
+  | pre_test   | calls 'test_pre_check'        | assert_define, is_on_target, |
+  |            |                               | check_process_is_running     |
+  +------------+-------------------------------+------------------------------+
+  | build      | uses the 'tarfile' definition,| patch, configure, make       |
+  |            | calls'test_build'             |                              |
+  +------------+-------------------------------+------------------------------+
+  | deploy     | Calls 'test_deploy'           | put                          |
+  +------------+-------------------------------+------------------------------+
+  | run        | calls 'test_run'              | cmd, report, report_append   |
+  +------------+-------------------------------+------------------------------+
+  | post_test  | calls 'test_cleanup'          | kill_procs                   |
+  +------------+-------------------------------+------------------------------+
+  | processing | calls 'test_processing'       | log_compare                  |
+  +------------+-------------------------------+------------------------------+
 
 
 Other scripts and programs
@@ -475,7 +557,7 @@ benchmark test should have one.  This file is a python module which is
 run to extract results and data values from the log.
 
 This script is run inside the docker container, after a test is
-finished.  The Fuego log parsing system (in python) loads this module as
+finished.  The Fuego log parsing system loads this module as
 part of test processing.
 
 A benchmark program measures some attribute of the system during a test,
@@ -495,58 +577,11 @@ number represents an acceptable value (pass), or a failure or regression
 for benchmark tests, and about test results that can be ignored, for
 functional tests, to allow for automating this results processing.
 
+=====================
+ Command line tool
+=====================
 
-==============
- Data Files
-==============
-
-There are data files with definitions for several things in the system.
-
-The Jenkins interface needs to know about boards, running test
-processes (slaves), test definitions, and test results.
-
-The fuego core needs to know about test definitions, boards, platforms
-(SDKS), test plans, and test specs.
-
-The core executes the test script for a test, executing the test
-phases in sequence: build the test program, bundle the test programs
-for the target, deploy them, execute the test, then post-process the
-the test.
-
-The base shell script should:
-
- * build the test program
- * deploy the test bundle to the target
- * execute the tests
- * read the log data from the test
-
-The base shell script can handle host/target tests (because it runs on
-the host). That is, tests that involve actions on both the host and
-target.
-
-To add a new test, the user defines several files and puts them into
-a sub-directory with the test name, under
-``/fuego-core/tests``
-
-The ``ftc`` command uses this directory and the directory
-``/fuego-ro/boards`` to show available boards and tests on the command
-line.  Then a user can populate the nodes and jobs in Jenkins, using
-``ftc`` commands. Each test has to have a front-end entry (a Jenkins job
-definition) to allow Jenkins to execute it.  This front-end entry
-specifies the board, spec and base script for the test.
-
-========
-Roles
-========
-
-Human roles:
-
- * test program author - person who creates a new standalone test
-   program
- * test integrator - person who integrates a standalone test into
-   fuego
- * fuego developer - person who modifies Fuego (including the Fuego
-   system scripts or Jenkins) to support more test scenarios or
-   additional features
- * tester - person who executes tests and evaluates results
-
+Fuego includes a command line tool for performing administrative
+and management operations, and for executing tests.  This command
+line tool is called ``ftc``.  Details of ``ftc`` commands can
+be found in the section :ref:`Command Line Tool <command_line_tool>`.

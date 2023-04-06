@@ -1,3 +1,4 @@
+.. _command_line_tool:
 
 #######################
 Command Line Tool - ftc
@@ -42,7 +43,7 @@ Here are options that are commonly used with ftc commands:
    used to omit header data and make the output suitable for parsing by
    other tools.
  * **-h** = help - show help for the specified sub-command
- * **--debug** = run in debug mode - this make ``ftc`` produce a log of debug
+ * **--debug** = run in debug mode - this makes ``ftc`` produce debug
    information while it runs
  * **-b** = specify the board - used when a command takes a board argument
  * **-t** = specify the test - used when a command test a test argument.
